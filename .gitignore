@@ -1,0 +1,28 @@
+# Brainstorming/visual-companion artifacts
+.superpowers/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java
+target/
+*.class
+*.jar
+*.war
+hs_err_pid*.log
+
+# Node / mini-program
+node_modules/
+miniprogram_npm/
+dist/
+
+# Logs / env
+*.log
+.env
+.env.local
