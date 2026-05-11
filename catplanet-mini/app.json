@@ -8,7 +8,8 @@
     "pages/cat-edit/cat-edit",
     "pages/feeding-add/feeding-add",
     "pages/care-add/care-add",
-    "pages/health-add/health-add"
+    "pages/health-add/health-add",
+    "pages/reminders/reminders"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFF5F0",

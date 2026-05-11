@@ -1,31 +1,45 @@
 const app = getApp();
+const http = require('../../utils/request');
 
 Page({
   data: {
     familyName: '',
-    inviteCode: ''
+    inviteCode: '',
+    catCount: 0,
+    pendingReminders: 0
   },
 
   onShow() {
-    const familyId = app.globalData.currentFamilyId;
-    if (familyId) {
-      this.loadFamily();
+    if (app.globalData.token) {
+      this.loadData();
     }
   },
 
-  async loadFamily() {
-    const http = require('../../utils/request');
+  async loadData() {
     try {
-      const families = await http.get('/api/family/my');
+      const [families, cats, reminders] = await Promise.all([
+        http.get('/api/family/my'),
+        http.get('/api/cats'),
+        http.get('/api/reminders?status=pending')
+      ]);
+
       if (families && families.length > 0) {
         this.setData({
           familyName: families[0].name,
           inviteCode: families[0].inviteCode
         });
       }
+      this.setData({
+        catCount: (cats || []).length,
+        pendingReminders: (reminders || []).length
+      });
     } catch (e) {
       console.error(e);
     }
+  },
+
+  goReminders() {
+    wx.navigateTo({ url: '/pages/reminders/reminders' });
   },
 
   copyInviteCode() {

@@ -1,0 +1,43 @@
+<view class="container reminders-page">
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'pending' ? 'active' : ''}}" bindtap="switchTab" data-tab="pending">
+      <text>待提醒</text>
+    </view>
+    <view class="tab-item {{activeTab === 'sent' ? 'active' : ''}}" bindtap="switchTab" data-tab="sent">
+      <text>已提醒</text>
+    </view>
+    <view class="tab-item {{activeTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">
+      <text>全部</text>
+    </view>
+  </view>
+
+  <!-- 提醒列表 -->
+  <view class="reminder-list" wx:if="{{reminders.length > 0}}">
+    <view class="reminder-item" wx:for="{{reminders}}" wx:key="reminderId">
+      <view class="reminder-icon">{{item.icon}}</view>
+      <view class="reminder-body">
+        <text class="reminder-title">{{item.title}}</text>
+        <text class="reminder-time">{{item.triggerText}}</text>
+      </view>
+      <view class="reminder-actions" wx:if="{{item.status === 'pending'}}">
+        <view class="action-done" bindtap="handleDone" data-id="{{item.reminderId}}">✓</view>
+        <view class="action-cancel" bindtap="handleCancel" data-id="{{item.reminderId}}">✕</view>
+      </view>
+      <view class="reminder-status" wx:else>
+        <text class="status-badge {{item.status}}">{{item.statusText}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{!loading}}">
+    <text class="empty-icon">🔔</text>
+    <text class="empty-text">暂无提醒</text>
+    <text class="empty-sub">添加疫苗/驱虫记录时会自动创建提醒</text>
+  </view>
+
+  <view class="loading-state" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

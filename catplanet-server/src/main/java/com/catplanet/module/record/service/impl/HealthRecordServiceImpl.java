@@ -7,16 +7,33 @@ import com.catplanet.module.record.dto.HealthRecordRequest;
 import com.catplanet.module.record.entity.HealthRecord;
 import com.catplanet.module.record.mapper.HealthRecordMapper;
 import com.catplanet.module.record.service.HealthRecordService;
+import com.catplanet.module.reminder.dto.ReminderRequest;
+import com.catplanet.module.reminder.service.ReminderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
 public class HealthRecordServiceImpl implements HealthRecordService {
 
     private final HealthRecordMapper healthRecordMapper;
+    private final ReminderService reminderService;
+
+    /** 自动创建提醒的健康类型 */
+    private static final Set<String> AUTO_REMINDER_TYPES = Set.of("vaccine", "deworm");
+
+    private static final Map<String, String> TYPE_NAMES = Map.of(
+            "vaccine", "疫苗",
+            "deworm", "驱虫",
+            "checkup", "体检"
+    );
 
     @Override
     public HealthRecord create(HealthRecordRequest request, Long familyId, Long userId) {
@@ -34,7 +51,33 @@ public class HealthRecordServiceImpl implements HealthRecordService {
         record.setNote(request.getNote());
         record.setImages(request.getImages());
         healthRecordMapper.insert(record);
+
+        // 自动创建提醒（疫苗/驱虫 且有下次到期日）
+        if (AUTO_REMINDER_TYPES.contains(request.getHealthType()) && request.getNextDueDate() != null) {
+            autoCreateReminder(record, request.getNextDueDate(), familyId, userId);
+        }
+
         return record;
+    }
+
+    private void autoCreateReminder(HealthRecord record, LocalDate nextDueDate, Long familyId, Long userId) {
+        String typeName = TYPE_NAMES.getOrDefault(record.getHealthType(), record.getHealthType());
+        String subInfo = record.getSubtype() != null ? "·" + record.getSubtype() : "";
+
+        // 提前 3 天提醒，时间设为上午 9:00
+        LocalDateTime triggerAt = nextDueDate.minusDays(3).atTime(LocalTime.of(9, 0));
+        if (triggerAt.isBefore(LocalDateTime.now())) {
+            // 如果提前3天已经过了，就设为到期当天
+            triggerAt = nextDueDate.atTime(LocalTime.of(9, 0));
+        }
+
+        ReminderRequest reminderReq = new ReminderRequest();
+        reminderReq.setCatId(record.getCatId());
+        reminderReq.setType(record.getHealthType());
+        reminderReq.setTitle(typeName + subInfo + "到期提醒");
+        reminderReq.setTriggerAt(triggerAt);
+        reminderReq.setSourceRecordId(record.getRecordId());
+        reminderService.create(reminderReq, familyId, userId);
     }
 
     @Override

@@ -39,16 +39,69 @@
   font-weight: 500;
 }
 
+/* 数据概览 */
+.stats-card {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24rpx;
+  padding: 32rpx 0;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  margin-top: 8rpx;
+}
+
+/* 功能列表 */
 .action-card {
   margin-top: 24rpx;
 }
 
 .action-item {
-  padding: 24rpx 0;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  padding: 28rpx 0;
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.action-item:last-child {
+  border-bottom: none;
+}
+
+.action-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
 }
 
 .action-text {
+  flex: 1;
   font-size: 30rpx;
-  color: #FF4D4F;
+  color: var(--color-text);
+}
+
+.action-badge {
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+  margin-right: 12rpx;
+}
+
+.action-arrow {
+  font-size: 32rpx;
+  color: var(--color-text-secondary);
 }
