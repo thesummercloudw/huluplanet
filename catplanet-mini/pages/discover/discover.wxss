@@ -1,0 +1,130 @@
+.page {
+  padding: 0 24rpx 24rpx;
+  background: #FFF5F0;
+  min-height: 100vh;
+}
+
+/* Segment */
+.segment {
+  display: flex;
+  background: #FFF;
+  border-radius: 32rpx;
+  margin: 24rpx 0;
+  padding: 6rpx;
+}
+.seg-item {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  border-radius: 28rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+.seg-item.active {
+  background: #FF8C69;
+  color: #FFF;
+  font-weight: 600;
+}
+
+/* Hospital */
+.hospital-card {
+  display: flex;
+  align-items: center;
+  background: #FFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+.hospital-info {
+  flex: 1;
+}
+.hospital-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+.hospital-address {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+.hospital-meta {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  color: #999;
+}
+.hospital-score {
+  color: #FF8C69;
+  font-weight: 600;
+}
+.hospital-tags {
+  display: flex;
+  gap: 8rpx;
+  margin-top: 10rpx;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 20rpx;
+  padding: 4rpx 12rpx;
+  background: #FFF5F0;
+  color: #FF8C69;
+  border-radius: 8rpx;
+}
+.nav-btn {
+  padding: 12rpx 24rpx;
+  background: #FFF5F0;
+  color: #FF8C69;
+  font-size: 24rpx;
+  font-weight: 600;
+  border-radius: 20rpx;
+  flex-shrink: 0;
+}
+
+/* Adoption Grid */
+.adopt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}
+.adopt-card {
+  background: #FFF;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+}
+.adopt-cover {
+  width: 100%;
+  height: 240rpx;
+}
+.adopt-info {
+  padding: 16rpx;
+}
+.adopt-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+.adopt-meta {
+  display: flex;
+  gap: 12rpx;
+  font-size: 22rpx;
+  color: #666;
+  margin-top: 6rpx;
+}
+.adopt-city {
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 6rpx;
+}
+
+/* Empty */
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 80rpx 0;
+  font-size: 28rpx;
+}

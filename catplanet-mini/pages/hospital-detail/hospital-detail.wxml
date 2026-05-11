@@ -1,0 +1,34 @@
+<view class="page" wx:if="{{hospital}}">
+  <!-- 基本信息 -->
+  <view class="header">
+    <view class="hospital-name">{{hospital.name}}</view>
+    <view class="hospital-score" wx:if="{{hospital.avgScore > 0}}">⭐ {{hospital.avgScore}} ({{hospital.reviewCount}}条评价)</view>
+    <view class="hospital-address">📍 {{hospital.address}}</view>
+    <view class="hospital-hours" wx:if="{{hospital.businessHours}}">🕐 {{hospital.businessHours}}</view>
+    <view class="hospital-tags" wx:if="{{hospital.tags && hospital.tags.length > 0}}">
+      <text class="tag" wx:for="{{hospital.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="actions">
+    <view class="action-btn" bindtap="openNavigation">🗺️ 导航到这里</view>
+    <view class="action-btn phone" bindtap="makeCall" wx:if="{{hospital.phone}}">📞 拨打电话</view>
+  </view>
+
+  <!-- 评价列表 -->
+  <view class="section">
+    <view class="section-title">用户评价</view>
+    <view class="review-item" wx:for="{{reviews}}" wx:key="reviewId">
+      <view class="review-header">
+        <text class="review-score">{{'⭐'.repeat(item.score)}}</text>
+        <text class="review-time">{{item.createdAt}}</text>
+      </view>
+      <view class="review-content" wx:if="{{item.content}}">{{item.content}}</view>
+      <view class="review-tags" wx:if="{{item.serviceTags && item.serviceTags.length > 0}}">
+        <text class="service-tag" wx:for="{{item.serviceTags}}" wx:for-item="st" wx:key="*this">{{st}}</text>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{reviews.length === 0}}">暂无评价</view>
+  </view>
+</view>

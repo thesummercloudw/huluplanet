@@ -1,0 +1,67 @@
+<view class="page" wx:if="{{cat}}">
+  <!-- 封面图 -->
+  <swiper class="cover-swiper" indicator-dots="{{cat.images && cat.images.length > 1}}" autoplay circular>
+    <swiper-item wx:if="{{cat.cover}}">
+      <image src="{{cat.cover}}" mode="aspectFill" class="cover-img"></image>
+    </swiper-item>
+    <swiper-item wx:for="{{cat.images}}" wx:key="*this">
+      <image src="{{item}}" mode="aspectFill" class="cover-img"></image>
+    </swiper-item>
+  </swiper>
+
+  <!-- 基本信息 -->
+  <view class="info-card">
+    <view class="cat-name">{{cat.name}}</view>
+    <view class="cat-meta">
+      <text wx:if="{{cat.gender !== 'unknown'}}">{{cat.gender === 'male' ? '♂ 弟弟' : '♀ 妹妹'}}</text>
+      <text wx:if="{{cat.ageEstimate}}">{{cat.ageEstimate}}</text>
+      <text wx:if="{{cat.breedEstimate}}">{{cat.breedEstimate}}</text>
+    </view>
+    <view class="cat-city" wx:if="{{cat.city}}">📍 {{cat.city}}</view>
+    <view class="cat-personality" wx:if="{{cat.personality}}">💬 {{cat.personality}}</view>
+  </view>
+
+  <!-- 送养原因 -->
+  <view class="section" wx:if="{{cat.reasonForAdoption}}">
+    <view class="section-title">送养原因</view>
+    <text class="section-text">{{cat.reasonForAdoption}}</text>
+  </view>
+
+  <!-- 健康状况 -->
+  <view class="section" wx:if="{{cat.healthStatus}}">
+    <view class="section-title">健康状况</view>
+    <view class="health-items">
+      <view class="health-item" wx:if="{{cat.healthStatus.vaccine}}">💉 疫苗: {{cat.healthStatus.vaccine}}</view>
+      <view class="health-item" wx:if="{{cat.healthStatus.deworm}}">💊 驱虫: {{cat.healthStatus.deworm}}</view>
+      <view class="health-item" wx:if="{{cat.healthStatus.neutered}}">✂️ 绝育: {{cat.healthStatus.neutered}}</view>
+    </view>
+  </view>
+
+  <!-- 领养按钮 -->
+  <view class="apply-btn" bindtap="showApply" wx:if="{{!showApplyForm}}">❤️ 我想领养它</view>
+
+  <!-- 申请表单 -->
+  <view class="apply-form" wx:if="{{showApplyForm}}">
+    <view class="form-title">领养申请表</view>
+    <view class="form-item">
+      <view class="form-label">自我介绍 *</view>
+      <textarea class="form-textarea" placeholder="简单介绍一下自己" bindinput="onInput" data-field="selfIntro" value="{{form.selfIntro}}"></textarea>
+    </view>
+    <view class="form-item">
+      <view class="form-label">养猫经验</view>
+      <textarea class="form-textarea" placeholder="之前养过猫吗？有什么经验？" bindinput="onInput" data-field="experience" value="{{form.experience}}"></textarea>
+    </view>
+    <view class="form-item">
+      <view class="form-label">家庭环境</view>
+      <textarea class="form-textarea" placeholder="家人是否同意？住房环境如何？" bindinput="onInput" data-field="familyEnv" value="{{form.familyEnv}}"></textarea>
+    </view>
+    <view class="form-item commitment">
+      <view class="checkbox {{form.commitmentSigned ? 'checked' : ''}}" bindtap="toggleCommitment">✓</view>
+      <text class="commitment-text">我承诺科学喂养、不弃养、定期疫苗驱虫、接受回访</text>
+    </view>
+    <view class="form-actions">
+      <view class="cancel-btn" bindtap="hideApply">取消</view>
+      <view class="submit-btn" bindtap="submitApply">提交申请</view>
+    </view>
+  </view>
+</view>

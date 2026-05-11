@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/catfood/catfood",
+    "pages/discover/discover",
     "pages/mine/mine",
     "pages/login/login",
     "pages/guide/guide",
@@ -12,7 +13,9 @@
     "pages/health-add/health-add",
     "pages/reminders/reminders",
     "pages/food-detail/food-detail",
-    "pages/review-write/review-write"
+    "pages/review-write/review-write",
+    "pages/hospital-detail/hospital-detail",
+    "pages/adoption-detail/adoption-detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFF5F0",
@@ -34,6 +37,10 @@
       {
         "pagePath": "pages/catfood/catfood",
         "text": "猫粮"
+      },
+      {
+        "pagePath": "pages/discover/discover",
+        "text": "找猫咪"
       },
       {
         "pagePath": "pages/mine/mine",
