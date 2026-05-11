@@ -1,0 +1,54 @@
+.mine-page {
+  padding-top: 60rpx;
+}
+
+.family-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.family-label {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 12rpx;
+}
+
+.family-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+}
+
+.invite-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--color-bg);
+  border-radius: var(--radius-sm);
+  padding: 16rpx 24rpx;
+}
+
+.invite-label {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+}
+
+.invite-copy {
+  font-size: 26rpx;
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.action-card {
+  margin-top: 24rpx;
+}
+
+.action-item {
+  padding: 24rpx 0;
+  text-align: center;
+}
+
+.action-text {
+  font-size: 30rpx;
+  color: #FF4D4F;
+}

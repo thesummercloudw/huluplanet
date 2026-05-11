@@ -1,4 +1,4 @@
-package com.catplanet.module.cat.entity;
+package com.catplanet.module.record.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
@@ -10,26 +10,30 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@TableName(value = "cat", autoResultMap = true)
-public class Cat {
+@TableName(value = "health_record", autoResultMap = true)
+public class HealthRecord {
 
     @TableId(type = IdType.ASSIGN_ID)
+    private Long recordId;
+
+    @TableField(insertStrategy = FieldStrategy.ALWAYS)
     private Long catId;
 
     @TableField(insertStrategy = FieldStrategy.ALWAYS)
     private Long familyId;
-    private String name;
-    private String avatar;
-    private String breed;
-    private String gender;
-    private LocalDate birthday;
-    private Integer isNeutered;
-    private BigDecimal weightKg;
+
+    private String healthType;
+    private String subtype;
+    private LocalDate recordDate;
+    private String hospitalName;
+    private BigDecimal cost;
+    private LocalDate nextDueDate;
+    private BigDecimal valueNumeric;
+    private Long operatorUserId;
+    private String note;
 
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<String> personalityTags;
-
-    private LocalDate adoptionDate;
+    private List<String> images;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;

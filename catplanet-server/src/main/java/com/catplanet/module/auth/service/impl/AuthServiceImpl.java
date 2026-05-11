@@ -5,6 +5,8 @@ import com.catplanet.common.result.ResultCode;
 import com.catplanet.common.util.JwtUtil;
 import com.catplanet.module.auth.dto.LoginResponse;
 import com.catplanet.module.auth.service.AuthService;
+import com.catplanet.module.family.dto.CreateFamilyRequest;
+import com.catplanet.module.family.service.FamilyService;
 import com.catplanet.module.user.entity.User;
 import com.catplanet.module.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class AuthServiceImpl implements AuthService {
 
     private final WebClient webClient;
     private final UserService userService;
+    private final FamilyService familyService;
     private final JwtUtil jwtUtil;
 
     @Value("${catplanet.wx.appid}")
@@ -46,9 +49,40 @@ public class AuthServiceImpl implements AuthService {
         boolean isNew = existUser == null;
         User user = userService.findOrCreate(openid, unionid);
 
+        // 新用户自动创建默认家庭
+        if (isNew) {
+            createDefaultFamily(user);
+        }
+
         // 生成 JWT
         String token = jwtUtil.generateToken(user.getUserId());
         return new LoginResponse(token, user.getUserId(), isNew);
+    }
+
+    @Override
+    public LoginResponse devLogin(String code) {
+        // 开发模式：用 code 作为 mock openid，无需调用微信服务器
+        String mockOpenid = "dev_" + code;
+        log.info("[DEV MODE] mock login with openid: {}", mockOpenid);
+
+        User existUser = userService.findByOpenid(mockOpenid);
+        boolean isNew = existUser == null;
+        User user = userService.findOrCreate(mockOpenid, null);
+
+        // 新用户自动创建默认家庭
+        if (isNew) {
+            createDefaultFamily(user);
+        }
+
+        String token = jwtUtil.generateToken(user.getUserId());
+        return new LoginResponse(token, user.getUserId(), isNew);
+    }
+
+    private void createDefaultFamily(User user) {
+        CreateFamilyRequest request = new CreateFamilyRequest();
+        request.setName(user.getNickname() + "的家");
+        familyService.create(request, user.getUserId());
+        log.info("为新用户 {} 自动创建默认家庭", user.getUserId());
     }
 
     @SuppressWarnings("unchecked")

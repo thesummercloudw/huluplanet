@@ -1,11 +1,11 @@
 .index-page {
-  padding-bottom: 160rpx;
+  padding-bottom: 40rpx;
 }
 
 .planet-header {
   display: flex;
   align-items: center;
-  margin-bottom: 40rpx;
+  margin-bottom: 32rpx;
 }
 
 .planet-emoji {
@@ -19,51 +19,162 @@
   color: var(--color-text);
 }
 
-/* 猫咪卡片 */
+/* 猫咪横向滚动 */
+.cat-scroll {
+  white-space: nowrap;
+  margin-bottom: 32rpx;
+  padding-bottom: 8rpx;
+}
+
 .cat-card {
-  display: flex;
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
   background: var(--color-card);
   border-radius: var(--radius-lg);
-  padding: 28rpx 32rpx;
+  padding: 24rpx 28rpx;
   box-shadow: var(--shadow-card);
-  margin-bottom: 24rpx;
+  margin-right: 20rpx;
+  width: 160rpx;
 }
 
-.cat-avatar-wrap {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-right: 24rpx;
-  flex-shrink: 0;
+.cat-card-add {
+  border: 2rpx dashed var(--color-border);
+  background: transparent;
+  box-shadow: none;
 }
 
 .cat-avatar {
-  width: 100%;
-  height: 100%;
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-bottom: 12rpx;
 }
 
-.cat-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.add-icon {
+  font-size: 48rpx;
+  color: var(--color-text-secondary);
+  height: 96rpx;
+  line-height: 96rpx;
+  margin-bottom: 12rpx;
 }
 
 .cat-name {
-  font-size: 32rpx;
+  font-size: 24rpx;
+  font-weight: 500;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140rpx;
+}
+
+/* 快捷记录区 */
+.quick-actions {
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: 28rpx 32rpx;
+  margin-bottom: 32rpx;
+  box-shadow: var(--shadow-card);
+}
+
+.quick-title {
+  font-size: 28rpx;
   font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 24rpx;
+}
+
+.quick-grid {
+  display: flex;
+  justify-content: space-around;
+}
+
+.quick-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quick-icon {
+  font-size: 48rpx;
   margin-bottom: 8rpx;
 }
 
-.cat-breed {
-  font-size: 24rpx;
+.quick-label {
+  font-size: 22rpx;
   color: var(--color-text-secondary);
 }
 
-.cat-arrow {
-  font-size: 36rpx;
+/* Timeline */
+.timeline-section {
+  margin-top: 8rpx;
+}
+
+.section-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 20rpx;
+}
+
+.timeline-list {
+  padding-left: 24rpx;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 28rpx;
+  position: relative;
+  padding-left: 28rpx;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 0;
+  top: 12rpx;
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+.timeline-dot.feeding {
+  background: #E58C7A;
+}
+
+.timeline-dot.care {
+  background: #BFD7DE;
+}
+
+.timeline-dot.health {
+  background: #9BC88B;
+}
+
+.timeline-content {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8rpx;
+}
+
+.timeline-cat {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.timeline-summary {
+  font-size: 26rpx;
   color: var(--color-text-secondary);
+}
+
+.timeline-time {
+  font-size: 22rpx;
+  color: var(--color-placeholder);
+  margin-left: auto;
 }
 
 /* 空状态 */
@@ -71,7 +182,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 200rpx;
+  margin-top: 160rpx;
 }
 
 .empty-emoji {
@@ -88,25 +199,13 @@
 .empty-sub {
   font-size: 26rpx;
   color: var(--color-text-secondary);
+  margin-bottom: 40rpx;
 }
 
-/* FAB 按钮 */
-.fab-btn {
-  position: fixed;
-  right: 48rpx;
-  bottom: 200rpx;
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8rpx 32rpx rgba(255, 140, 105, 0.4);
-}
-
-.fab-icon {
-  font-size: 56rpx;
+.empty-btn {
+  padding: 18rpx 56rpx;
+  background: var(--color-accent);
   color: #fff;
-  line-height: 1;
+  border-radius: var(--radius-md);
+  font-size: 28rpx;
 }

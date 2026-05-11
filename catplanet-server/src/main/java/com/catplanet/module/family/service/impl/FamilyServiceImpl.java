@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -29,6 +31,7 @@ public class FamilyServiceImpl implements FamilyService {
     @Transactional
     public Family create(CreateFamilyRequest request, Long userId) {
         Family family = new Family();
+        family.setFamilyId(IdWorker.getId());
         family.setName(request.getName());
         family.setCoverEmoji(request.getCoverEmoji() != null ? request.getCoverEmoji() : "🏠");
         family.setCreatorId(userId);

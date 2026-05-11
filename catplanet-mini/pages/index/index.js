@@ -5,6 +5,7 @@ Page({
   data: {
     cats: [],
     familyName: '',
+    timeline: [],
     loading: true
   },
 
@@ -27,17 +28,37 @@ Page({
         wx.setStorageSync('currentFamilyId', family.familyId);
         this.setData({ familyName: family.name });
 
-        // 加载猫咪列表
-        const cats = await http.get('/api/cats');
-        this.setData({ cats: cats || [] });
+        // 并行加载猫咪和 Timeline
+        const [cats, timeline] = await Promise.all([
+          http.get('/api/cats'),
+          http.get('/api/timeline?limit=10')
+        ]);
+        this.setData({
+          cats: cats || [],
+          timeline: (timeline || []).map(item => ({
+            ...item,
+            timeStr: this.formatTime(item.time)
+          }))
+        });
       } else {
-        this.setData({ cats: [], familyName: '' });
+        this.setData({ cats: [], familyName: '', timeline: [] });
       }
     } catch (e) {
       console.error('loadData error:', e);
     } finally {
       this.setData({ loading: false });
     }
+  },
+
+  // 快捷记录入口
+  goFeeding() {
+    wx.navigateTo({ url: '/pages/feeding-add/feeding-add' });
+  },
+  goCare() {
+    wx.navigateTo({ url: '/pages/care-add/care-add' });
+  },
+  goHealth() {
+    wx.navigateTo({ url: '/pages/health-add/health-add' });
   },
 
   goAddCat() {
@@ -51,5 +72,22 @@ Page({
 
   onPullDownRefresh() {
     this.loadData().then(() => wx.stopPullDownRefresh());
+  },
+
+  formatTime(timeStr) {
+    if (!timeStr) return '';
+    const date = new Date(timeStr);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMin = Math.floor(diffMs / 60000);
+    if (diffMin < 1) return '刚刚';
+    if (diffMin < 60) return diffMin + '分钟前';
+    const diffHour = Math.floor(diffMin / 60);
+    if (diffHour < 24) return diffHour + '小时前';
+    const diffDay = Math.floor(diffHour / 24);
+    if (diffDay < 7) return diffDay + '天前';
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    return month + '/' + day;
   }
 });

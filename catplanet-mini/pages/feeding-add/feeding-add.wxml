@@ -1,0 +1,56 @@
+<view class="container form-page">
+  <view class="form-title">记录喂食 🍗</view>
+
+  <!-- 选猫 -->
+  <view class="form-section">
+    <view class="form-label">选择猫咪</view>
+    <scroll-view class="cat-picker" scroll-x>
+      <view class="cat-chip {{selectedCatId === item.catId ? 'active' : ''}}"
+            wx:for="{{cats}}" wx:key="catId"
+            bindtap="onCatSelect" data-id="{{item.catId}}">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 食物名 -->
+  <view class="form-section">
+    <view class="form-label">食物名称</view>
+    <input class="form-input" placeholder="例如：渴望六种鱼"
+           value="{{foodName}}" bindinput="onFoodInput"/>
+  </view>
+
+  <!-- 克数 -->
+  <view class="form-section">
+    <view class="form-label">食量 (g)</view>
+    <view class="amount-row">
+      <input class="form-input amount-input" type="number" placeholder="克数"
+             value="{{amountG}}" bindinput="onAmountInput"/>
+      <view class="quick-amounts">
+        <view class="quick-chip {{amountG == item ? 'active' : ''}}"
+              wx:for="{{quickAmounts}}" wx:key="*this"
+              bindtap="onQuickAmount" data-amount="{{item}}">
+          {{item}}g
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 餐次类型 -->
+  <view class="form-section">
+    <view class="form-label">类型</view>
+    <picker range="{{mealTypes}}" range-key="label" bindchange="onMealTypeChange">
+      <view class="form-input picker-value">
+        {{mealTypes[0].value === mealType ? '主食' : mealType === 'wet' ? '湿粮' : mealType === 'snack' ? '零食' : '干粮'}}
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 提交 -->
+  <view class="form-submit">
+    <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '记录完成'}}
+    </button>
+  </view>
+</view>

@@ -5,29 +5,61 @@
     <text class="planet-name">{{familyName || '我的星球'}}</text>
   </view>
 
-  <!-- 猫咪列表 -->
-  <view class="cat-list" wx:if="{{cats.length > 0}}">
+  <!-- 猫咪卡片轮播 -->
+  <scroll-view class="cat-scroll" scroll-x wx:if="{{cats.length > 0}}">
     <view class="cat-card" wx:for="{{cats}}" wx:key="catId" bindtap="goCatDetail" data-id="{{item.catId}}">
-      <view class="cat-avatar-wrap">
-        <image class="cat-avatar" src="{{item.avatar || '/images/default-cat.png'}}" mode="aspectFill"/>
+      <image class="cat-avatar" src="{{item.avatar || '/images/default-cat.png'}}" mode="aspectFill"/>
+      <text class="cat-name">{{item.name}}</text>
+    </view>
+    <view class="cat-card cat-card-add" bindtap="goAddCat">
+      <text class="add-icon">+</text>
+      <text class="cat-name">添加</text>
+    </view>
+  </scroll-view>
+
+  <!-- 快捷记录区 -->
+  <view class="quick-actions">
+    <view class="quick-title">快捷记录</view>
+    <view class="quick-grid">
+      <view class="quick-item" bindtap="goFeeding">
+        <text class="quick-icon">🍗</text>
+        <text class="quick-label">喂食</text>
       </view>
-      <view class="cat-info">
-        <text class="cat-name">{{item.name}}</text>
-        <text class="cat-breed">{{item.breed || '未知品种'}}</text>
+      <view class="quick-item" bindtap="goCare">
+        <text class="quick-icon">🧹</text>
+        <text class="quick-label">养护</text>
       </view>
-      <view class="cat-arrow">›</view>
+      <view class="quick-item" bindtap="goHealth">
+        <text class="quick-icon">💉</text>
+        <text class="quick-label">健康</text>
+      </view>
+      <view class="quick-item" bindtap="goAddCat">
+        <text class="quick-icon">🐱</text>
+        <text class="quick-label">添加猫咪</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 家庭动态 Timeline -->
+  <view class="timeline-section" wx:if="{{timeline.length > 0}}">
+    <view class="section-title">家庭动态</view>
+    <view class="timeline-list">
+      <view class="timeline-item" wx:for="{{timeline}}" wx:key="recordId">
+        <view class="timeline-dot {{item.type}}"></view>
+        <view class="timeline-content">
+          <text class="timeline-cat">{{item.catName}}</text>
+          <text class="timeline-summary">{{item.summary}}</text>
+          <text class="timeline-time">{{item.timeStr}}</text>
+        </view>
+      </view>
     </view>
   </view>
 
   <!-- 空状态 -->
-  <view class="empty-state" wx:elif="{{!loading}}">
+  <view class="empty-state" wx:if="{{cats.length === 0 && !loading}}">
     <text class="empty-emoji">😺</text>
     <text class="empty-text">还没有猫咪入住星球</text>
     <text class="empty-sub">点击下方按钮添加第一只喵</text>
-  </view>
-
-  <!-- 添加猫咪按钮 -->
-  <view class="fab-btn" bindtap="goAddCat">
-    <text class="fab-icon">+</text>
+    <view class="empty-btn" bindtap="goAddCat">添加猫咪</view>
   </view>
 </view>

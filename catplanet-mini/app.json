@@ -1,10 +1,14 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mine/mine",
     "pages/login/login",
     "pages/guide/guide",
     "pages/cat-detail/cat-detail",
-    "pages/cat-edit/cat-edit"
+    "pages/cat-edit/cat-edit",
+    "pages/feeding-add/feeding-add",
+    "pages/care-add/care-add",
+    "pages/health-add/health-add"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFF5F0",
@@ -22,6 +26,10 @@
       {
         "pagePath": "pages/index/index",
         "text": "星球"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
       }
     ]
   },

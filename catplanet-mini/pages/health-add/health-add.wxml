@@ -1,0 +1,81 @@
+<view class="container form-page">
+  <view class="form-title">健康记录 💉</view>
+
+  <!-- 选猫 -->
+  <view class="form-section">
+    <view class="form-label">选择猫咪</view>
+    <scroll-view class="cat-picker" scroll-x>
+      <view class="cat-chip {{selectedCatId === item.catId ? 'active' : ''}}"
+            wx:for="{{cats}}" wx:key="catId"
+            bindtap="onCatSelect" data-id="{{item.catId}}">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 健康类型 -->
+  <view class="form-section">
+    <view class="form-label">类型</view>
+    <view class="type-grid">
+      <view class="type-chip {{healthType === item.value ? 'active' : ''}}"
+            wx:for="{{healthTypes}}" wx:key="value"
+            bindtap="onTypeSelect" data-type="{{item.value}}">
+        <text class="type-icon">{{item.icon}}</text>
+        <text class="type-label">{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 子类型 -->
+  <view class="form-section" wx:if="{{healthType && healthType !== 'weight'}}">
+    <view class="form-label">具体类别 (可选)</view>
+    <input class="form-input" placeholder="如：三联疫苗/体内驱虫"
+           value="{{subtype}}" bindinput="onSubtypeInput"/>
+  </view>
+
+  <!-- 体重输入 -->
+  <view class="form-section" wx:if="{{healthType === 'weight'}}">
+    <view class="form-label">体重 (kg)</view>
+    <input class="form-input" type="digit" placeholder="如：4.5"
+           value="{{valueNumeric}}" bindinput="onWeightInput"/>
+  </view>
+
+  <!-- 日期 -->
+  <view class="form-section">
+    <view class="form-label">日期</view>
+    <picker mode="date" value="{{recordDate}}" bindchange="onDateChange">
+      <view class="form-input picker-value">
+        {{recordDate || '选择日期'}}
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 医院 -->
+  <view class="form-section" wx:if="{{healthType && healthType !== 'weight'}}">
+    <view class="form-label">医院 (可选)</view>
+    <input class="form-input" placeholder="医院名称"
+           value="{{hospitalName}}" bindinput="onHospitalInput"/>
+  </view>
+
+  <!-- 费用 -->
+  <view class="form-section" wx:if="{{healthType && healthType !== 'weight'}}">
+    <view class="form-label">费用 (可选)</view>
+    <input class="form-input" type="digit" placeholder="元"
+           value="{{cost}}" bindinput="onCostInput"/>
+  </view>
+
+  <!-- 备注 -->
+  <view class="form-section">
+    <view class="form-label">备注 (可选)</view>
+    <textarea class="form-textarea" placeholder="补充说明..."
+              value="{{note}}" bindinput="onNoteInput" maxlength="500"/>
+  </view>
+
+  <!-- 提交 -->
+  <view class="form-submit">
+    <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '记录完成'}}
+    </button>
+  </view>
+</view>
