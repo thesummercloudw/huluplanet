@@ -1,0 +1,58 @@
+<view class="page">
+  <!-- Tabs -->
+  <view class="tabs">
+    <view class="tab {{activeTab==='all'?'active':''}}" bindtap="switchTab" data-tab="all">全部猫粮</view>
+    <view class="tab {{activeTab==='pgc'?'active':''}}" bindtap="switchTab" data-tab="pgc">精选测评</view>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filters" wx:if="{{activeTab==='all'}}">
+    <view class="filter-row">
+      <view class="chip {{filters.foodType==='main'?'active':''}}" bindtap="onFilterType" data-type="main">主粮</view>
+      <view class="chip {{filters.foodType==='wet'?'active':''}}" bindtap="onFilterType" data-type="wet">湿粮</view>
+      <view class="chip {{filters.foodType==='snack'?'active':''}}" bindtap="onFilterType" data-type="snack">零食</view>
+      <view class="chip {{filters.foodType==='freeze_dried'?'active':''}}" bindtap="onFilterType" data-type="freeze_dried">冻干</view>
+    </view>
+    <view class="filter-row">
+      <view class="chip {{filters.ageStage==='kitten'?'active':''}}" bindtap="onFilterAge" data-age="kitten">幼猫</view>
+      <view class="chip {{filters.ageStage==='adult'?'active':''}}" bindtap="onFilterAge" data-age="adult">成猫</view>
+      <view class="chip {{filters.ageStage==='all'?'active':''}}" bindtap="onFilterAge" data-age="all">全阶段</view>
+    </view>
+  </view>
+
+  <!-- 全部猫粮列表 -->
+  <view class="food-list" wx:if="{{activeTab==='all'}}">
+    <view class="food-card" wx:for="{{foods}}" wx:key="foodId" bindtap="goDetail" data-id="{{item.foodId}}">
+      <image class="food-img" src="{{item.image || '/images/food-placeholder.png'}}" mode="aspectFill"></image>
+      <view class="food-info">
+        <view class="food-brand">{{item.brand}}</view>
+        <view class="food-name">{{item.name}}</view>
+        <view class="food-meta">
+          <text class="food-score" wx:if="{{item.avgScore > 0}}">⭐ {{item.avgScore}}</text>
+          <text class="food-reviews">{{item.reviewCount}}条评价</text>
+          <text class="food-price" wx:if="{{item.priceRange}}">{{item.priceRange}}</text>
+        </view>
+        <view class="food-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{foods.length === 0 && !loading}}">暂无猫粮数据</view>
+  </view>
+
+  <!-- 精选测评列表 -->
+  <view class="pgc-list" wx:if="{{activeTab==='pgc'}}">
+    <view class="pgc-card" wx:for="{{pgcList}}" wx:key="reviewId" bindtap="goPgcDetail" data-foodid="{{item.foodId}}">
+      <image class="pgc-cover" src="{{item.cover || '/images/review-placeholder.png'}}" mode="aspectFill"></image>
+      <view class="pgc-content">
+        <view class="pgc-title">{{item.title}}</view>
+        <view class="pgc-scores">
+          <text>原料 {{item.scoreIngredient}}</text>
+          <text>营养 {{item.scoreNutrition}}</text>
+          <text>性价比 {{item.scoreValue}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{pgcList.length === 0}}">暂无精选测评</view>
+  </view>
+</view>

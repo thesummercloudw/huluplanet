@@ -1,0 +1,222 @@
+.page {
+  background: #FFF5F0;
+  min-height: 100vh;
+  padding-bottom: 120rpx;
+}
+
+/* Header */
+.header {
+  display: flex;
+  padding: 24rpx;
+  background: #FFF;
+}
+.food-cover {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 16rpx;
+  flex-shrink: 0;
+  background: #F5F5F5;
+}
+.header-info {
+  flex: 1;
+  margin-left: 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.food-brand {
+  font-size: 24rpx;
+  color: #999;
+}
+.food-name {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+  margin: 8rpx 0;
+}
+.food-score-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+.score-star {
+  color: #FF8C69;
+  font-weight: 600;
+  font-size: 28rpx;
+}
+.review-count {
+  font-size: 22rpx;
+  color: #999;
+}
+.food-price {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 8rpx;
+}
+
+/* Section Tabs */
+.section-tabs {
+  display: flex;
+  background: #FFF;
+  border-top: 1rpx solid #F0F0F0;
+  padding: 0 24rpx;
+}
+.sec-tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  color: #666;
+  border-bottom: 4rpx solid transparent;
+}
+.sec-tab.active {
+  color: #FF8C69;
+  font-weight: 600;
+  border-bottom-color: #FF8C69;
+}
+
+/* Section */
+.section {
+  padding: 24rpx;
+}
+
+/* Info Grid */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+.info-item {
+  background: #FFF;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+}
+.info-label {
+  font-size: 22rpx;
+  color: #999;
+  display: block;
+  margin-bottom: 4rpx;
+}
+.info-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #333;
+}
+.sub-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 12rpx;
+}
+.ingredients-text {
+  font-size: 24rpx;
+  color: #666;
+  line-height: 1.6;
+}
+.food-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 20rpx;
+}
+.tag {
+  font-size: 22rpx;
+  padding: 6rpx 16rpx;
+  background: #FFF0EB;
+  color: #FF8C69;
+  border-radius: 8rpx;
+}
+
+/* PGC Radar Scores */
+.pgc-header {
+  margin-bottom: 24rpx;
+}
+.pgc-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333;
+}
+.radar-scores {
+  background: #FFF;
+  border-radius: 16rpx;
+  padding: 24rpx;
+}
+.radar-item {
+  margin-bottom: 20rpx;
+  position: relative;
+}
+.radar-item:last-child {
+  margin-bottom: 0;
+}
+.radar-bar {
+  height: 24rpx;
+  background: linear-gradient(90deg, #FF8C69, #FFAB91);
+  border-radius: 12rpx;
+  min-width: 20rpx;
+}
+.radar-label {
+  font-size: 22rpx;
+  color: #666;
+  margin-top: 4rpx;
+  display: block;
+}
+
+/* UGC */
+.ugc-item {
+  background: #FFF;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-bottom: 16rpx;
+}
+.ugc-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+.ugc-stars {
+  font-size: 24rpx;
+}
+.ugc-time {
+  font-size: 20rpx;
+  color: #999;
+}
+.ugc-content {
+  font-size: 26rpx;
+  color: #333;
+  line-height: 1.6;
+}
+.ugc-images {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 12rpx;
+}
+.ugc-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 8rpx;
+}
+
+/* Write Button */
+.write-btn {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #FF8C69;
+  color: #FFF;
+  font-size: 28rpx;
+  font-weight: 600;
+  padding: 20rpx 60rpx;
+  border-radius: 40rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255,140,105,0.3);
+}
+
+/* Empty */
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 80rpx 0;
+  font-size: 28rpx;
+}

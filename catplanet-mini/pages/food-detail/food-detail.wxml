@@ -1,0 +1,101 @@
+<view class="page" wx:if="{{food}}">
+  <!-- 头部信息 -->
+  <view class="header">
+    <image class="food-cover" src="{{food.image || '/images/food-placeholder.png'}}" mode="aspectFill"></image>
+    <view class="header-info">
+      <view class="food-brand">{{food.brand}}</view>
+      <view class="food-name">{{food.name}}</view>
+      <view class="food-score-row">
+        <text class="score-star" wx:if="{{food.avgScore > 0}}">⭐ {{food.avgScore}}</text>
+        <text class="review-count">{{food.reviewCount}}条评价</text>
+      </view>
+      <view class="food-price" wx:if="{{food.priceRange}}">💰 {{food.priceRange}}</view>
+    </view>
+  </view>
+
+  <!-- Section Tabs -->
+  <view class="section-tabs">
+    <view class="sec-tab {{activeSection==='info'?'active':''}}" bindtap="switchSection" data-section="info">基本信息</view>
+    <view class="sec-tab {{activeSection==='pgc'?'active':''}}" bindtap="switchSection" data-section="pgc">官方测评</view>
+    <view class="sec-tab {{activeSection==='ugc'?'active':''}}" bindtap="switchSection" data-section="ugc">用户短评</view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="section" wx:if="{{activeSection==='info'}}">
+    <view class="info-grid">
+      <view class="info-item">
+        <text class="info-label">类型</text>
+        <text class="info-value">{{food.foodType === 'main' ? '主粮' : food.foodType === 'wet' ? '湿粮' : food.foodType === 'snack' ? '零食' : '冻干'}}</text>
+      </view>
+      <view class="info-item">
+        <text class="info-label">适用阶段</text>
+        <text class="info-value">{{food.ageStage === 'kitten' ? '幼猫' : food.ageStage === 'adult' ? '成猫' : food.ageStage === 'senior' ? '老年猫' : '全阶段'}}</text>
+      </view>
+      <view class="info-item" wx:if="{{food.proteinPct}}">
+        <text class="info-label">粗蛋白</text>
+        <text class="info-value">{{food.proteinPct}}%</text>
+      </view>
+      <view class="info-item" wx:if="{{food.fatPct}}">
+        <text class="info-label">粗脂肪</text>
+        <text class="info-value">{{food.fatPct}}%</text>
+      </view>
+    </view>
+    <view class="ingredients" wx:if="{{food.ingredientsSummary}}">
+      <view class="sub-title">配料表摘要</view>
+      <text class="ingredients-text">{{food.ingredientsSummary}}</text>
+    </view>
+    <view class="food-tags" wx:if="{{food.tags && food.tags.length > 0}}">
+      <text class="tag" wx:for="{{food.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+    </view>
+  </view>
+
+  <!-- PGC 官方测评 -->
+  <view class="section" wx:if="{{activeSection==='pgc'}}">
+    <block wx:if="{{pgcReview}}">
+      <view class="pgc-header">
+        <view class="pgc-title">{{pgcReview.title}}</view>
+      </view>
+      <view class="radar-scores">
+        <view class="radar-item">
+          <view class="radar-bar" style="width: {{pgcReview.scoreIngredient * 10}}%"></view>
+          <text class="radar-label">原料 {{pgcReview.scoreIngredient}}/10</text>
+        </view>
+        <view class="radar-item">
+          <view class="radar-bar" style="width: {{pgcReview.scoreNutrition * 10}}%"></view>
+          <text class="radar-label">营养 {{pgcReview.scoreNutrition}}/10</text>
+        </view>
+        <view class="radar-item">
+          <view class="radar-bar" style="width: {{pgcReview.scoreValue * 10}}%"></view>
+          <text class="radar-label">性价比 {{pgcReview.scoreValue}}/10</text>
+        </view>
+        <view class="radar-item">
+          <view class="radar-bar" style="width: {{pgcReview.scorePalatability * 10}}%"></view>
+          <text class="radar-label">适口性 {{pgcReview.scorePalatability}}/10</text>
+        </view>
+        <view class="radar-item">
+          <view class="radar-bar" style="width: {{pgcReview.scoreSafety * 10}}%"></view>
+          <text class="radar-label">安全性 {{pgcReview.scoreSafety}}/10</text>
+        </view>
+      </view>
+    </block>
+    <view class="empty" wx:else>暂无官方测评</view>
+  </view>
+
+  <!-- UGC 短评 -->
+  <view class="section" wx:if="{{activeSection==='ugc'}}">
+    <view class="ugc-item" wx:for="{{ugcReviews}}" wx:key="reviewId">
+      <view class="ugc-header">
+        <text class="ugc-stars">{{'⭐'.repeat(item.score)}}</text>
+        <text class="ugc-time">{{item.createdAt}}</text>
+      </view>
+      <view class="ugc-content">{{item.content}}</view>
+      <view class="ugc-images" wx:if="{{item.images && item.images.length > 0}}">
+        <image wx:for="{{item.images}}" wx:for-item="img" wx:key="*this" src="{{img}}" mode="aspectFill" class="ugc-img"></image>
+      </view>
+    </view>
+    <view class="empty" wx:if="{{ugcReviews.length === 0}}">暂无用户短评</view>
+  </view>
+
+  <!-- 写短评按钮 -->
+  <view class="write-btn" bindtap="goWriteReview">✍️ 我家猫吃过</view>
+</view>

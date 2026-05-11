@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="food-title">{{foodName}}</view>
+
+  <!-- 评分 -->
+  <view class="section">
+    <view class="label">评分</view>
+    <view class="stars">
+      <view wx:for="{{[1,2,3,4,5]}}" wx:key="*this" 
+            class="star {{score >= item ? 'active' : ''}}" 
+            bindtap="setScore" data-score="{{item}}">⭐</view>
+    </view>
+  </view>
+
+  <!-- 选择猫咪 -->
+  <view class="section" wx:if="{{cats.length > 0}}">
+    <view class="label">哪只猫吃过（可选）</view>
+    <view class="cat-list">
+      <view wx:for="{{cats}}" wx:key="catId" 
+            class="cat-chip {{catId === item.catId ? 'active' : ''}}"
+            bindtap="onSelectCat" data-catid="{{item.catId}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 短评内容 -->
+  <view class="section">
+    <view class="label">短评 <text class="char-count">{{content.length}}/200</text></view>
+    <textarea class="input-area" placeholder="说说这款猫粮的使用感受…" 
+              maxlength="200" bindinput="onContentInput" value="{{content}}"></textarea>
+  </view>
+
+  <!-- 提交 -->
+  <view class="submit-btn" bindtap="onSubmit">提交短评</view>
+</view>

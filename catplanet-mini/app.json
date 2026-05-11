@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/catfood/catfood",
     "pages/mine/mine",
     "pages/login/login",
     "pages/guide/guide",
@@ -9,7 +10,9 @@
     "pages/feeding-add/feeding-add",
     "pages/care-add/care-add",
     "pages/health-add/health-add",
-    "pages/reminders/reminders"
+    "pages/reminders/reminders",
+    "pages/food-detail/food-detail",
+    "pages/review-write/review-write"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFF5F0",
@@ -27,6 +30,10 @@
       {
         "pagePath": "pages/index/index",
         "text": "星球"
+      },
+      {
+        "pagePath": "pages/catfood/catfood",
+        "text": "猫粮"
       },
       {
         "pagePath": "pages/mine/mine",
