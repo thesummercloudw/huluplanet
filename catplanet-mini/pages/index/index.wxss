@@ -1,0 +1,112 @@
+.index-page {
+  padding-bottom: 160rpx;
+}
+
+.planet-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.planet-emoji {
+  font-size: 56rpx;
+  margin-right: 16rpx;
+}
+
+.planet-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+/* 猫咪卡片 */
+.cat-card {
+  display: flex;
+  align-items: center;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  padding: 28rpx 32rpx;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 24rpx;
+}
+
+.cat-avatar-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.cat-avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.cat-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.cat-breed {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+}
+
+.cat-arrow {
+  font-size: 36rpx;
+  color: var(--color-text-secondary);
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200rpx;
+}
+
+.empty-emoji {
+  font-size: 100rpx;
+  margin-bottom: 32rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: var(--color-text);
+  margin-bottom: 12rpx;
+}
+
+.empty-sub {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+}
+
+/* FAB 按钮 */
+.fab-btn {
+  position: fixed;
+  right: 48rpx;
+  bottom: 200rpx;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 32rpx rgba(255, 140, 105, 0.4);
+}
+
+.fab-icon {
+  font-size: 56rpx;
+  color: #fff;
+  line-height: 1;
+}

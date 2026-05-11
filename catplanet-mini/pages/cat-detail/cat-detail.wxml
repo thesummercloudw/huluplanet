@@ -1,0 +1,50 @@
+<view class="container detail-page" wx:if="{{cat}}">
+  <!-- 头像 -->
+  <view class="detail-avatar-wrap">
+    <image class="detail-avatar" src="{{cat.avatar || '/images/default-cat.png'}}" mode="aspectFill"/>
+  </view>
+
+  <text class="detail-name">{{cat.name}}</text>
+
+  <!-- 信息卡片 -->
+  <view class="card info-card">
+    <view class="info-row">
+      <text class="info-label">品种</text>
+      <text class="info-value">{{cat.breed || '未知'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">性别</text>
+      <text class="info-value">{{cat.gender === 'male' ? '♂ 弟弟' : cat.gender === 'female' ? '♀ 妹妹' : '未知'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">生日</text>
+      <text class="info-value">{{cat.birthday || '未设置'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">体重</text>
+      <text class="info-value">{{cat.weightKg ? cat.weightKg + ' kg' : '未记录'}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">是否绝育</text>
+      <text class="info-value">{{cat.isNeutered ? '已绝育' : '未绝育'}}</text>
+    </view>
+    <view class="info-row" wx:if="{{cat.adoptionDate}}">
+      <text class="info-label">到家日</text>
+      <text class="info-value">{{cat.adoptionDate}}</text>
+    </view>
+  </view>
+
+  <!-- 性格标签 -->
+  <view class="tags-section" wx:if="{{cat.personalityTags && cat.personalityTags.length > 0}}">
+    <text class="section-title">性格标签</text>
+    <view class="tags-wrap">
+      <text class="tag" wx:for="{{cat.personalityTags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-bar">
+    <button class="btn-primary" bindtap="goEdit">编辑</button>
+    <button class="btn-danger" bindtap="handleDelete">移除</button>
+  </view>
+</view>

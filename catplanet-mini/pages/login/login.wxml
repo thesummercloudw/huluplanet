@@ -1,0 +1,14 @@
+<view class="login-page">
+  <view class="login-header">
+    <view class="logo-emoji">🐱</view>
+    <text class="app-name">呼噜星球</text>
+    <text class="app-desc">家庭养猫，轻松管理</text>
+  </view>
+
+  <view class="login-body">
+    <button class="btn-primary login-btn" bindtap="handleLogin" loading="{{loading}}">
+      微信一键登录
+    </button>
+    <text class="login-tip">登录即表示同意用户协议与隐私政策</text>
+  </view>
+</view>

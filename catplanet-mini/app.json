@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/guide/guide",
+    "pages/cat-detail/cat-detail",
+    "pages/cat-edit/cat-edit"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFF5F0",
+    "navigationBarTitleText": "呼噜星球",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFF5F0",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF8C69",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "星球"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

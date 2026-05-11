@@ -1,0 +1,33 @@
+<view class="container index-page">
+  <!-- 顶部星球头 -->
+  <view class="planet-header">
+    <text class="planet-emoji">🪐</text>
+    <text class="planet-name">{{familyName || '我的星球'}}</text>
+  </view>
+
+  <!-- 猫咪列表 -->
+  <view class="cat-list" wx:if="{{cats.length > 0}}">
+    <view class="cat-card" wx:for="{{cats}}" wx:key="catId" bindtap="goCatDetail" data-id="{{item.catId}}">
+      <view class="cat-avatar-wrap">
+        <image class="cat-avatar" src="{{item.avatar || '/images/default-cat.png'}}" mode="aspectFill"/>
+      </view>
+      <view class="cat-info">
+        <text class="cat-name">{{item.name}}</text>
+        <text class="cat-breed">{{item.breed || '未知品种'}}</text>
+      </view>
+      <view class="cat-arrow">›</view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:elif="{{!loading}}">
+    <text class="empty-emoji">😺</text>
+    <text class="empty-text">还没有猫咪入住星球</text>
+    <text class="empty-sub">点击下方按钮添加第一只喵</text>
+  </view>
+
+  <!-- 添加猫咪按钮 -->
+  <view class="fab-btn" bindtap="goAddCat">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

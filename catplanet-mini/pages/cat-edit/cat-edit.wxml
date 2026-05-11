@@ -1,0 +1,46 @@
+<view class="container edit-page">
+  <view class="form-group">
+    <text class="form-label">名字 *</text>
+    <input class="form-input" placeholder="猫咪的名字" value="{{form.name}}" data-field="name" bindinput="onInput"/>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">品种</text>
+    <input class="form-input" placeholder="如：英短蓝猫" value="{{form.breed}}" data-field="breed" bindinput="onInput"/>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">性别</text>
+    <picker mode="selector" range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
+      <view class="form-input picker-value">{{genderOptions[genderIndex]}}</view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">生日</text>
+    <picker mode="date" value="{{form.birthday}}" bindchange="onBirthdayChange">
+      <view class="form-input picker-value">{{form.birthday || '点击选择'}}</view>
+    </picker>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">体重(kg)</text>
+    <input class="form-input" type="digit" placeholder="如：4.5" value="{{form.weightKg}}" data-field="weightKg" bindinput="onInput"/>
+  </view>
+
+  <view class="form-group row-group" bindtap="toggleNeutered">
+    <text class="form-label">已绝育</text>
+    <switch checked="{{form.isNeutered}}" color="#FF8C69"/>
+  </view>
+
+  <view class="form-group">
+    <text class="form-label">到家日</text>
+    <picker mode="date" value="{{form.adoptionDate}}" bindchange="onAdoptionDateChange">
+      <view class="form-input picker-value">{{form.adoptionDate || '点击选择'}}</view>
+    </picker>
+  </view>
+
+  <button class="btn-primary submit-btn" bindtap="handleSubmit" loading="{{loading}}">
+    {{isEdit ? '保存修改' : '添加猫咪'}}
+  </button>
+</view>

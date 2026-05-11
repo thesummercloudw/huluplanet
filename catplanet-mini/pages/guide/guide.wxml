@@ -1,0 +1,25 @@
+<view class="container guide-page">
+  <view class="guide-header">
+    <text class="guide-emoji">🏡</text>
+    <text class="guide-title">创建你的星球</text>
+    <text class="guide-desc">为你的猫咪家庭取个名字吧</text>
+  </view>
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{step === 1 ? 'active' : ''}}" bindtap="switchToCreate">创建家庭</view>
+    <view class="tab-item {{step === 2 ? 'active' : ''}}" bindtap="switchToJoin">加入家庭</view>
+  </view>
+
+  <!-- 创建家庭 -->
+  <view class="form-section" wx:if="{{step === 1}}">
+    <input class="form-input" placeholder="给家庭取个名字" value="{{familyName}}" bindinput="onFamilyNameInput" maxlength="20"/>
+    <button class="btn-primary" bindtap="createFamily" loading="{{loading}}">创建</button>
+  </view>
+
+  <!-- 加入家庭 -->
+  <view class="form-section" wx:if="{{step === 2}}">
+    <input class="form-input" placeholder="输入邀请码" value="{{inviteCode}}" bindinput="onInviteCodeInput" maxlength="8"/>
+    <button class="btn-primary" bindtap="joinFamily" loading="{{loading}}">加入</button>
+  </view>
+</view>
