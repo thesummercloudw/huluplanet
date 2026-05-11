@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: assign_id
+      logic-delete-field: deleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+catplanet:
+  jwt:
+    secret: ${JWT_SECRET:catplanet-dev-secret-key-must-be-at-least-256-bits-long}
+    expiration: 604800000
+  wx:
+    appid: ${WX_APPID:wx_test_appid}
+    secret: ${WX_SECRET:wx_test_secret}
