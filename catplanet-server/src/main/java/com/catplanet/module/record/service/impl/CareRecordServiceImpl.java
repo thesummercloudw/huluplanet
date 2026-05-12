@@ -4,14 +4,19 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.catplanet.common.exception.BizException;
 import com.catplanet.common.result.ResultCode;
 import com.catplanet.module.record.dto.CareRecordRequest;
+import com.catplanet.module.record.dto.RecordStatsResponse;
 import com.catplanet.module.record.entity.CareRecord;
 import com.catplanet.module.record.mapper.CareRecordMapper;
 import com.catplanet.module.record.service.CareRecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -58,5 +63,39 @@ public class CareRecordServiceImpl implements CareRecordService {
             throw new BizException(ResultCode.NOT_FOUND);
         }
         careRecordMapper.deleteById(recordId);
+    }
+
+    @Override
+    public RecordStatsResponse getStats(Long familyId, int days) {
+        LocalDateTime startTime = LocalDate.now().minusDays(days - 1).atStartOfDay();
+        List<CareRecord> records = careRecordMapper.selectList(
+                new LambdaQueryWrapper<CareRecord>()
+                        .eq(CareRecord::getFamilyId, familyId)
+                        .ge(CareRecord::getDoneAt, startTime)
+                        .orderByAsc(CareRecord::getDoneAt));
+
+        // 每日统计
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Map<String, List<CareRecord>> grouped = records.stream()
+                .collect(Collectors.groupingBy(r -> r.getDoneAt().toLocalDate().format(fmt)));
+
+        List<RecordStatsResponse.DailyStat> dailyStats = new ArrayList<>();
+        for (int i = days - 1; i >= 0; i--) {
+            String dateStr = LocalDate.now().minusDays(i).format(fmt);
+            List<CareRecord> dayRecords = grouped.getOrDefault(dateStr, Collections.emptyList());
+            dailyStats.add(new RecordStatsResponse.DailyStat(dateStr, dayRecords.size(), BigDecimal.valueOf(dayRecords.size())));
+        }
+
+        // 类型分布（按careType）
+        Map<String, Integer> typeDistribution = new LinkedHashMap<>();
+        records.forEach(r -> typeDistribution.merge(
+                r.getCareType() != null ? r.getCareType() : "other", 1, Integer::sum));
+
+        RecordStatsResponse response = new RecordStatsResponse();
+        response.setDailyStats(dailyStats);
+        response.setTypeDistribution(typeDistribution);
+        response.setTotalCount(records.size());
+        response.setTotalValue(BigDecimal.valueOf(records.size()));
+        return response;
     }
 }

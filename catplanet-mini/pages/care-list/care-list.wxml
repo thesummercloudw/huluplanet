@@ -1,0 +1,75 @@
+<view class="container record-page">
+  <view class="grain-overlay"></view>
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'list' ? 'active' : ''}}" bindtap="switchTab" data-tab="list">记录列表</view>
+    <view class="tab-item {{activeTab === 'stats' ? 'active' : ''}}" bindtap="switchTab" data-tab="stats">数据统计</view>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="list-section" wx:if="{{activeTab === 'list'}}">
+    <view class="record-item" wx:for="{{records}}" wx:key="recordId">
+      <view class="record-icon">{{item.typeIcon}}</view>
+      <view class="record-info">
+        <view class="record-main">
+          <text class="record-food">{{item.typeLabel}}</text>
+        </view>
+        <view class="record-sub">
+          <text class="record-note" wx:if="{{item.note}}">{{item.note}}</text>
+          <text class="record-time">{{item.timeStr}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty-tip" wx:if="{{records.length === 0 && !loading}}">
+      <text>暂无养护记录</text>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-section" wx:if="{{activeTab === 'stats'}}">
+    <!-- 时间筛选 -->
+    <view class="days-filter">
+      <view class="day-btn {{days === 7 ? 'active' : ''}}" bindtap="onDaysChange" data-days="7">近7天</view>
+      <view class="day-btn {{days === 14 ? 'active' : ''}}" bindtap="onDaysChange" data-days="14">近14天</view>
+      <view class="day-btn {{days === 30 ? 'active' : ''}}" bindtap="onDaysChange" data-days="30">近30天</view>
+    </view>
+
+    <!-- 汇总卡片 -->
+    <view class="summary-card" wx:if="{{stats}}">
+      <view class="summary-item">
+        <text class="summary-value">{{stats.totalCount}}</text>
+        <text class="summary-label">养护次数</text>
+      </view>
+    </view>
+
+    <!-- 每日养护次数柱状图 -->
+    <view class="chart-card" wx:if="{{stats && stats.dailyStats.length > 0}}">
+      <view class="chart-title">每日养护次数</view>
+      <view class="bar-chart">
+        <view class="bar-item" wx:for="{{stats.dailyStats}}" wx:key="date">
+          <view class="bar-fill" style="height: {{item.count / maxBarValue * 100}}%"></view>
+          <text class="bar-value">{{item.count > 0 ? item.count : ''}}</text>
+          <text class="bar-label">{{item.date.slice(5)}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 类型分布 -->
+    <view class="chart-card" wx:if="{{stats && stats.typeDistribution}}">
+      <view class="chart-title">养护类型分布</view>
+      <view class="type-list">
+        <view class="type-row" wx:for="{{stats.typeDistribution}}" wx:for-index="type" wx:for-item="count" wx:key="type">
+          <text class="type-name">{{careTypeNames[type] || type}}</text>
+          <view class="type-bar-wrap">
+            <view class="type-bar" style="width: {{count / stats.totalCount * 100}}%"></view>
+          </view>
+          <text class="type-count">{{count}}次</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="fab-btn" bindtap="goAdd">+ 记录</view>
+</view>

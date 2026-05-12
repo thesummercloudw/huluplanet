@@ -22,7 +22,7 @@ public class HospitalServiceImpl implements HospitalService {
     private final HospitalReviewMapper hospitalReviewMapper;
 
     @Override
-    public List<Hospital> listNearby(BigDecimal lat, BigDecimal lng, int radius, int page, int size) {
+    public List<Hospital> listNearby(BigDecimal lat, BigDecimal lng, int radius, String type, int page, int size) {
         // 简化版：按矩形范围筛选（1度≈111km，radius单位km）
         BigDecimal delta = BigDecimal.valueOf(radius).divide(BigDecimal.valueOf(111), 6, RoundingMode.HALF_UP);
         BigDecimal minLat = lat.subtract(delta);
@@ -31,12 +31,19 @@ public class HospitalServiceImpl implements HospitalService {
         BigDecimal maxLng = lng.add(delta);
 
         int offset = (page - 1) * size;
-        return hospitalMapper.selectList(
-                new LambdaQueryWrapper<Hospital>()
-                        .between(Hospital::getLat, minLat, maxLat)
-                        .between(Hospital::getLng, minLng, maxLng)
-                        .orderByDesc(Hospital::getAvgScore)
-                        .last("LIMIT " + offset + "," + size));
+        LambdaQueryWrapper<Hospital> wrapper = new LambdaQueryWrapper<Hospital>()
+                .between(Hospital::getLat, minLat, maxLat)
+                .between(Hospital::getLng, minLng, maxLng);
+
+        // 按类型筛选：hospital/petstore，不传则查全部
+        if (type != null && !type.isEmpty()) {
+            wrapper.eq(Hospital::getType, type);
+        }
+
+        wrapper.orderByDesc(Hospital::getAvgScore)
+               .last("LIMIT " + offset + "," + size);
+
+        return hospitalMapper.selectList(wrapper);
     }
 
     @Override

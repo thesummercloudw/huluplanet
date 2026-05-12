@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.catplanet.common.exception.BizException;
 import com.catplanet.common.result.ResultCode;
 import com.catplanet.module.record.dto.HealthRecordRequest;
+import com.catplanet.module.record.dto.RecordStatsResponse;
 import com.catplanet.module.record.entity.HealthRecord;
 import com.catplanet.module.record.mapper.HealthRecordMapper;
 import com.catplanet.module.record.service.HealthRecordService;
@@ -12,12 +13,13 @@ import com.catplanet.module.reminder.service.ReminderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -105,5 +107,47 @@ public class HealthRecordServiceImpl implements HealthRecordService {
             throw new BizException(ResultCode.NOT_FOUND);
         }
         healthRecordMapper.deleteById(recordId);
+    }
+
+    @Override
+    public RecordStatsResponse getStats(Long familyId, int days) {
+        LocalDate startDate = LocalDate.now().minusDays(days - 1);
+        List<HealthRecord> records = healthRecordMapper.selectList(
+                new LambdaQueryWrapper<HealthRecord>()
+                        .eq(HealthRecord::getFamilyId, familyId)
+                        .ge(HealthRecord::getRecordDate, startDate)
+                        .orderByAsc(HealthRecord::getRecordDate));
+
+        // 每日统计
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Map<String, List<HealthRecord>> grouped = records.stream()
+                .collect(Collectors.groupingBy(r -> r.getRecordDate().format(fmt)));
+
+        List<RecordStatsResponse.DailyStat> dailyStats = new ArrayList<>();
+        for (int i = days - 1; i >= 0; i--) {
+            String dateStr = LocalDate.now().minusDays(i).format(fmt);
+            List<HealthRecord> dayRecords = grouped.getOrDefault(dateStr, Collections.emptyList());
+            BigDecimal dayCost = dayRecords.stream()
+                    .map(r -> r.getCost() != null ? r.getCost() : BigDecimal.ZERO)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            dailyStats.add(new RecordStatsResponse.DailyStat(dateStr, dayRecords.size(), dayCost));
+        }
+
+        // 类型分布（按healthType）
+        Map<String, Integer> typeDistribution = new LinkedHashMap<>();
+        records.forEach(r -> typeDistribution.merge(
+                r.getHealthType() != null ? r.getHealthType() : "other", 1, Integer::sum));
+
+        // 总花费
+        BigDecimal totalCost = records.stream()
+                .map(r -> r.getCost() != null ? r.getCost() : BigDecimal.ZERO)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+
+        RecordStatsResponse response = new RecordStatsResponse();
+        response.setDailyStats(dailyStats);
+        response.setTypeDistribution(typeDistribution);
+        response.setTotalCount(records.size());
+        response.setTotalValue(totalCost);
+        return response;
     }
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.catplanet.common.exception.BizException;
 import com.catplanet.common.result.ResultCode;
 import com.catplanet.module.family.dto.CreateFamilyRequest;
+import com.catplanet.module.family.dto.UpdateFamilyRequest;
 import com.catplanet.module.family.entity.Family;
 import com.catplanet.module.family.entity.FamilyMember;
 import com.catplanet.module.family.mapper.FamilyMapper;
@@ -97,6 +98,26 @@ public class FamilyServiceImpl implements FamilyService {
             return List.of();
         }
         return familyMapper.selectBatchIds(familyIds);
+    }
+
+    @Override
+    public Family updateName(Long familyId, UpdateFamilyRequest request, Long userId) {
+        // 验证用户是该家庭的成员
+        Long count = familyMemberMapper.selectCount(
+                new LambdaQueryWrapper<FamilyMember>()
+                        .eq(FamilyMember::getFamilyId, familyId)
+                        .eq(FamilyMember::getUserId, userId));
+        if (count == 0) {
+            throw new BizException(ResultCode.FORBIDDEN);
+        }
+
+        Family family = familyMapper.selectById(familyId);
+        if (family == null) {
+            throw new BizException(ResultCode.NOT_FOUND);
+        }
+        family.setName(request.getName());
+        familyMapper.updateById(family);
+        return family;
     }
 
     private String generateInviteCode() {

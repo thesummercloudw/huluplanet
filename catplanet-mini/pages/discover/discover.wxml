@@ -4,19 +4,31 @@
 
   <!-- 分段切换 -->
   <view class="segment">
-    <view class="seg-item {{activeTab==='hospital'?'active':''}}" bindtap="switchTab" data-tab="hospital">🏥 附近医院</view>
+    <view class="seg-item {{activeTab==='nearby'?'active':''}}" bindtap="switchTab" data-tab="nearby">📍 附近</view>
     <view class="seg-item {{activeTab==='adoption'?'active':''}}" bindtap="switchTab" data-tab="adoption">❤️ 等家的小猫</view>
   </view>
 
-  <!-- 附近医院列表 -->
-  <view wx:if="{{activeTab==='hospital'}}">
+  <!-- 附近宠物店/医院 -->
+  <view wx:if="{{activeTab==='nearby'}}">
+    <!-- 类型筛选栅 -->
+    <view class="filter-bar">
+      <view class="filter-item {{placeType===''?'active':''}}" bindtap="switchPlaceType" data-type="">全部</view>
+      <view class="filter-item {{placeType==='hospital'?'active':''}}" bindtap="switchPlaceType" data-type="hospital">🏥 宠物医院</view>
+      <view class="filter-item {{placeType==='petstore'?'active':''}}" bindtap="switchPlaceType" data-type="petstore">🛍️ 宠物店</view>
+    </view>
+
+    <!-- 列表 -->
     <view class="hospital-card" wx:for="{{hospitals}}" wx:key="hospitalId" bindtap="goHospitalDetail" data-id="{{item.hospitalId}}">
       <view class="hospital-info">
-        <view class="hospital-name">{{item.name}}</view>
+        <view class="hospital-name-row">
+          <text class="type-badge {{item.type === 'petstore' ? 'badge-store' : 'badge-hospital'}}">{{item.type === 'petstore' ? '店' : '医'}}</text>
+          <text class="hospital-name">{{item.name}}</text>
+        </view>
         <view class="hospital-address">{{item.address}}</view>
         <view class="hospital-meta">
           <text class="hospital-score" wx:if="{{item.avgScore > 0}}">⭐ {{item.avgScore}}</text>
           <text class="hospital-reviews">{{item.reviewCount}}条评价</text>
+          <text class="hospital-distance" wx:if="{{item.distanceText}}">{{item.distanceText}}</text>
           <text class="hospital-hours" wx:if="{{item.businessHours}}">{{item.businessHours}}</text>
         </view>
         <view class="hospital-tags" wx:if="{{item.tags && item.tags.length > 0}}">
@@ -25,7 +37,7 @@
       </view>
       <view class="nav-btn" catchtap="openNavigation" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-name="{{item.name}}" data-address="{{item.address}}">导航</view>
     </view>
-    <view class="empty" wx:if="{{hospitals.length === 0 && !loading}}">附近暂无宠物医院数据</view>
+    <view class="empty" wx:if="{{hospitals.length === 0 && !loading}}">附近暂无宠物店/医院数据</view>
   </view>
 
   <!-- 等家的小猫列表 -->

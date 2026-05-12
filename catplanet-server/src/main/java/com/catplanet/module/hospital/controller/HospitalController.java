@@ -27,9 +27,10 @@ public class HospitalController {
             @RequestParam BigDecimal lat,
             @RequestParam BigDecimal lng,
             @RequestParam(defaultValue = "5") int radius,
+            @RequestParam(required = false) String type,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int size) {
-        return Result.ok(hospitalService.listNearby(lat, lng, radius, page, size));
+        return Result.ok(hospitalService.listNearby(lat, lng, radius, type, page, size));
     }
 
     @GetMapping("/{hospitalId}")

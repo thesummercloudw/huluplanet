@@ -15,6 +15,7 @@ public class Hospital {
     @TableId(type = IdType.ASSIGN_ID)
     private Long hospitalId;
 
+    private String type;            // hospital=宠物医院, petstore=宠物店
     private String poiSource;       // tencent/amap/manual
     private String poiSourceId;
     private String name;

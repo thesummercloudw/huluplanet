@@ -1,0 +1,22 @@
+@import "/pages/feeding-list/feeding-list.wxss";
+
+.record-cost {
+  font-size: 24rpx;
+  color: #FF6B6B;
+  font-weight: 500;
+  margin-left: auto;
+}
+
+.record-hospital {
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+}
+
+.record-next {
+  font-size: 22rpx;
+  color: var(--color-primary);
+}
+
+.health-bar {
+  background: linear-gradient(90deg, #FFB8C6, #FF8FA3);
+}

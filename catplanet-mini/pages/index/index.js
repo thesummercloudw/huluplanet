@@ -6,6 +6,7 @@ Page({
     cats: [],
     familyName: '',
     timeline: [],
+    sightings: [],
     loading: true
   },
 
@@ -28,16 +29,21 @@ Page({
         wx.setStorageSync('currentFamilyId', family.familyId);
         this.setData({ familyName: family.name });
 
-        // 并行加载猫咪和 Timeline
-        const [cats, timeline] = await Promise.all([
+        // 并行加载猫咪、Timeline 和 猫咪出没
+        const [cats, timeline, sightings] = await Promise.all([
           http.get('/api/cats'),
-          http.get('/api/timeline?limit=10')
+          http.get('/api/timeline?limit=10'),
+          http.get('/api/sightings?limit=6')
         ]);
         this.setData({
           cats: cats || [],
           timeline: (timeline || []).map(item => ({
             ...item,
             timeStr: this.formatTime(item.time)
+          })),
+          sightings: (sightings || []).map(item => ({
+            ...item,
+            timeStr: this.formatTime(item.createdAt)
           }))
         });
       } else {
@@ -63,6 +69,21 @@ Page({
 
   goAddCat() {
     wx.navigateTo({ url: '/pages/cat-edit/cat-edit' });
+  },
+
+  // 查看记录列表入口
+  goFeedingList() {
+    wx.navigateTo({ url: '/pages/feeding-list/feeding-list' });
+  },
+  goCareList() {
+    wx.navigateTo({ url: '/pages/care-list/care-list' });
+  },
+  goHealthList() {
+    wx.navigateTo({ url: '/pages/health-list/health-list' });
+  },
+
+  goSightingAdd() {
+    wx.navigateTo({ url: '/pages/sighting-add/sighting-add' });
   },
 
   goCatDetail(e) {

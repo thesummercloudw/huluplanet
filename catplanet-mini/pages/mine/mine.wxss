@@ -16,7 +16,18 @@
 .family-name {
   font-size: 36rpx;
   font-weight: 700;
+}
+
+.family-name-row {
+  display: flex;
+  align-items: center;
   margin-bottom: 20rpx;
+}
+
+.family-edit-icon {
+  font-size: 28rpx;
+  margin-left: 12rpx;
+  color: var(--color-text-secondary);
 }
 
 .invite-row {

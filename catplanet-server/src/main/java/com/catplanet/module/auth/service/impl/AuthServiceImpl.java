@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.catplanet.module.family.entity.Family;
+
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -49,10 +52,8 @@ public class AuthServiceImpl implements AuthService {
         boolean isNew = existUser == null;
         User user = userService.findOrCreate(openid, unionid);
 
-        // 新用户自动创建默认家庭
-        if (isNew) {
-            createDefaultFamily(user);
-        }
+        // 仅当用户没有任何家庭时才创建默认家庭
+        ensureDefaultFamily(user);
 
         // 生成 JWT
         String token = jwtUtil.generateToken(user.getUserId());
@@ -61,24 +62,30 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public LoginResponse devLogin(String code) {
-        // 开发模式：用 code 作为 mock openid，无需调用微信服务器
-        String mockOpenid = "dev_" + code;
+        // 开发模式：使用固定 mock openid，避免 wx.login() 每次生成不同 code 导致重复创建用户
+        String mockOpenid = "dev_default";
         log.info("[DEV MODE] mock login with openid: {}", mockOpenid);
 
         User existUser = userService.findByOpenid(mockOpenid);
         boolean isNew = existUser == null;
         User user = userService.findOrCreate(mockOpenid, null);
 
-        // 新用户自动创建默认家庭
-        if (isNew) {
-            createDefaultFamily(user);
-        }
+        // 仅当用户没有任何家庭时才创建默认家庭
+        ensureDefaultFamily(user);
 
         String token = jwtUtil.generateToken(user.getUserId());
         return new LoginResponse(token, user.getUserId(), isNew);
     }
 
-    private void createDefaultFamily(User user) {
+    /**
+     * 确保用户至少拥有一个家庭，已有家庭则跳过
+     */
+    private void ensureDefaultFamily(User user) {
+        List<Family> families = familyService.listByUserId(user.getUserId());
+        if (families != null && !families.isEmpty()) {
+            log.debug("用户 {} 已有 {} 个家庭，跳过创建", user.getUserId(), families.size());
+            return;
+        }
         CreateFamilyRequest request = new CreateFamilyRequest();
         request.setName(user.getNickname() + "的家");
         familyService.create(request, user.getUserId());

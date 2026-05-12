@@ -5,6 +5,7 @@ import com.catplanet.common.exception.BizException;
 import com.catplanet.common.result.Result;
 import com.catplanet.common.result.ResultCode;
 import com.catplanet.module.record.dto.FeedingRecordRequest;
+import com.catplanet.module.record.dto.RecordStatsResponse;
 import com.catplanet.module.record.entity.FeedingRecord;
 import com.catplanet.module.record.service.FeedingRecordService;
 import jakarta.validation.Valid;
@@ -44,6 +45,12 @@ public class FeedingRecordController {
         Long familyId = requireFamilyId();
         feedingRecordService.delete(recordId, familyId);
         return Result.ok();
+    }
+
+    @GetMapping("/stats")
+    public Result<RecordStatsResponse> getStats(@RequestParam(defaultValue = "7") int days) {
+        Long familyId = requireFamilyId();
+        return Result.ok(feedingRecordService.getStats(familyId, days));
     }
 
     private Long requireFamilyId() {

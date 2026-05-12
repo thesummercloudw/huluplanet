@@ -5,6 +5,7 @@ import com.catplanet.common.exception.BizException;
 import com.catplanet.common.result.Result;
 import com.catplanet.common.result.ResultCode;
 import com.catplanet.module.record.dto.CareRecordRequest;
+import com.catplanet.module.record.dto.RecordStatsResponse;
 import com.catplanet.module.record.entity.CareRecord;
 import com.catplanet.module.record.service.CareRecordService;
 import jakarta.validation.Valid;
@@ -44,6 +45,12 @@ public class CareRecordController {
         Long familyId = requireFamilyId();
         careRecordService.delete(recordId, familyId);
         return Result.ok();
+    }
+
+    @GetMapping("/stats")
+    public Result<RecordStatsResponse> getStats(@RequestParam(defaultValue = "7") int days) {
+        Long familyId = requireFamilyId();
+        return Result.ok(careRecordService.getStats(familyId, days));
     }
 
     private Long requireFamilyId() {

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface HospitalService {
 
-    List<Hospital> listNearby(BigDecimal lat, BigDecimal lng, int radius, int page, int size);
+    List<Hospital> listNearby(BigDecimal lat, BigDecimal lng, int radius, String type, int page, int size);
 
     Hospital getById(Long hospitalId);
 

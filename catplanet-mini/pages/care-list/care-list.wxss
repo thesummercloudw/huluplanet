@@ -1,0 +1,10 @@
+@import "/pages/feeding-list/feeding-list.wxss";
+
+.record-note {
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  max-width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

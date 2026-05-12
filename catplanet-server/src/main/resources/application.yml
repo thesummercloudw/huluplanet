@@ -31,3 +31,6 @@ catplanet:
     path: ${UPLOAD_PATH:./uploads}
     max-size: 5MB
     url-prefix: /uploads
+  qwen-vl:
+    api-key: ${DASHSCOPE_API_KEY:sk-074d1cebf6f9481ea6f47fabb37a78af}
+    model: ${QWEN_VL_MODEL:qwen-vl-plus}

@@ -1,0 +1,84 @@
+<view class="container record-page">
+  <view class="grain-overlay"></view>
+
+  <!-- Tab 切换 -->
+  <view class="tab-bar">
+    <view class="tab-item {{activeTab === 'list' ? 'active' : ''}}" bindtap="switchTab" data-tab="list">记录列表</view>
+    <view class="tab-item {{activeTab === 'stats' ? 'active' : ''}}" bindtap="switchTab" data-tab="stats">数据统计</view>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="list-section" wx:if="{{activeTab === 'list'}}">
+    <view class="record-item" wx:for="{{records}}" wx:key="recordId">
+      <view class="record-icon">{{item.typeIcon}}</view>
+      <view class="record-info">
+        <view class="record-main">
+          <text class="record-food">{{item.typeLabel}}</text>
+          <text class="record-tag" wx:if="{{item.subtype}}">{{item.subtype}}</text>
+          <text class="record-cost" wx:if="{{item.costStr}}">{{item.costStr}}</text>
+        </view>
+        <view class="record-sub">
+          <text class="record-hospital" wx:if="{{item.hospitalName}}">{{item.hospitalName}}</text>
+          <text class="record-time">{{item.dateStr}}</text>
+        </view>
+        <view class="record-sub" wx:if="{{item.nextDueDate}}">
+          <text class="record-next">下次: {{item.nextDueDate}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty-tip" wx:if="{{records.length === 0 && !loading}}">
+      <text>暂无健康记录</text>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-section" wx:if="{{activeTab === 'stats'}}">
+    <!-- 时间筛选 -->
+    <view class="days-filter">
+      <view class="day-btn {{days === 7 ? 'active' : ''}}" bindtap="onDaysChange" data-days="7">近7天</view>
+      <view class="day-btn {{days === 30 ? 'active' : ''}}" bindtap="onDaysChange" data-days="30">近30天</view>
+      <view class="day-btn {{days === 90 ? 'active' : ''}}" bindtap="onDaysChange" data-days="90">近90天</view>
+    </view>
+
+    <!-- 汇总卡片 -->
+    <view class="summary-card" wx:if="{{stats}}">
+      <view class="summary-item">
+        <text class="summary-value">{{stats.totalCount}}</text>
+        <text class="summary-label">就医次数</text>
+      </view>
+      <view class="summary-item">
+        <text class="summary-value">¥{{stats.totalValue}}</text>
+        <text class="summary-label">总花费</text>
+      </view>
+    </view>
+
+    <!-- 每日健康记录柱状图 -->
+    <view class="chart-card" wx:if="{{stats && stats.dailyStats.length > 0 && days <= 14}}">
+      <view class="chart-title">每日记录数</view>
+      <view class="bar-chart">
+        <view class="bar-item" wx:for="{{stats.dailyStats}}" wx:key="date">
+          <view class="bar-fill" style="height: {{item.count / maxBarValue * 100}}%"></view>
+          <text class="bar-value">{{item.count > 0 ? item.count : ''}}</text>
+          <text class="bar-label">{{item.date.slice(5)}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 类型分布 -->
+    <view class="chart-card" wx:if="{{stats && stats.typeDistribution}}">
+      <view class="chart-title">健康类型分布</view>
+      <view class="type-list">
+        <view class="type-row" wx:for="{{stats.typeDistribution}}" wx:for-index="type" wx:for-item="count" wx:key="type">
+          <text class="type-name">{{healthTypeNames[type] || type}}</text>
+          <view class="type-bar-wrap">
+            <view class="type-bar health-bar" style="width: {{count / stats.totalCount * 100}}%"></view>
+          </view>
+          <text class="type-count">{{count}}次</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="fab-btn" bindtap="goAdd">+ 记录</view>
+</view>

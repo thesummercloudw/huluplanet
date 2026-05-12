@@ -1,0 +1,137 @@
+.sighting-add-page {
+  padding-bottom: 60rpx;
+}
+
+/* 图片上传 */
+.photo-section {
+  margin-bottom: 32rpx;
+}
+
+.photo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400rpx;
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(36px) saturate(1.35);
+  -webkit-backdrop-filter: blur(36px) saturate(1.35);
+  border-radius: var(--radius-lg);
+  border: 2rpx dashed rgba(53, 200, 180, 0.4);
+}
+
+.photo-icon {
+  font-size: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.photo-hint {
+  font-size: 28rpx;
+  color: var(--color-text-secondary);
+}
+
+.photo-preview {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.preview-img {
+  width: 100%;
+  height: 400rpx;
+}
+
+.photo-change {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 26rpx;
+}
+
+/* 位置信息 */
+.location-section {
+  margin-bottom: 32rpx;
+}
+
+.location-row {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(36px) saturate(1.35);
+  -webkit-backdrop-filter: blur(36px) saturate(1.35);
+  border-radius: var(--radius-lg);
+  padding: 28rpx 32rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-card);
+}
+
+.location-icon {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.location-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.location-arrow {
+  font-size: 36rpx;
+  color: var(--color-text-secondary);
+}
+
+/* 描述输入 */
+.content-section {
+  margin-bottom: 40rpx;
+  position: relative;
+}
+
+.content-input {
+  width: 100%;
+  min-height: 200rpx;
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(36px) saturate(1.35);
+  -webkit-backdrop-filter: blur(36px) saturate(1.35);
+  border-radius: var(--radius-lg);
+  padding: 28rpx 32rpx;
+  font-size: 28rpx;
+  color: var(--color-text);
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  box-shadow: var(--shadow-card);
+  box-sizing: border-box;
+}
+
+.content-count {
+  position: absolute;
+  bottom: 16rpx;
+  right: 24rpx;
+  font-size: 22rpx;
+  color: var(--color-placeholder);
+}
+
+/* 提交按钮 */
+.submit-btn {
+  width: 100%;
+  padding: 24rpx 0;
+  background: linear-gradient(135deg, #35C8B4, #A4CF4A);
+  color: #fff;
+  border-radius: var(--radius-md);
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  box-shadow: 0 4rpx 16rpx rgba(53, 200, 180, 0.25);
+}
+
+.submit-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

@@ -11,11 +11,15 @@
     "pages/feeding-add/feeding-add",
     "pages/care-add/care-add",
     "pages/health-add/health-add",
+    "pages/feeding-list/feeding-list",
+    "pages/care-list/care-list",
+    "pages/health-list/health-list",
     "pages/reminders/reminders",
     "pages/food-detail/food-detail",
     "pages/review-write/review-write",
     "pages/hospital-detail/hospital-detail",
-    "pages/adoption-detail/adoption-detail"
+    "pages/adoption-detail/adoption-detail",
+    "pages/sighting-add/sighting-add"
   ],
   "window": {
     "navigationBarBackgroundColor": "#C2F2E4",
@@ -56,6 +60,12 @@
       }
     ]
   },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于定位猫咪出没地点"
+    }
+  },
+  "requiredPrivateInfos": ["getLocation", "chooseLocation"],
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

@@ -1,0 +1,33 @@
+<view class="container sighting-add-page">
+  <view class="grain-overlay"></view>
+
+  <!-- 图片上传区 -->
+  <view class="photo-section">
+    <view class="photo-box" bindtap="chooseImage" wx:if="{{!imageUrl}}">
+      <text class="photo-icon">📷</text>
+      <text class="photo-hint">拍一张猫咪照片</text>
+    </view>
+    <view class="photo-preview" wx:if="{{imageUrl}}">
+      <image class="preview-img" src="{{imageUrl}}" mode="aspectFill"></image>
+      <view class="photo-change" bindtap="chooseImage">重新选择</view>
+    </view>
+  </view>
+
+  <!-- 位置信息 -->
+  <view class="location-section">
+    <view class="location-row" bindtap="chooseLocation">
+      <text class="location-icon">📍</text>
+      <text class="location-text">{{address || '点击获取当前位置'}}</text>
+      <text class="location-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 描述输入 -->
+  <view class="content-section">
+    <textarea class="content-input" placeholder="说点什么吧，比如这只猫咪的特征~" maxlength="200" value="{{content}}" bindinput="onContentInput"></textarea>
+    <text class="content-count">{{content.length || 0}}/200</text>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-btn {{canSubmit ? '' : 'disabled'}}" bindtap="submit">发布</view>
+</view>

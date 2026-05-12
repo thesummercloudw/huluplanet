@@ -31,9 +31,9 @@
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(36px) saturate(1.35);
+  -webkit-backdrop-filter: blur(36px) saturate(1.35);
   border-radius: var(--radius-lg);
   padding: 24rpx 28rpx;
   box-shadow: var(--shadow-card), inset 0 1rpx 0 rgba(255,255,255,0.5);
@@ -46,8 +46,8 @@
   border: 2rpx dashed rgba(53, 200, 180, 0.35);
   background: rgba(255, 255, 255, 0.25);
   box-shadow: none;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 .cat-avatar {
@@ -77,9 +77,9 @@
 
 /* 快捷记录区 */
 .quick-actions {
-  background: rgba(53, 200, 180, 0.12);
-  backdrop-filter: blur(24px) saturate(1.1);
-  -webkit-backdrop-filter: blur(24px) saturate(1.1);
+  background: rgba(53, 200, 180, 0.08);
+  backdrop-filter: blur(36px) saturate(1.35);
+  -webkit-backdrop-filter: blur(36px) saturate(1.35);
   border-radius: var(--radius-lg);
   padding: 28rpx 32rpx;
   margin-bottom: 32rpx;
@@ -97,6 +97,7 @@
 .quick-grid {
   display: flex;
   justify-content: space-around;
+  align-items: flex-start;
 }
 
 .quick-item {
@@ -107,6 +108,8 @@
 
 .quick-icon {
   font-size: 48rpx;
+  height: 48rpx;
+  line-height: 48rpx;
   margin-bottom: 8rpx;
 }
 
@@ -121,9 +124,115 @@
   color: var(--color-text-secondary);
 }
 
+.quick-links {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 24rpx;
+  padding-top: 20rpx;
+  border-top: 1rpx solid rgba(53, 200, 180, 0.12);
+}
+
+.quick-link {
+  font-size: 22rpx;
+  color: var(--color-primary);
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+  background: rgba(53, 200, 180, 0.08);
+}
+
 /* Timeline */
 .timeline-section {
   margin-top: 8rpx;
+}
+
+/* 猫咪出没 */
+.sighting-section {
+  margin-bottom: 32rpx;
+}
+
+.sighting-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.sighting-add-btn {
+  font-size: 24rpx;
+  color: #35C8B4;
+  background: rgba(53, 200, 180, 0.1);
+  padding: 8rpx 24rpx;
+  border-radius: 24rpx;
+  border: 1rpx solid rgba(53, 200, 180, 0.3);
+}
+
+.sighting-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.sighting-item {
+  width: calc(50% - 8rpx);
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(36px) saturate(1.35);
+  -webkit-backdrop-filter: blur(36px) saturate(1.35);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card), inset 0 1rpx 0 rgba(255,255,255,0.5);
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
+}
+
+.sighting-img {
+  width: 100%;
+  height: 200rpx;
+}
+
+.sighting-info {
+  padding: 16rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 6rpx;
+}
+
+.sighting-address {
+  font-size: 22rpx;
+  color: var(--color-text);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sighting-content {
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sighting-time {
+  font-size: 20rpx;
+  color: var(--color-placeholder);
+}
+
+.sighting-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0;
+}
+
+.sighting-empty-text {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.sighting-empty-sub {
+  font-size: 22rpx;
+  color: var(--color-placeholder);
 }
 
 .section-title {
@@ -224,4 +333,5 @@
   border-radius: var(--radius-md);
   font-size: 28rpx;
   box-shadow: 0 4rpx 16rpx rgba(53, 200, 180, 0.25);
+  text-align: center;
 }

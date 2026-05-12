@@ -16,6 +16,7 @@ Page({
     },
     avatarTemp: '',
     uploading: false,
+    recognizing: false,
     genderOptions: ['未知', '弟弟(公)', '妹妹(母)'],
     genderValues: ['unknown', 'male', 'female'],
     genderIndex: 0,
@@ -72,11 +73,31 @@ Page({
       const data = await http.upload(filePath);
       this.setData({ 'form.avatar': data.url });
       wx.showToast({ title: '头像已上传', icon: 'success' });
+      // 上传成功后自动识别品种（仅当品种字段为空时）
+      if (!this.data.form.breed) {
+        this.recognizeBreed(data.url);
+      }
     } catch (e) {
       console.error('upload avatar error', e);
       this.setData({ avatarTemp: this.data.form.avatar || '' });
     } finally {
       this.setData({ uploading: false });
+    }
+  },
+
+  async recognizeBreed(imageUrl) {
+    this.setData({ recognizing: true });
+    try {
+      const data = await http.post('/api/breed-recognition', { imageUrl });
+      if (data.breed) {
+        this.setData({ 'form.breed': data.breed });
+        wx.showToast({ title: `识别为: ${data.breed}`, icon: 'none', duration: 2000 });
+      }
+    } catch (e) {
+      console.error('breed recognition error', e);
+      // 识别失败不影响使用，静默处理
+    } finally {
+      this.setData({ recognizing: false });
     }
   },
 

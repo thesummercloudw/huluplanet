@@ -4,6 +4,7 @@ import com.catplanet.common.context.UserContext;
 import com.catplanet.common.result.Result;
 import com.catplanet.module.family.dto.CreateFamilyRequest;
 import com.catplanet.module.family.dto.JoinFamilyRequest;
+import com.catplanet.module.family.dto.UpdateFamilyRequest;
 import com.catplanet.module.family.entity.Family;
 import com.catplanet.module.family.service.FamilyService;
 import jakarta.validation.Valid;
@@ -41,5 +42,12 @@ public class FamilyController {
     public Result<List<Family>> myFamilies() {
         List<Family> families = familyService.listByUserId(UserContext.getUserId());
         return Result.ok(families);
+    }
+
+    @PutMapping("/{familyId}/name")
+    public Result<Family> updateName(@PathVariable Long familyId,
+                                     @Valid @RequestBody UpdateFamilyRequest request) {
+        Family family = familyService.updateName(familyId, request, UserContext.getUserId());
+        return Result.ok(family);
     }
 }

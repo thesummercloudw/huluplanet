@@ -17,8 +17,8 @@ page {
   --radius-md: 20rpx;
   --radius-lg: 32rpx;
   --shadow-card: 0 4rpx 20rpx rgba(53, 200, 180, 0.08);
-  --glass-blur: blur(20px);
-  --glass-saturate: saturate(1.2);
+  --glass-blur: blur(36px);
+  --glass-saturate: saturate(1.35);
   
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Helvetica Neue', sans-serif;
   font-size: 28rpx;
@@ -69,8 +69,9 @@ page {
   bottom: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.25;
+  opacity: 0.45;
   background-image: url('/images/grain-texture.png');
-  background-size: 200rpx 200rpx;
+  background-size: 150rpx 150rpx;
   background-repeat: repeat;
+  mix-blend-mode: overlay;
 }
