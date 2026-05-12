@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81 81" width="81" height="81">
+  <!-- 猫耳朵头像 -->
+  <!-- 左猫耳 -->
+  <path d="M24 32 L28 18 L36 28 Z" fill="#35C8B4"/>
+  <!-- 右猫耳 -->
+  <path d="M57 32 L53 18 L45 28 Z" fill="#35C8B4"/>
+  <!-- 头部圆 -->
+  <circle cx="40.5" cy="38" r="15" fill="#35C8B4"/>
+  <!-- 身体 -->
+  <ellipse cx="40.5" cy="64" rx="18" ry="12" fill="#35C8B4"/>
+</svg>

@@ -1,6 +1,6 @@
 <view class="login-page">
   <view class="login-header">
-    <view class="logo-emoji">🐱</view>
+    <image class="logo-img" src="/images/logo.svg" mode="aspectFit"></image>
     <text class="app-name">呼噜星球</text>
     <text class="app-desc">家庭养猫，轻松管理</text>
   </view>

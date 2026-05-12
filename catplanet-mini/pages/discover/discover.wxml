@@ -1,4 +1,7 @@
 <view class="page">
+  <!-- 磨砂噪点纹理层 -->
+  <view class="grain-overlay"></view>
+
   <!-- 分段切换 -->
   <view class="segment">
     <view class="seg-item {{activeTab==='hospital'?'active':''}}" bindtap="switchTab" data-tab="hospital">🏥 附近医院</view>

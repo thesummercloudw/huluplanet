@@ -18,33 +18,41 @@
     "pages/adoption-detail/adoption-detail"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFF5F0",
+    "navigationBarBackgroundColor": "#C2F2E4",
     "navigationBarTitleText": "呼噜星球",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#FFF5F0",
+    "backgroundColor": "#C2F2E4",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
-    "color": "#999999",
-    "selectedColor": "#FF8C69",
+    "color": "#7ABFB0",
+    "selectedColor": "#35C8B4",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "星球"
+        "text": "星球",
+        "iconPath": "images/tab-planet.png",
+        "selectedIconPath": "images/tab-planet-active.png"
       },
       {
         "pagePath": "pages/catfood/catfood",
-        "text": "猫粮"
+        "text": "猫粮",
+        "iconPath": "images/tab-food.png",
+        "selectedIconPath": "images/tab-food-active.png"
       },
       {
         "pagePath": "pages/discover/discover",
-        "text": "找猫咪"
+        "text": "找猫咪",
+        "iconPath": "images/tab-paw.png",
+        "selectedIconPath": "images/tab-paw-active.png"
       },
       {
         "pagePath": "pages/mine/mine",
-        "text": "我的"
+        "text": "我的",
+        "iconPath": "images/tab-mine.png",
+        "selectedIconPath": "images/tab-mine-active.png"
       }
     ]
   },

@@ -1,6 +1,6 @@
 .page {
   padding: 24rpx;
-  background: #FFF5F0;
+  background: transparent;
   min-height: 100vh;
 }
 .food-title {
@@ -10,10 +10,13 @@
   margin-bottom: 32rpx;
 }
 .section {
-  background: #FFF;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
 }
 .label {
   font-size: 26rpx;
@@ -55,9 +58,9 @@
   border: 1rpx solid #EEE;
 }
 .cat-chip.active {
-  background: #FFF0EB;
-  color: #FF8C69;
-  border-color: #FF8C69;
+  background: rgba(53, 200, 180, 0.12);
+  color: #35C8B4;
+  border-color: #35C8B4;
 }
 
 /* Textarea */
@@ -71,7 +74,7 @@
 
 /* Submit */
 .submit-btn {
-  background: #FF8C69;
+  background: linear-gradient(135deg, #35C8B4, #A4CF4A);
   color: #FFF;
   text-align: center;
   padding: 24rpx;
@@ -79,4 +82,5 @@
   font-size: 30rpx;
   font-weight: 600;
   margin-top: 40rpx;
+  box-shadow: 0 4rpx 16rpx rgba(53, 200, 180, 0.25);
 }

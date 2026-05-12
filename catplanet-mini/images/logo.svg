@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <!-- 星球渐变 - 柠檬汽水绿 -->
+    <radialGradient id="planetGrad" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#C2F2E4"/>
+      <stop offset="70%" stop-color="#35C8B4"/>
+      <stop offset="100%" stop-color="#2AA89A"/>
+    </radialGradient>
+    <!-- 猫身体渐变 -->
+    <radialGradient id="catGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF8F0"/>
+      <stop offset="100%" stop-color="#F5EBE0"/>
+    </radialGradient>
+    <!-- 星球光晕 -->
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="60%" stop-color="#35C8B4" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#35C8B4" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 外层光晕 -->
+  <circle cx="100" cy="118" r="72" fill="url(#glowGrad)"/>
+
+  <!-- 星球环 - 后半部分（星球后面）- 45度倾斜 -->
+  <ellipse cx="100" cy="118" rx="72" ry="16" fill="none" stroke="#A4CF4A" stroke-width="3" opacity="0.4"
+           stroke-dasharray="0 113 113 0" transform="rotate(-15, 100, 118)"/>
+
+  <!-- 呼噜星球 - 圆形 -->
+  <circle cx="100" cy="118" r="50" fill="url(#planetGrad)"/>
+  <!-- 星球表面纹理 - 淡色弧线 -->
+  <ellipse cx="88" cy="108" rx="26" ry="7" fill="none" stroke="#88E8D8" stroke-width="1.5" opacity="0.6"/>
+  <ellipse cx="108" cy="128" rx="22" ry="5" fill="none" stroke="#88E8D8" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- 星球环 - 前半部分（星球前面）- 45度倾斜 -->
+  <ellipse cx="100" cy="118" rx="72" ry="16" fill="none" stroke="#A4CF4A" stroke-width="3.5" opacity="0.6"
+           stroke-dasharray="113 113" transform="rotate(-15, 100, 118)"/>
+
+  <!-- 蜷曲的猫剪影 - 基于图片中奶油色蓬松小猫 -->
+  <!-- 猫身体 (蜷曲在星球上方) - 放大2倍 -->
+  <g transform="translate(100, 55) scale(2)">
+    <!-- 身体主体 - 蜷曲的椭圆形 -->
+    <ellipse cx="0" cy="0" rx="22" ry="16" fill="url(#catGrad)"/>
+    <!-- 蓬松毛发边缘 -->
+    <ellipse cx="0" cy="0" rx="22" ry="16" fill="none" stroke="#EDE5DA" stroke-width="0.6"/>
+
+    <!-- 头部 -->
+    <circle cx="-14" cy="-10" r="12" fill="#FFF8F0"/>
+    <circle cx="-14" cy="-10" r="12" fill="none" stroke="#EDE5DA" stroke-width="0.5"/>
+
+    <!-- 尖耳朵 - 左 -->
+    <path d="M-22,-19 L-19,-28 L-14,-20" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.5"/>
+    <!-- 耳朵内部 - 左 -->
+    <path d="M-20,-20 L-18.5,-26 L-15.5,-20.5" fill="#FFDDD2" opacity="0.5"/>
+
+    <!-- 尖耳朵 - 右 -->
+    <path d="M-8,-19 L-5,-27 L-2,-18" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.5"/>
+    <!-- 耳朵内部 - 右 -->
+    <path d="M-7,-19.5 L-5.5,-25 L-3,-18.5" fill="#FFDDD2" opacity="0.5"/>
+
+    <!-- 闭眼 - 睡觉中的弧线 -->
+    <path d="M-18,-9 Q-16,-7 -14,-9" fill="none" stroke="#C4A98E" stroke-width="0.8" stroke-linecap="round"/>
+    <path d="M-12,-9 Q-10,-7 -8,-9" fill="none" stroke="#C4A98E" stroke-width="0.8" stroke-linecap="round"/>
+
+    <!-- 小鼻子 -->
+    <ellipse cx="-13" cy="-6" rx="1.2" ry="1" fill="#E8B4A8"/>
+
+    <!-- 蓬松的尾巴 - 卷曲环绕 -->
+    <path d="M18,-2 Q28,-8 30,2 Q32,12 24,16 Q18,19 14,14" 
+          fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.6"/>
+    <!-- 尾巴蓬松效果 -->
+    <path d="M20,-4 Q26,-6 28,0 Q30,8 24,12 Q20,15 16,12" 
+          fill="none" stroke="#F5EBE0" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- 前爪 - 蜷缩 -->
+    <ellipse cx="-8" cy="10" rx="5" ry="3.5" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.4"/>
+    <!-- 爪子肉垫 -->
+    <circle cx="-6" cy="10.5" r="1" fill="#FFDDD2" opacity="0.6"/>
+  </g>
+
+  <!-- 漂浮的柠檬绿光点 -->
+  <circle cx="45" cy="55" r="3" fill="#A4CF4A" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="155" cy="70" r="2.5" fill="#EDF7BE" opacity="0.7">
+    <animate attributeName="opacity" values="0.7;0.25;0.7" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="160" cy="130" r="2" fill="#FFB8C6" opacity="0.6">
+    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="38" cy="140" r="1.8" fill="#A4CF4A" opacity="0.65">
+    <animate attributeName="opacity" values="0.65;0.2;0.65" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="130" cy="48" r="1.5" fill="#EDF7BE" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.15;0.5" dur="2.8s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="60" cy="165" r="2.2" fill="#FFB8C6" opacity="0.55">
+    <animate attributeName="opacity" values="0.55;0.2;0.55" dur="3.2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="148" cy="160" r="1.8" fill="#A4CF4A" opacity="0.5">
+    <animate attributeName="opacity" values="0.5;0.15;0.5" dur="2.6s" repeatCount="indefinite"/>
+  </circle>
+</svg>

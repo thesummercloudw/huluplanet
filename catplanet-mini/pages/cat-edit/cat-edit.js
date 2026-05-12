@@ -6,6 +6,7 @@ Page({
     isEdit: false,
     form: {
       name: '',
+      avatar: '',
       breed: '',
       gender: 'unknown',
       birthday: '',
@@ -13,6 +14,8 @@ Page({
       isNeutered: 0,
       adoptionDate: ''
     },
+    avatarTemp: '',
+    uploading: false,
     genderOptions: ['未知', '弟弟(公)', '妹妹(母)'],
     genderValues: ['unknown', 'male', 'female'],
     genderIndex: 0,
@@ -33,6 +36,7 @@ Page({
       this.setData({
         form: {
           name: cat.name || '',
+          avatar: cat.avatar || '',
           breed: cat.breed || '',
           gender: cat.gender || 'unknown',
           birthday: cat.birthday || '',
@@ -40,10 +44,39 @@ Page({
           isNeutered: cat.isNeutered || 0,
           adoptionDate: cat.adoptionDate || ''
         },
+        avatarTemp: cat.avatar || '',
         genderIndex: genderIndex >= 0 ? genderIndex : 0
       });
     } catch (e) {
       console.error(e);
+    }
+  },
+
+  chooseAvatar() {
+    wx.chooseMedia({
+      count: 1,
+      mediaType: ['image'],
+      sourceType: ['album', 'camera'],
+      sizeType: ['compressed'],
+      success: (res) => {
+        const tempFilePath = res.tempFiles[0].tempFilePath;
+        this.setData({ avatarTemp: tempFilePath });
+        this.uploadAvatar(tempFilePath);
+      }
+    });
+  },
+
+  async uploadAvatar(filePath) {
+    this.setData({ uploading: true });
+    try {
+      const data = await http.upload(filePath);
+      this.setData({ 'form.avatar': data.url });
+      wx.showToast({ title: '头像已上传', icon: 'success' });
+    } catch (e) {
+      console.error('upload avatar error', e);
+      this.setData({ avatarTemp: this.data.form.avatar || '' });
+    } finally {
+      this.setData({ uploading: false });
     }
   },
 
@@ -73,14 +106,19 @@ Page({
   },
 
   async handleSubmit() {
-    const { form, catId, isEdit } = this.data;
+    const { form, catId, isEdit, uploading } = this.data;
     if (!form.name.trim()) {
       wx.showToast({ title: '请输入猫咪名字', icon: 'none' });
+      return;
+    }
+    if (uploading) {
+      wx.showToast({ title: '图片正在上传中', icon: 'none' });
       return;
     }
 
     const payload = {
       name: form.name,
+      avatar: form.avatar || null,
       breed: form.breed || null,
       gender: form.gender,
       birthday: form.birthday || null,

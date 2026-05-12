@@ -1,4 +1,7 @@
 <view class="page">
+  <!-- 磨砂噪点纹理层 -->
+  <view class="grain-overlay"></view>
+
   <!-- Tabs -->
   <view class="tabs">
     <view class="tab {{activeTab==='all'?'active':''}}" bindtap="switchTab" data-tab="all">全部猫粮</view>

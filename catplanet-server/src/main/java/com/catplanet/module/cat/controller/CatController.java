@@ -50,7 +50,7 @@ public class CatController {
 
     @GetMapping
     public Result<List<Cat>> list() {
-        Long familyId = UserContext.getFamilyId();
+            Long familyId = UserContext.getFamilyId();
         if (familyId == null) {
             return Result.ok(List.of());
         }

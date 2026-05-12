@@ -21,7 +21,7 @@
     <view class="section-title">用户评价</view>
     <view class="review-item" wx:for="{{reviews}}" wx:key="reviewId">
       <view class="review-header">
-        <text class="review-score">{{'⭐'.repeat(item.score)}}</text>
+        <text class="review-score">{{item.score >= 1 ? '⭐' : ''}}{{item.score >= 2 ? '⭐' : ''}}{{item.score >= 3 ? '⭐' : ''}}{{item.score >= 4 ? '⭐' : ''}}{{item.score >= 5 ? '⭐' : ''}}</text>
         <text class="review-time">{{item.createdAt}}</text>
       </view>
       <view class="review-content" wx:if="{{item.content}}">{{item.content}}</view>

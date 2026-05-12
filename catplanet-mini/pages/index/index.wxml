@@ -1,20 +1,20 @@
 <view class="container index-page">
+  <!-- 磨砂噪点纹理层 -->
+  <view class="grain-overlay"></view>
+
   <!-- 顶部星球头 -->
   <view class="planet-header">
-    <text class="planet-emoji">🪐</text>
+    <image class="planet-logo" src="/images/logo.svg" mode="aspectFit"></image>
     <text class="planet-name">{{familyName || '我的星球'}}</text>
   </view>
 
   <!-- 猫咪卡片轮播 -->
   <scroll-view class="cat-scroll" scroll-x wx:if="{{cats.length > 0}}">
     <view class="cat-card" wx:for="{{cats}}" wx:key="catId" bindtap="goCatDetail" data-id="{{item.catId}}">
-      <image class="cat-avatar" src="{{item.avatar || '/images/default-cat.png'}}" mode="aspectFill"/>
+      <image class="cat-avatar" src="{{item.avatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSI2NCIgeT0iNzYiIGZvbnQtc2l6ZT0iNTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkLA8L3RleHQ+PC9zdmc+'}}" mode="aspectFill"/>
       <text class="cat-name">{{item.name}}</text>
     </view>
-    <view class="cat-card cat-card-add" bindtap="goAddCat">
-      <text class="add-icon">+</text>
-      <text class="cat-name">添加</text>
-    </view>
+
   </scroll-view>
 
   <!-- 快捷记录区 -->
@@ -34,7 +34,7 @@
         <text class="quick-label">健康</text>
       </view>
       <view class="quick-item" bindtap="goAddCat">
-        <text class="quick-icon">🐱</text>
+        <image class="quick-cat-icon" src="/images/cat-icon.svg" mode="aspectFit"></image>
         <text class="quick-label">添加猫咪</text>
       </view>
     </view>

@@ -1,4 +1,18 @@
 <view class="container edit-page">
+  <!-- 头像选择 -->
+  <view class="avatar-section" bindtap="chooseAvatar">
+    <view class="avatar-wrapper">
+      <image wx:if="{{avatarTemp}}" class="avatar-img" src="{{avatarTemp}}" mode="aspectFill"/>
+      <view wx:else class="avatar-placeholder">
+        <text class="avatar-icon">📷</text>
+        <text class="avatar-hint">添加头像</text>
+      </view>
+      <view wx:if="{{uploading}}" class="avatar-loading">
+        <text>上传中...</text>
+      </view>
+    </view>
+  </view>
+
   <view class="form-group">
     <text class="form-label">名字 *</text>
     <input class="form-input" placeholder="猫咪的名字" value="{{form.name}}" data-field="name" bindinput="onInput"/>

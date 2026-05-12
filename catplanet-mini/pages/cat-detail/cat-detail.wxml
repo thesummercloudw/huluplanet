@@ -1,7 +1,7 @@
 <view class="container detail-page" wx:if="{{cat}}">
   <!-- 头像 -->
   <view class="detail-avatar-wrap">
-    <image class="detail-avatar" src="{{cat.avatar || '/images/default-cat.png'}}" mode="aspectFill"/>
+    <image class="detail-avatar" src="{{cat.avatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSI2NCIgeT0iNzYiIGZvbnQtc2l6ZT0iNTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkLA8L3RleHQ+PC9zdmc+'}}" mode="aspectFill"/>
   </view>
 
   <text class="detail-name">{{cat.name}}</text>

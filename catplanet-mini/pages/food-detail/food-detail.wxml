@@ -85,7 +85,7 @@
   <view class="section" wx:if="{{activeSection==='ugc'}}">
     <view class="ugc-item" wx:for="{{ugcReviews}}" wx:key="reviewId">
       <view class="ugc-header">
-        <text class="ugc-stars">{{'⭐'.repeat(item.score)}}</text>
+        <text class="ugc-stars">{{item.score >= 1 ? '⭐' : ''}}{{item.score >= 2 ? '⭐' : ''}}{{item.score >= 3 ? '⭐' : ''}}{{item.score >= 4 ? '⭐' : ''}}{{item.score >= 5 ? '⭐' : ''}}</text>
         <text class="ugc-time">{{item.createdAt}}</text>
       </view>
       <view class="ugc-content">{{item.content}}</view>

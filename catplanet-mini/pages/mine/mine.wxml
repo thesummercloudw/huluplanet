@@ -1,4 +1,7 @@
 <view class="container mine-page">
+  <!-- 磨砂噪点纹理层 -->
+  <view class="grain-overlay"></view>
+
   <!-- 家庭信息卡片 -->
   <view class="card family-card" wx:if="{{familyName}}">
     <text class="family-label">当前家庭</text>

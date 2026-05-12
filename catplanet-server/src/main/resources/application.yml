@@ -1,4 +1,4 @@
-server:
+=server:
   port: 8080
 
 spring:
@@ -27,3 +27,7 @@ catplanet:
   wx:
     appid: ${WX_APPID:wx_test_appid}
     secret: ${WX_SECRET:wx_test_secret}
+  upload:
+    path: ${UPLOAD_PATH:./uploads}
+    max-size: 5MB
+    url-prefix: /uploads

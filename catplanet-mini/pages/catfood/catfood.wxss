@@ -1,6 +1,6 @@
 .page {
   padding: 0 24rpx 24rpx;
-  background: #FFF5F0;
+  background: transparent;
   min-height: 100vh;
 }
 
@@ -14,13 +14,17 @@
   padding: 12rpx 32rpx;
   border-radius: 32rpx;
   font-size: 28rpx;
-  color: #666;
-  background: #FFF;
+  color: #2D8A74;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
 }
 .tab.active {
-  background: #FF8C69;
+  background: #35C8B4;
   color: #FFF;
   font-weight: 600;
+  border: 1rpx solid #35C8B4;
 }
 
 /* Filters */
@@ -37,24 +41,27 @@
   padding: 8rpx 24rpx;
   border-radius: 24rpx;
   font-size: 24rpx;
-  color: #666;
-  background: #FFF;
-  border: 1rpx solid #EEE;
+  color: #2D8A74;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1rpx solid rgba(53, 200, 180, 0.15);
 }
 .chip.active {
-  background: #FFF0EB;
-  color: #FF8C69;
-  border-color: #FF8C69;
+  background: rgba(53, 200, 180, 0.12);
+  color: #35C8B4;
+  border-color: #35C8B4;
 }
 
 /* Food List */
 .food-card {
   display: flex;
-  background: #FFF;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 16rpx;
   padding: 20rpx;
   margin-bottom: 16rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+  box-shadow: 0 2rpx 8rpx rgba(53, 200, 180, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
 }
 .food-img {
   width: 160rpx;
@@ -77,7 +84,7 @@
 .food-name {
   font-size: 28rpx;
   font-weight: 600;
-  color: #333;
+  color: #1A6B5A;
   margin: 6rpx 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -91,7 +98,7 @@
   color: #999;
 }
 .food-score {
-  color: #FF8C69;
+  color: #35C8B4;
   font-weight: 600;
 }
 .food-tags {
@@ -103,18 +110,21 @@
 .tag {
   font-size: 20rpx;
   padding: 4rpx 12rpx;
-  background: #FFF5F0;
-  color: #FF8C69;
+  background: rgba(53, 200, 180, 0.1);
+  color: #35C8B4;
   border-radius: 8rpx;
 }
 
 /* PGC List */
 .pgc-card {
-  background: #FFF;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-radius: 16rpx;
   overflow: hidden;
   margin-bottom: 20rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+  box-shadow: 0 2rpx 8rpx rgba(53, 200, 180, 0.06);
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
 }
 .pgc-cover {
   width: 100%;
@@ -126,14 +136,14 @@
 .pgc-title {
   font-size: 30rpx;
   font-weight: 600;
-  color: #333;
+  color: #1A6B5A;
   margin-bottom: 12rpx;
 }
 .pgc-scores {
   display: flex;
   gap: 20rpx;
   font-size: 22rpx;
-  color: #FF8C69;
+  color: #35C8B4;
 }
 
 /* Empty */

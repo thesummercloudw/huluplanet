@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81 81" width="81" height="81">
+  <!-- 星球 -->
+  <circle cx="40.5" cy="42" r="18" fill="#7ABFB0"/>
+  <!-- 星球环 -->
+  <ellipse cx="40.5" cy="42" rx="28" ry="10" fill="none" stroke="#7ABFB0" stroke-width="2.5" transform="rotate(-15, 40.5, 42)"/>
+  <!-- 小星星装饰 -->
+  <circle cx="18" cy="20" r="2" fill="#7ABFB0" opacity="0.6"/>
+  <circle cx="65" cy="25" r="1.5" fill="#7ABFB0" opacity="0.5"/>
+  <circle cx="60" cy="62" r="1.8" fill="#7ABFB0" opacity="0.4"/>
+</svg>
