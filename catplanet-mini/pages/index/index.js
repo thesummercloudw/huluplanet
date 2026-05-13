@@ -7,6 +7,7 @@ Page({
     familyName: '',
     timeline: [],
     sightings: [],
+    adoptionCats: [],
     loading: true
   },
 
@@ -29,11 +30,12 @@ Page({
         wx.setStorageSync('currentFamilyId', family.familyId);
         this.setData({ familyName: family.name });
 
-        // 并行加载猫咪、Timeline 和 猫咪出没
-        const [cats, timeline, sightings] = await Promise.all([
+        // 并行加载猫咪、Timeline、猫咪出没和领养
+        const [cats, timeline, sightings, adoptionCats] = await Promise.all([
           http.get('/api/cats'),
           http.get('/api/timeline?limit=10'),
-          http.get('/api/sightings?limit=6')
+          http.get('/api/sightings?limit=6'),
+          http.get('/api/adoption/cats?page=1&size=6')
         ]);
         this.setData({
           cats: cats || [],
@@ -44,7 +46,8 @@ Page({
           sightings: (sightings || []).map(item => ({
             ...item,
             timeStr: this.formatTime(item.createdAt)
-          }))
+          })),
+          adoptionCats: adoptionCats || []
         });
       } else {
         this.setData({ cats: [], familyName: '', timeline: [] });
@@ -84,6 +87,15 @@ Page({
 
   goSightingAdd() {
     wx.navigateTo({ url: '/pages/sighting-add/sighting-add' });
+  },
+
+  goAdoptionAdd() {
+    wx.navigateTo({ url: '/pages/adoption-add/adoption-add' });
+  },
+
+  goAdoptionDetail(e) {
+    const id = e.currentTarget.dataset.id;
+    wx.navigateTo({ url: `/pages/adoption-detail/adoption-detail?adoptId=${id}` });
   },
 
   goCatDetail(e) {

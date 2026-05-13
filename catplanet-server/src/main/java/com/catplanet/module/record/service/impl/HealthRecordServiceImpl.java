@@ -92,12 +92,13 @@ public class HealthRecordServiceImpl implements HealthRecordService {
     }
 
     @Override
-    public List<HealthRecord> listByFamily(Long familyId, int limit) {
-        return healthRecordMapper.selectList(
-                new LambdaQueryWrapper<HealthRecord>()
-                        .eq(HealthRecord::getFamilyId, familyId)
-                        .orderByDesc(HealthRecord::getRecordDate)
-                        .last("LIMIT " + limit));
+    public List<HealthRecord> listByFamily(Long familyId, Long catId, int limit) {
+        LambdaQueryWrapper<HealthRecord> wrapper = new LambdaQueryWrapper<HealthRecord>()
+                .eq(HealthRecord::getFamilyId, familyId)
+                .eq(catId != null, HealthRecord::getCatId, catId)
+                .orderByDesc(HealthRecord::getRecordDate)
+                .last("LIMIT " + limit);
+        return healthRecordMapper.selectList(wrapper);
     }
 
     @Override
@@ -110,11 +111,12 @@ public class HealthRecordServiceImpl implements HealthRecordService {
     }
 
     @Override
-    public RecordStatsResponse getStats(Long familyId, int days) {
+    public RecordStatsResponse getStats(Long familyId, Long catId, int days) {
         LocalDate startDate = LocalDate.now().minusDays(days - 1);
         List<HealthRecord> records = healthRecordMapper.selectList(
                 new LambdaQueryWrapper<HealthRecord>()
                         .eq(HealthRecord::getFamilyId, familyId)
+                        .eq(catId != null, HealthRecord::getCatId, catId)
                         .ge(HealthRecord::getRecordDate, startDate)
                         .orderByAsc(HealthRecord::getRecordDate));
 

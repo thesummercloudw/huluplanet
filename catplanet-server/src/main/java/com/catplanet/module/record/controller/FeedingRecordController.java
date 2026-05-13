@@ -35,9 +35,11 @@ public class FeedingRecordController {
     }
 
     @GetMapping
-    public Result<List<FeedingRecord>> listByFamily(@RequestParam(defaultValue = "20") int limit) {
+    public Result<List<FeedingRecord>> listByFamily(
+            @RequestParam(defaultValue = "20") int limit,
+            @RequestParam(required = false) Long catId) {
         Long familyId = requireFamilyId();
-        return Result.ok(feedingRecordService.listByFamily(familyId, limit));
+        return Result.ok(feedingRecordService.listByFamily(familyId, catId, limit));
     }
 
     @DeleteMapping("/{recordId}")
@@ -48,9 +50,11 @@ public class FeedingRecordController {
     }
 
     @GetMapping("/stats")
-    public Result<RecordStatsResponse> getStats(@RequestParam(defaultValue = "7") int days) {
+    public Result<RecordStatsResponse> getStats(
+            @RequestParam(defaultValue = "7") int days,
+            @RequestParam(required = false) Long catId) {
         Long familyId = requireFamilyId();
-        return Result.ok(feedingRecordService.getStats(familyId, days));
+        return Result.ok(feedingRecordService.getStats(familyId, catId, days));
     }
 
     private Long requireFamilyId() {

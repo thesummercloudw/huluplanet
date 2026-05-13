@@ -7,6 +7,8 @@ Page({
     stats: null,
     loading: false,
     days: 7,
+    cats: [],
+    selectedCatId: null, // null = 全部猫咪
     mealTypeNames: {
       main: '主食',
       wet: '湿粮',
@@ -16,7 +18,29 @@ Page({
   },
 
   onShow() {
+    this.loadCats();
+  },
+
+  async loadCats() {
+    try {
+      const cats = await http.get('/api/cats');
+      this.setData({ cats: cats || [] });
+    } catch (e) {
+      console.error('load cats error', e);
+    }
     this.loadRecords();
+    if (this.data.activeTab === 'stats') {
+      this.loadStats();
+    }
+  },
+
+  onCatFilter(e) {
+    const catId = e.currentTarget.dataset.id || null;
+    this.setData({ selectedCatId: catId, stats: null });
+    this.loadRecords();
+    if (this.data.activeTab === 'stats') {
+      this.loadStats();
+    }
   },
 
   switchTab(e) {
@@ -30,7 +54,11 @@ Page({
   async loadRecords() {
     this.setData({ loading: true });
     try {
-      const records = await http.get('/api/records/feeding?limit=50');
+      let url = '/api/records/feeding?limit=50';
+      if (this.data.selectedCatId) {
+        url += '&catId=' + this.data.selectedCatId;
+      }
+      const records = await http.get(url);
       this.setData({
         records: (records || []).map(r => ({
           ...r,
@@ -47,7 +75,11 @@ Page({
 
   async loadStats() {
     try {
-      const stats = await http.get(`/api/records/feeding/stats?days=${this.data.days}`);
+      let url = `/api/records/feeding/stats?days=${this.data.days}`;
+      if (this.data.selectedCatId) {
+        url += '&catId=' + this.data.selectedCatId;
+      }
+      const stats = await http.get(url);
       // 计算柱状图最大值
       let maxVal = 0;
       if (stats && stats.dailyStats) {

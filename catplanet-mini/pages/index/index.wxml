@@ -82,6 +82,32 @@
     </view>
   </view>
 
+  <!-- 等家的猫咪 -->
+  <view class="adoption-section">
+    <view class="adoption-header">
+      <view class="section-title">❤️ 等家的猫咪</view>
+      <view class="adoption-add-btn" bindtap="goAdoptionAdd">+ 发布领养</view>
+    </view>
+    <view class="adoption-grid" wx:if="{{adoptionCats.length > 0}}">
+      <view class="adoption-card" wx:for="{{adoptionCats}}" wx:key="adoptId" bindtap="goAdoptionDetail" data-id="{{item.adoptId}}">
+        <image class="adoption-cover" src="{{item.cover || '/images/cat-icon.svg'}}" mode="aspectFill"></image>
+        <view class="adoption-info">
+          <view class="adoption-name">{{item.name}}</view>
+          <view class="adoption-meta">
+            <text wx:if="{{item.gender === 'male'}}">♂</text>
+            <text wx:if="{{item.gender === 'female'}}">♀</text>
+            <text wx:if="{{item.ageEstimate}}">{{item.ageEstimate}}</text>
+          </view>
+          <view class="adoption-city" wx:if="{{item.city}}">📍 {{item.city}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="adoption-empty" wx:if="{{adoptionCats.length === 0}}">
+      <text class="adoption-empty-text">暂无等家的猫咪</text>
+      <text class="adoption-empty-sub">发布领养信息，帮助流浪猫找家~</text>
+    </view>
+  </view>
+
   <!-- 空状态 -->
   <view class="empty-state" wx:if="{{cats.length === 0 && !loading}}">
     <text class="empty-emoji">😺</text>

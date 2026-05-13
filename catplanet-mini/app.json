@@ -19,7 +19,8 @@
     "pages/review-write/review-write",
     "pages/hospital-detail/hospital-detail",
     "pages/adoption-detail/adoption-detail",
-    "pages/sighting-add/sighting-add"
+    "pages/sighting-add/sighting-add",
+    "pages/adoption-add/adoption-add"
   ],
   "window": {
     "navigationBarBackgroundColor": "#C2F2E4",
@@ -48,7 +49,7 @@
       },
       {
         "pagePath": "pages/discover/discover",
-        "text": "找猫咪",
+        "text": "周边",
         "iconPath": "images/tab-paw.png",
         "selectedIconPath": "images/tab-paw-active.png"
       },

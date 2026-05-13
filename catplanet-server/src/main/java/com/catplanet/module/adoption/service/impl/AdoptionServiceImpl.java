@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.catplanet.common.exception.BizException;
 import com.catplanet.common.result.ResultCode;
 import com.catplanet.module.adoption.dto.AdoptionApplyRequest;
+import com.catplanet.module.adoption.dto.AdoptionPublishRequest;
 import com.catplanet.module.adoption.entity.AdoptionApplication;
 import com.catplanet.module.adoption.entity.AdoptionCat;
 import com.catplanet.module.adoption.mapper.AdoptionApplicationMapper;
@@ -42,6 +43,25 @@ public class AdoptionServiceImpl implements AdoptionService {
             // 隐藏联系方式（仅运营可见）
             cat.setContactMethod(null);
         }
+        return cat;
+    }
+
+    @Override
+    public AdoptionCat publish(AdoptionPublishRequest request, Long userId) {
+        AdoptionCat cat = new AdoptionCat();
+        cat.setName(request.getName());
+        cat.setCover(request.getCover());
+        cat.setImages(request.getImages());
+        cat.setGender(request.getGender() != null ? request.getGender() : "unknown");
+        cat.setAgeEstimate(request.getAgeEstimate());
+        cat.setBreedEstimate(request.getBreedEstimate());
+        cat.setCity(request.getCity());
+        cat.setPersonality(request.getPersonality());
+        cat.setReasonForAdoption(request.getReasonForAdoption());
+        cat.setContactMethod(request.getContactMethod());
+        cat.setHealthStatus(request.getHealthStatus());
+        cat.setStatus("available");
+        adoptionCatMapper.insert(cat);
         return cat;
     }
 

@@ -35,7 +35,7 @@ Page({
   },
 
   onCatSelect(e) {
-    this.setData({ selectedCatId: Number(e.currentTarget.dataset.id) });
+    this.setData({ selectedCatId: e.currentTarget.dataset.id });
   },
 
   onFoodInput(e) {

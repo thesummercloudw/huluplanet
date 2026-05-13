@@ -66,7 +66,7 @@ public class TimelineController {
         // 聚合喂食记录
         List<FeedingRecord> feedings = catId != null
                 ? feedingRecordService.listByCat(catId, familyId)
-                : feedingRecordService.listByFamily(familyId, limit);
+                : feedingRecordService.listByFamily(familyId, null, limit);
         for (FeedingRecord r : feedings) {
             TimelineItem item = new TimelineItem();
             item.setType("feeding");
@@ -82,7 +82,7 @@ public class TimelineController {
         // 聚合养护记录
         List<CareRecord> cares = catId != null
                 ? careRecordService.listByCat(catId, familyId)
-                : careRecordService.listByFamily(familyId, limit);
+                : careRecordService.listByFamily(familyId, null, limit);
         for (CareRecord r : cares) {
             TimelineItem item = new TimelineItem();
             item.setType("care");
@@ -98,7 +98,7 @@ public class TimelineController {
         // 聚合健康记录
         List<HealthRecord> healths = catId != null
                 ? healthRecordService.listByCat(catId, familyId)
-                : healthRecordService.listByFamily(familyId, limit);
+                : healthRecordService.listByFamily(familyId, null, limit);
         for (HealthRecord r : healths) {
             TimelineItem item = new TimelineItem();
             item.setType("health");

@@ -150,6 +150,93 @@
   margin-bottom: 32rpx;
 }
 
+/* 等家的猫咪 */
+.adoption-section {
+  margin-bottom: 32rpx;
+}
+
+.adoption-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.adoption-add-btn {
+  font-size: 24rpx;
+  color: #FF6B8A;
+  background: rgba(255, 107, 138, 0.1);
+  padding: 8rpx 24rpx;
+  border-radius: 24rpx;
+  border: 1rpx solid rgba(255, 107, 138, 0.3);
+}
+
+.adoption-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}
+
+.adoption-card {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(36px) saturate(1.35);
+  -webkit-backdrop-filter: blur(36px) saturate(1.35);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card), inset 0 1rpx 0 rgba(255,255,255,0.5);
+  border: 1rpx solid rgba(255, 255, 255, 0.5);
+}
+
+.adoption-cover {
+  width: 100%;
+  height: 200rpx;
+}
+
+.adoption-info {
+  padding: 16rpx;
+}
+
+.adoption-name {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adoption-meta {
+  display: flex;
+  gap: 8rpx;
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  margin-top: 6rpx;
+}
+
+.adoption-city {
+  font-size: 20rpx;
+  color: var(--color-placeholder);
+  margin-top: 6rpx;
+}
+
+.adoption-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0;
+}
+
+.adoption-empty-text {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.adoption-empty-sub {
+  font-size: 22rpx;
+  color: var(--color-placeholder);
+}
+
 .sighting-header {
   display: flex;
   justify-content: space-between;

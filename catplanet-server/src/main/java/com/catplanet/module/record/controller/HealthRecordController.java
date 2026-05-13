@@ -35,9 +35,11 @@ public class HealthRecordController {
     }
 
     @GetMapping
-    public Result<List<HealthRecord>> listByFamily(@RequestParam(defaultValue = "20") int limit) {
+    public Result<List<HealthRecord>> listByFamily(
+            @RequestParam(defaultValue = "20") int limit,
+            @RequestParam(required = false) Long catId) {
         Long familyId = requireFamilyId();
-        return Result.ok(healthRecordService.listByFamily(familyId, limit));
+        return Result.ok(healthRecordService.listByFamily(familyId, catId, limit));
     }
 
     @DeleteMapping("/{recordId}")
@@ -48,9 +50,11 @@ public class HealthRecordController {
     }
 
     @GetMapping("/stats")
-    public Result<RecordStatsResponse> getStats(@RequestParam(defaultValue = "7") int days) {
+    public Result<RecordStatsResponse> getStats(
+            @RequestParam(defaultValue = "7") int days,
+            @RequestParam(required = false) Long catId) {
         Long familyId = requireFamilyId();
-        return Result.ok(healthRecordService.getStats(familyId, days));
+        return Result.ok(healthRecordService.getStats(familyId, catId, days));
     }
 
     private Long requireFamilyId() {

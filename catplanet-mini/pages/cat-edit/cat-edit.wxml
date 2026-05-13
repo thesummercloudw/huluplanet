@@ -20,8 +20,10 @@
 
   <view class="form-group">
     <text class="form-label">品种</text>
-    <view class="breed-input-wrapper">
-      <input class="form-input breed-input" placeholder="如：英短蓝猫" value="{{form.breed}}" data-field="breed" bindinput="onInput"/>
+    <view class="breed-picker-wrapper">
+      <picker mode="selector" range="{{breedOptions}}" value="{{breedIndex}}" bindchange="onBreedChange">
+        <view class="form-input picker-value">{{breedOptions[breedIndex]}}</view>
+      </picker>
       <view wx:if="{{recognizing}}" class="breed-recognizing">
         <text class="recognizing-text">🔍 识别中...</text>
       </view>

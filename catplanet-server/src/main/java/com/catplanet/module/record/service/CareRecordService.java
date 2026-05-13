@@ -12,9 +12,9 @@ public interface CareRecordService {
 
     List<CareRecord> listByCat(Long catId, Long familyId);
 
-    List<CareRecord> listByFamily(Long familyId, int limit);
+    List<CareRecord> listByFamily(Long familyId, Long catId, int limit);
 
     void delete(Long recordId, Long familyId);
 
-    RecordStatsResponse getStats(Long familyId, int days);
+    RecordStatsResponse getStats(Long familyId, Long catId, int days);
 }

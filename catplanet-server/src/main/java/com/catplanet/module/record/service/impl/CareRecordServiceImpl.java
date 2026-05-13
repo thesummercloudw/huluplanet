@@ -48,12 +48,13 @@ public class CareRecordServiceImpl implements CareRecordService {
     }
 
     @Override
-    public List<CareRecord> listByFamily(Long familyId, int limit) {
-        return careRecordMapper.selectList(
-                new LambdaQueryWrapper<CareRecord>()
-                        .eq(CareRecord::getFamilyId, familyId)
-                        .orderByDesc(CareRecord::getDoneAt)
-                        .last("LIMIT " + limit));
+    public List<CareRecord> listByFamily(Long familyId, Long catId, int limit) {
+        LambdaQueryWrapper<CareRecord> wrapper = new LambdaQueryWrapper<CareRecord>()
+                .eq(CareRecord::getFamilyId, familyId)
+                .eq(catId != null, CareRecord::getCatId, catId)
+                .orderByDesc(CareRecord::getDoneAt)
+                .last("LIMIT " + limit);
+        return careRecordMapper.selectList(wrapper);
     }
 
     @Override
@@ -66,11 +67,12 @@ public class CareRecordServiceImpl implements CareRecordService {
     }
 
     @Override
-    public RecordStatsResponse getStats(Long familyId, int days) {
+    public RecordStatsResponse getStats(Long familyId, Long catId, int days) {
         LocalDateTime startTime = LocalDate.now().minusDays(days - 1).atStartOfDay();
         List<CareRecord> records = careRecordMapper.selectList(
                 new LambdaQueryWrapper<CareRecord>()
                         .eq(CareRecord::getFamilyId, familyId)
+                        .eq(catId != null, CareRecord::getCatId, catId)
                         .ge(CareRecord::getDoneAt, startTime)
                         .orderByAsc(CareRecord::getDoneAt));
 

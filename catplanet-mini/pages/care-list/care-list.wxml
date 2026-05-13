@@ -1,6 +1,16 @@
 <view class="container record-page">
   <view class="grain-overlay"></view>
 
+  <!-- 猫咪筛选 -->
+  <scroll-view class="cat-filter" scroll-x>
+    <view class="cat-chip {{!selectedCatId ? 'active' : ''}}" bindtap="onCatFilter" data-id="">
+      <text>全部</text>
+    </view>
+    <view class="cat-chip {{selectedCatId === item.catId ? 'active' : ''}}" wx:for="{{cats}}" wx:key="catId" bindtap="onCatFilter" data-id="{{item.catId}}">
+      <text>{{item.name}}</text>
+    </view>
+  </scroll-view>
+
   <!-- Tab 切换 -->
   <view class="tab-bar">
     <view class="tab-item {{activeTab === 'list' ? 'active' : ''}}" bindtap="switchTab" data-tab="list">记录列表</view>

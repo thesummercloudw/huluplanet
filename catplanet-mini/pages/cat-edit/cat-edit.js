@@ -1,5 +1,19 @@
 const http = require('../../utils/request');
 
+const breedOptions = [
+  '未知', '中华田园猫', '英国短毛猫', '美国短毛猫', '布偶猫', '暹罗猫',
+  '波斯猫', '缅因猫', '苏格兰折耳猫', '俄罗斯蓝猫', '孟买猫',
+  '阿比西尼亚猫', '索马里猫', '挪威森林猫', '西伯利亚猫', '土耳其安哥拉猫',
+  '伯曼猫', '巴厘猫', '东方短毛猫', '埃及猫', '奥西猫',
+  '日本短尾猫', '加拿大无毛猫', '德文卷毛猫', '柯尼斯卷毛猫', '塞尔凯克卷毛猫',
+  '曼基康猫', '英国长毛猫', '异国短毛猫', '金吉拉猫', '喜马拉雅猫',
+  '拉格多尔猫', '美国卷耳猫', '孟加拉猫', '萨凡纳猫', '豹猫',
+  '狸花猫', '橘猫', '奶牛猫', '三花猫', '玳瑁猫',
+  '蓝猫', '蓝白猫', '银渐层', '金渐层', '缅甸猫',
+  '夏特尔猫', '哈瓦那棕猫', '科拉特猫', '新加坡猫', '山东狮子猫',
+  '临清狮子猫', '玄猫', '白猫', '其他'
+];
+
 Page({
   data: {
     catId: null,
@@ -17,6 +31,8 @@ Page({
     avatarTemp: '',
     uploading: false,
     recognizing: false,
+    breedOptions: breedOptions,
+    breedIndex: 0,
     genderOptions: ['未知', '弟弟(公)', '妹妹(母)'],
     genderValues: ['unknown', 'male', 'female'],
     genderIndex: 0,
@@ -34,6 +50,7 @@ Page({
     try {
       const cat = await http.get(`/api/cats/${catId}`);
       const genderIndex = this.data.genderValues.indexOf(cat.gender || 'unknown');
+      const breedIndex = breedOptions.indexOf(cat.breed || '未知');
       this.setData({
         form: {
           name: cat.name || '',
@@ -46,7 +63,8 @@ Page({
           adoptionDate: cat.adoptionDate || ''
         },
         avatarTemp: cat.avatar || '',
-        genderIndex: genderIndex >= 0 ? genderIndex : 0
+        genderIndex: genderIndex >= 0 ? genderIndex : 0,
+        breedIndex: breedIndex >= 0 ? breedIndex : 0
       });
     } catch (e) {
       console.error(e);
@@ -90,7 +108,11 @@ Page({
     try {
       const data = await http.post('/api/breed-recognition', { imageUrl });
       if (data.breed) {
-        this.setData({ 'form.breed': data.breed });
+        const breedIndex = breedOptions.indexOf(data.breed);
+        this.setData({
+          'form.breed': data.breed,
+          breedIndex: breedIndex >= 0 ? breedIndex : 0
+        });
         wx.showToast({ title: `识别为: ${data.breed}`, icon: 'none', duration: 2000 });
       }
     } catch (e) {
@@ -104,6 +126,14 @@ Page({
   onInput(e) {
     const field = e.currentTarget.dataset.field;
     this.setData({ [`form.${field}`]: e.detail.value });
+  },
+
+  onBreedChange(e) {
+    const index = e.detail.value;
+    this.setData({
+      breedIndex: index,
+      'form.breed': breedOptions[index] === '未知' ? '' : breedOptions[index]
+    });
   },
 
   onGenderChange(e) {

@@ -2,30 +2,14 @@ const http = require('../../utils/request');
 
 Page({
   data: {
-    activeTab: 'nearby',       // nearby / adoption
     placeType: '',             // '' = 全部, 'hospital' = 宠物医院, 'petstore' = 宠物店
     hospitals: [],
-    adoptionCats: [],
     loading: false,
     location: null
   },
 
   onShow() {
-    if (this.data.activeTab === 'nearby') {
-      this.getLocation();
-    } else {
-      this.loadAdoptionCats();
-    }
-  },
-
-  switchTab(e) {
-    const tab = e.currentTarget.dataset.tab;
-    this.setData({ activeTab: tab });
-    if (tab === 'nearby') {
-      this.getLocation();
-    } else {
-      this.loadAdoptionCats();
-    }
+    this.getLocation();
   },
 
   switchPlaceType(e) {
@@ -59,7 +43,6 @@ Page({
         url += `&type=${this.data.placeType}`;
       }
       const hospitals = await http.get(url);
-      // 计算距离并排序
       const list = (hospitals || []).map(item => {
         const dist = this.calcDistance(lat, lng, item.lat, item.lng);
         return { ...item, distance: dist, distanceText: this.formatDistance(dist) };
@@ -92,26 +75,9 @@ Page({
     return km.toFixed(1) + 'km';
   },
 
-  async loadAdoptionCats() {
-    this.setData({ loading: true });
-    try {
-      const cats = await http.get('/api/adoption/cats?page=1&size=20');
-      this.setData({ adoptionCats: cats || [] });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      this.setData({ loading: false });
-    }
-  },
-
   goHospitalDetail(e) {
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({ url: `/pages/hospital-detail/hospital-detail?hospitalId=${id}` });
-  },
-
-  goAdoptionDetail(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.navigateTo({ url: `/pages/adoption-detail/adoption-detail?adoptId=${id}` });
   },
 
   openNavigation(e) {
@@ -125,11 +91,11 @@ Page({
   },
 
   onPullDownRefresh() {
-    if (this.data.activeTab === 'nearby' && this.data.location) {
+    if (this.data.location) {
       this.loadHospitals(this.data.location.lat, this.data.location.lng)
         .then(() => wx.stopPullDownRefresh());
     } else {
-      this.loadAdoptionCats().then(() => wx.stopPullDownRefresh());
+      wx.stopPullDownRefresh();
     }
   }
 });

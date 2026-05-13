@@ -3,6 +3,7 @@ package com.catplanet.module.adoption.controller;
 import com.catplanet.common.context.UserContext;
 import com.catplanet.common.result.Result;
 import com.catplanet.module.adoption.dto.AdoptionApplyRequest;
+import com.catplanet.module.adoption.dto.AdoptionPublishRequest;
 import com.catplanet.module.adoption.entity.AdoptionApplication;
 import com.catplanet.module.adoption.entity.AdoptionCat;
 import com.catplanet.module.adoption.service.AdoptionService;
@@ -30,6 +31,12 @@ public class AdoptionController {
     @GetMapping("/cats/{adoptId}")
     public Result<AdoptionCat> catDetail(@PathVariable Long adoptId) {
         return Result.ok(adoptionService.getById(adoptId));
+    }
+
+    @PostMapping("/cats")
+    public Result<AdoptionCat> publishCat(@Valid @RequestBody AdoptionPublishRequest request) {
+        Long userId = UserContext.getUserId();
+        return Result.ok(adoptionService.publish(request, userId));
     }
 
     @PostMapping("/apply")

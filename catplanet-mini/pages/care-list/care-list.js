@@ -7,6 +7,8 @@ Page({
     stats: null,
     loading: false,
     days: 7,
+    cats: [],
+    selectedCatId: null,
     careTypeNames: {
       litter: '清理猫砂',
       bath: '洗澡',
@@ -26,7 +28,29 @@ Page({
   },
 
   onShow() {
+    this.loadCats();
+  },
+
+  async loadCats() {
+    try {
+      const cats = await http.get('/api/cats');
+      this.setData({ cats: cats || [] });
+    } catch (e) {
+      console.error('load cats error', e);
+    }
     this.loadRecords();
+    if (this.data.activeTab === 'stats') {
+      this.loadStats();
+    }
+  },
+
+  onCatFilter(e) {
+    const catId = e.currentTarget.dataset.id || null;
+    this.setData({ selectedCatId: catId, stats: null });
+    this.loadRecords();
+    if (this.data.activeTab === 'stats') {
+      this.loadStats();
+    }
   },
 
   switchTab(e) {
@@ -40,7 +64,11 @@ Page({
   async loadRecords() {
     this.setData({ loading: true });
     try {
-      const records = await http.get('/api/records/care?limit=50');
+      let url = '/api/records/care?limit=50';
+      if (this.data.selectedCatId) {
+        url += '&catId=' + this.data.selectedCatId;
+      }
+      const records = await http.get(url);
       this.setData({
         records: (records || []).map(r => ({
           ...r,
@@ -58,7 +86,11 @@ Page({
 
   async loadStats() {
     try {
-      const stats = await http.get(`/api/records/care/stats?days=${this.data.days}`);
+      let url = `/api/records/care/stats?days=${this.data.days}`;
+      if (this.data.selectedCatId) {
+        url += '&catId=' + this.data.selectedCatId;
+      }
+      const stats = await http.get(url);
       let maxVal = 0;
       if (stats && stats.dailyStats) {
         stats.dailyStats.forEach(d => {

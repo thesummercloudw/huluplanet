@@ -49,12 +49,13 @@ public class FeedingRecordServiceImpl implements FeedingRecordService {
     }
 
     @Override
-    public List<FeedingRecord> listByFamily(Long familyId, int limit) {
-        return feedingRecordMapper.selectList(
-                new LambdaQueryWrapper<FeedingRecord>()
-                        .eq(FeedingRecord::getFamilyId, familyId)
-                        .orderByDesc(FeedingRecord::getFedAt)
-                        .last("LIMIT " + limit));
+    public List<FeedingRecord> listByFamily(Long familyId, Long catId, int limit) {
+        LambdaQueryWrapper<FeedingRecord> wrapper = new LambdaQueryWrapper<FeedingRecord>()
+                .eq(FeedingRecord::getFamilyId, familyId)
+                .eq(catId != null, FeedingRecord::getCatId, catId)
+                .orderByDesc(FeedingRecord::getFedAt)
+                .last("LIMIT " + limit);
+        return feedingRecordMapper.selectList(wrapper);
     }
 
     @Override
@@ -67,11 +68,12 @@ public class FeedingRecordServiceImpl implements FeedingRecordService {
     }
 
     @Override
-    public RecordStatsResponse getStats(Long familyId, int days) {
+    public RecordStatsResponse getStats(Long familyId, Long catId, int days) {
         LocalDateTime startTime = LocalDate.now().minusDays(days - 1).atStartOfDay();
         List<FeedingRecord> records = feedingRecordMapper.selectList(
                 new LambdaQueryWrapper<FeedingRecord>()
                         .eq(FeedingRecord::getFamilyId, familyId)
+                        .eq(catId != null, FeedingRecord::getCatId, catId)
                         .ge(FeedingRecord::getFedAt, startTime)
                         .orderByAsc(FeedingRecord::getFedAt));
 

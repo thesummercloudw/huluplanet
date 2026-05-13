@@ -111,12 +111,8 @@
 }
 
 /* 品种识别 */
-.breed-input-wrapper {
+.breed-picker-wrapper {
   position: relative;
-}
-
-.breed-input {
-  padding-right: 160rpx;
 }
 
 .breed-recognizing {
