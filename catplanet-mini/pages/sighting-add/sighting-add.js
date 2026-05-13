@@ -1,8 +1,10 @@
 const http = require('../../utils/request');
+const { resolveImage } = require('../../utils/request');
 
 Page({
   data: {
     imageUrl: '',
+    imagePath: '',
     content: '',
     lat: null,
     lng: null,
@@ -46,7 +48,10 @@ Page({
         wx.showLoading({ title: '上传中...' });
         try {
           const data = await http.upload(tempFilePath);
-          this.setData({ imageUrl: data.url });
+          this.setData({
+            imageUrl: resolveImage(data.url),
+            imagePath: data.url
+          });
           this.checkCanSubmit();
         } catch (e) {
           console.error('upload error:', e);
@@ -67,7 +72,7 @@ Page({
   },
 
   async submit() {
-    const { imageUrl, content, lat, lng, address, canSubmit, submitting } = this.data;
+    const { imagePath, content, lat, lng, address, canSubmit, submitting } = this.data;
     if (!canSubmit || submitting) return;
 
     this.setData({ submitting: true });
@@ -75,7 +80,7 @@ Page({
 
     try {
       await http.post('/api/sightings', {
-        image: imageUrl,
+        image: imagePath,
         content: content,
         lat: lat,
         lng: lng,

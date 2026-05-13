@@ -132,3 +132,49 @@
   0%, 100% { opacity: 1; }
   50% { opacity: 0.4; }
 }
+
+/* ====== 🎆 烟火彩蛋动画 ====== */
+.fireworks-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.85);
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fireworks-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.fireworks-title {
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #FFD700;
+  text-shadow: 0 0 30rpx rgba(255, 215, 0, 0.9), 0 0 60rpx rgba(255, 100, 50, 0.5);
+  z-index: 10;
+  white-space: nowrap;
+  animation: titlePop 0.8s 0.3s ease-out both;
+}
+
+@keyframes titlePop {
+  0% { transform: translateX(-50%) scale(0); opacity: 0; }
+  50% { transform: translateX(-50%) scale(1.3); }
+  70% { transform: translateX(-50%) scale(0.95); }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}

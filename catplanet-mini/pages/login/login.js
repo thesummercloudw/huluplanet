@@ -32,11 +32,22 @@ Page({
                 wx.switchTab({ url: '/pages/index/index' });
               }
             })
-            .catch(() => {})
+            .catch((err) => {
+              console.error('登录失败', err);
+              const msg = (err && err.message) || '登录失败，请检查网络连接';
+              wx.showToast({ title: msg, icon: 'none', duration: 2500 });
+            })
             .finally(() => this.setData({ loading: false }));
+        } else {
+          wx.showToast({ title: '微信登录失败，请重试', icon: 'none' });
+          this.setData({ loading: false });
         }
       },
-      fail: () => this.setData({ loading: false })
+      fail: (err) => {
+        console.error('wx.login fail', err);
+        wx.showToast({ title: '微信登录服务异常', icon: 'none' });
+        this.setData({ loading: false });
+      }
     });
   }
 });

@@ -11,4 +11,7 @@ spring:
       database: 0
 
 catplanet:
-  dev-mode: true
+  dev-mode: false
+  wx:
+    appid:
+    secret:

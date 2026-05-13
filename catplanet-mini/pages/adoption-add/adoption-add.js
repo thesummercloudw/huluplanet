@@ -61,7 +61,7 @@ Page({
     const urls = [];
     for (const filePath of this.data.images) {
       const res = await http.upload(filePath);
-      urls.push(res);
+      urls.push(res.url);
     }
     return urls;
   },

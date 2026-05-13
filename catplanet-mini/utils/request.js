@@ -3,6 +3,30 @@
  */
 const app = getApp();
 
+/**
+ * 解析图片URL：提取文件名，通过 API 端点加载图片
+ * 走 /api/public/image/ 端点，确保真机调试下也能正常加载
+ * @param {string} url - 图片路径（可能是相对路径或完整URL）
+ * @returns {string} 完整的图片访问地址
+ */
+const resolveImage = (url) => {
+  if (!url) return '';
+  // 已经是完整 URL（后端已通过 Jackson 序列化返回完整地址），直接使用
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+  // 兜底：相对路径 /uploads/xxx 转为 API 端点
+  const match = url.match(/\/uploads\/(.+)/);
+  if (match) {
+    return app.globalData.baseUrl + '/api/public/image/' + match[1];
+  }
+  // 其他相对路径
+  if (url.startsWith('/')) {
+    return app.globalData.baseUrl + url;
+  }
+  return url;
+};
+
 const request = (options) => {
   return new Promise((resolve, reject) => {
     const { url, method = 'GET', data, header = {} } = options;
@@ -52,6 +76,7 @@ module.exports = {
   post: (url, data) => request({ url, method: 'POST', data }),
   put: (url, data) => request({ url, method: 'PUT', data }),
   del: (url, data) => request({ url, method: 'DELETE', data }),
+  resolveImage,
   upload: (filePath) => {
     return new Promise((resolve, reject) => {
       const header = {};

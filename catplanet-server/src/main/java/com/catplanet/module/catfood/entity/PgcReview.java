@@ -1,6 +1,8 @@
 package com.catplanet.module.catfood.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.catplanet.common.serializer.ImageUrlSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,8 @@ public class PgcReview {
     private Long foodId;
     private Long authorId;
     private String title;
+
+    @JsonSerialize(using = ImageUrlSerializer.class)
     private String cover;
     private String contentMd;
     private Integer scoreIngredient;

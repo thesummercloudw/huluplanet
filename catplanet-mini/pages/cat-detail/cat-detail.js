@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { resolveImage } = require('../../utils/request');
 
 Page({
   data: {
@@ -18,6 +19,7 @@ Page({
   async loadCat(catId) {
     try {
       const cat = await http.get(`/api/cats/${catId}`);
+      cat.avatar = resolveImage(cat.avatar);
       this.setData({ cat });
     } catch (e) {
       console.error(e);

@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { resolveImage } = require('../../utils/request');
 
 Page({
   data: {
@@ -20,10 +21,17 @@ Page({
     try {
       const res = await http.get(`/api/catfood/${foodId}`);
       if (res) {
+        const food = res.food;
+        if (food) food.image = resolveImage(food.image);
+        const pgcReview = res.pgcReview;
+        if (pgcReview) pgcReview.cover = resolveImage(pgcReview.cover);
         this.setData({
-          food: res.food,
-          pgcReview: res.pgcReview,
-          ugcReviews: res.ugcReviews || []
+          food,
+          pgcReview,
+          ugcReviews: (res.ugcReviews || []).map(r => ({
+            ...r,
+            images: r.images ? r.images.map(img => resolveImage(img)) : []
+          }))
         });
       }
     } catch (e) {

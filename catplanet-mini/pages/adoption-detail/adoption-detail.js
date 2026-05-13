@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { resolveImage } = require('../../utils/request');
 
 Page({
   data: {
@@ -23,6 +24,10 @@ Page({
   async loadDetail(adoptId) {
     try {
       const cat = await http.get(`/api/adoption/cats/${adoptId}`);
+      cat.cover = resolveImage(cat.cover);
+      if (cat.images && Array.isArray(cat.images)) {
+        cat.images = cat.images.map(img => resolveImage(img));
+      }
       this.setData({ cat });
     } catch (e) {
       console.error(e);

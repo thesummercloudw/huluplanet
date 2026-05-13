@@ -16,7 +16,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.catplanet.module.family.entity.Family;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +32,7 @@ public class AuthServiceImpl implements AuthService {
     private final UserService userService;
     private final FamilyService familyService;
     private final JwtUtil jwtUtil;
+    private final ObjectMapper objectMapper;
 
     @Value("${catplanet.wx.appid}")
     private String appid;
@@ -39,12 +43,16 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public LoginResponse wxLogin(String code) {
         // 调用微信 code2session 接口
+        log.info("微信登录请求, code={}", code);
         Map<String, Object> wxResp = callCode2Session(code);
         String openid = (String) wxResp.get("openid");
         if (openid == null) {
-            log.error("微信登录失败, resp: {}", wxResp);
+            Object errcode = wxResp.get("errcode");
+            Object errmsg = wxResp.get("errmsg");
+            log.error("微信登录失败, errcode={}, errmsg={}, 完整响应: {}", errcode, errmsg, wxResp);
             throw new BizException(ResultCode.WX_LOGIN_FAIL);
         }
+        log.info("微信登录成功, openid={}", openid);
         String unionid = (String) wxResp.get("unionid");
 
         // 查找或创建用户
@@ -97,14 +105,18 @@ public class AuthServiceImpl implements AuthService {
         String url = String.format(
                 "https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code",
                 appid, secret, code);
+        log.info("调用微信code2session, appid={}", appid);
         try {
-            return webClient.get()
-                    .uri(url)
+            // 微信API返回Content-Type: text/plain，需先以String接收再解析JSON
+            String body = webClient.get()
+                    .uri(URI.create(url))
                     .retrieve()
-                    .bodyToMono(Map.class)
+                    .bodyToMono(String.class)
                     .block();
+            log.info("微信code2session原始响应: {}", body);
+            return objectMapper.readValue(body, new TypeReference<Map<String, Object>>() {});
         } catch (Exception e) {
-            log.error("调用微信接口异常", e);
+            log.error("调用微信接口异常: {}", e.getMessage(), e);
             throw new BizException(ResultCode.WX_LOGIN_FAIL);
         }
     }

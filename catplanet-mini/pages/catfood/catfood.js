@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { resolveImage } = require('../../utils/request');
 
 Page({
   data: {
@@ -40,7 +41,7 @@ Page({
       if (foodType) url += `&foodType=${foodType}`;
       if (ageStage) url += `&ageStage=${ageStage}`;
       const foods = await http.get(url);
-      this.setData({ foods: foods || [] });
+      this.setData({ foods: (foods || []).map(f => ({ ...f, image: resolveImage(f.image) })) });
     } catch (e) {
       console.error(e);
     } finally {
@@ -51,7 +52,7 @@ Page({
   async loadPgc() {
     try {
       const pgcList = await http.get('/api/catfood/pgc?limit=10');
-      this.setData({ pgcList: pgcList || [] });
+      this.setData({ pgcList: (pgcList || []).map(p => ({ ...p, cover: resolveImage(p.cover) })) });
     } catch (e) {
       console.error(e);
     }

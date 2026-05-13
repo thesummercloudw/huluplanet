@@ -2,6 +2,9 @@ package com.catplanet.module.adoption.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.catplanet.common.serializer.ImageUrlListSerializer;
+import com.catplanet.common.serializer.ImageUrlSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -16,8 +19,11 @@ public class AdoptionCat {
     private Long adoptId;
 
     private String name;
+
+    @JsonSerialize(using = ImageUrlSerializer.class)
     private String cover;
 
+    @JsonSerialize(using = ImageUrlListSerializer.class)
     @TableField(typeHandler = JacksonTypeHandler.class)
     private List<String> images;
 

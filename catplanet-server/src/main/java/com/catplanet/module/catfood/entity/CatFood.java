@@ -2,6 +2,8 @@ package com.catplanet.module.catfood.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.catplanet.common.serializer.ImageUrlSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -17,6 +19,8 @@ public class CatFood {
 
     private String brand;
     private String name;
+
+    @JsonSerialize(using = ImageUrlSerializer.class)
     private String image;
     private String ageStage;    // kitten/adult/senior/all
     private String foodType;    // main/wet/snack/freeze_dried

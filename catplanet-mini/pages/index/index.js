@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { resolveImage } = require('../../utils/request');
 const app = getApp();
 
 Page({
@@ -38,16 +39,17 @@ Page({
           http.get('/api/adoption/cats?page=1&size=6')
         ]);
         this.setData({
-          cats: cats || [],
+          cats: (cats || []).map(c => ({ ...c, avatar: resolveImage(c.avatar) })),
           timeline: (timeline || []).map(item => ({
             ...item,
             timeStr: this.formatTime(item.time)
           })),
           sightings: (sightings || []).map(item => ({
             ...item,
+            image: resolveImage(item.image),
             timeStr: this.formatTime(item.createdAt)
           })),
-          adoptionCats: adoptionCats || []
+          adoptionCats: (adoptionCats || []).map(c => ({ ...c, cover: resolveImage(c.cover) }))
         });
       } else {
         this.setData({ cats: [], familyName: '', timeline: [] });

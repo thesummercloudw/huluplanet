@@ -1,7 +1,6 @@
 package com.catplanet.common.controller;
 
 import com.catplanet.common.result.Result;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +26,7 @@ public class UploadController {
     private String urlPrefix;
 
     @PostMapping
-    public Result<Map<String, String>> upload(@RequestParam("file") MultipartFile file,
-                                              HttpServletRequest request) throws IOException {
+    public Result<Map<String, String>> upload(@RequestParam("file") MultipartFile file) throws IOException {
         if (file.isEmpty()) {
             return Result.fail(400, "文件不能为空");
         }
@@ -57,9 +55,8 @@ public class UploadController {
         Path filePath = dir.resolve(newFilename);
         file.transferTo(filePath.toFile());
 
-        // 构建完整访问URL（小程序需要完整地址）
-        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-        String url = baseUrl + urlPrefix + "/" + newFilename;
+        // 只返回相对路径，由前端根据当前环境拼接完整URL
+        String url = urlPrefix + "/" + newFilename;
         return Result.ok(Map.of("url", url));
     }
 }

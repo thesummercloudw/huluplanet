@@ -64,4 +64,10 @@
   <button class="btn-primary submit-btn" bindtap="handleSubmit" loading="{{loading}}">
     {{isEdit ? '保存修改' : '添加猫咪'}}
   </button>
+
+  <!-- 🎆 烟火彩蛋 -->
+  <view class="fireworks-overlay" wx:if="{{showFireworks}}">
+    <canvas type="2d" id="fireworksCanvas" class="fireworks-canvas"></canvas>
+    <view class="fireworks-title">🎉 欢迎警花回家！🎉</view>
+  </view>
 </view>

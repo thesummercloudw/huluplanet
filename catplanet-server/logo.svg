@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a4e"/>
+      <stop offset="100%" style="stop-color:#2d2d7a"/>
+    </linearGradient>
+    <linearGradient id="cat" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#e8e8f0"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 圆形背景 -->
+  <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
+  
+  <!-- 星星装饰 -->
+  <circle cx="80" cy="100" r="3" fill="#ffffff" opacity="0.8"/>
+  <circle cx="420" cy="80" r="2.5" fill="#ffffff" opacity="0.7"/>
+  <circle cx="60" cy="280" r="2" fill="#ffffff" opacity="0.6"/>
+  <circle cx="440" cy="200" r="3" fill="#ffffff" opacity="0.7"/>
+  <circle cx="130" cy="60" r="2" fill="#ffffff" opacity="0.5"/>
+  <circle cx="380" cy="420" r="2.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="100" cy="400" r="2" fill="#ffffff" opacity="0.5"/>
+  <circle cx="450" cy="350" r="2" fill="#ffffff" opacity="0.4"/>
+  <circle cx="350" cy="60" r="1.5" fill="#ffffff" opacity="0.6"/>
+  <circle cx="50" cy="180" r="1.5" fill="#ffffff" opacity="0.5"/>
+  
+  <!-- 猫咪主体 - 圆润的身体 -->
+  <ellipse cx="256" cy="310" rx="95" ry="85" fill="url(#cat)"/>
+  
+  <!-- 猫头 -->
+  <circle cx="256" cy="210" r="75" fill="url(#cat)"/>
+  
+  <!-- 左耳 -->
+  <polygon points="195,155 210,100 235,155" fill="url(#cat)"/>
+  <polygon points="203,148 212,115 230,148" fill="#ffb3c1"/>
+  
+  <!-- 右耳 -->
+  <polygon points="277,155 302,100 317,155" fill="url(#cat)"/>
+  <polygon points="282,148 300,115 309,148" fill="#ffb3c1"/>
+  
+  <!-- 眼睛 - 闭眼微笑状(打呼噜) -->
+  <path d="M 220 210 Q 235 220 250 210" fill="none" stroke="#2d2d7a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 262 210 Q 277 220 292 210" fill="none" stroke="#2d2d7a" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- 鼻子 -->
+  <ellipse cx="256" cy="235" rx="8" ry="6" fill="#ffb3c1"/>
+  
+  <!-- 嘴巴 -->
+  <path d="M 248 241 Q 256 250 264 241" fill="none" stroke="#2d2d7a" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- 胡须 -->
+  <line x1="200" y1="230" x2="170" y2="225" stroke="#2d2d7a" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="200" y1="240" x2="168" y2="242" stroke="#2d2d7a" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="312" y1="230" x2="342" y2="225" stroke="#2d2d7a" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  <line x1="312" y1="240" x2="344" y2="242" stroke="#2d2d7a" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- 前爪 -->
+  <ellipse cx="220" cy="370" rx="25" ry="18" fill="url(#cat)"/>
+  <ellipse cx="292" cy="370" rx="25" ry="18" fill="url(#cat)"/>
+  
+  <!-- 尾巴 -->
+  <path d="M 340 320 Q 380 300 390 340 Q 395 370 370 380" fill="none" stroke="url(#cat)" stroke-width="20" stroke-linecap="round"/>
+  
+  <!-- 呼噜符号 (ZZZ) -->
+  <text x="340" y="160" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#ffd700" opacity="0.9">Z</text>
+  <text x="360" y="135" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="#ffd700" opacity="0.7">Z</text>
+  <text x="375" y="115" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffd700" opacity="0.5">z</text>
+  
+  <!-- 腮红 -->
+  <ellipse cx="210" cy="235" rx="15" ry="10" fill="#ffb3c1" opacity="0.3"/>
+  <ellipse cx="302" cy="235" rx="15" ry="10" fill="#ffb3c1" opacity="0.3"/>
+</svg>
