@@ -1,53 +1,72 @@
 <view class="container detail-page" wx:if="{{cat}}">
+  <!-- 噪点纹理 -->
+  <view class="grain-overlay"></view>
+
+  <!-- 顶部装饰 + Logo -->
+  <view class="detail-header-top">
+    <view class="deco-left">
+      <text class="deco-star">✦</text>
+      <text class="deco-star sm">✧</text>
+    </view>
+    <image class="detail-logo" src="/images/logo.svg" mode="aspectFit"></image>
+    <view class="deco-right">
+      <text class="deco-star sm">✧</text>
+      <text class="deco-star">✦</text>
+    </view>
+  </view>
+
   <!-- 头像 -->
   <view class="detail-avatar-wrap">
     <image class="detail-avatar" src="{{cat.avatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSI2NCIgeT0iNzYiIGZvbnQtc2l6ZT0iNTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkLA8L3RleHQ+PC9zdmc+'}}" mode="aspectFill"/>
   </view>
 
   <text class="detail-name">{{cat.name}}</text>
+  <text class="detail-sub" wx:if="{{cat.breed}}">{{cat.breed}}</text>
 
   <!-- Tab 切换 -->
   <view class="tab-bar">
     <view class="tab-item {{activeTab === 'info' ? 'active' : ''}}" bindtap="switchTab" data-tab="info">
+      <image class="tab-icon" src="/images/icon-journal.svg" mode="aspectFit"></image>
       <text>基本信息</text>
     </view>
     <view class="tab-item {{activeTab === 'records' ? 'active' : ''}}" bindtap="switchTab" data-tab="records">
+      <image class="tab-icon" src="/images/icon-chart.svg" mode="aspectFit"></image>
       <text>养护记录</text>
     </view>
   </view>
 
   <!-- 基本信息 Tab -->
   <view class="tab-content" wx:if="{{activeTab === 'info'}}">
-    <view class="card info-card">
+    <view class="info-card">
       <view class="info-row">
-        <text class="info-label">品种</text>
+        <view class="info-label"><image class="info-icon" src="/images/icon-paw.svg" mode="aspectFit"></image><text>品种</text></view>
         <text class="info-value">{{cat.breed || '未知'}}</text>
       </view>
       <view class="info-row">
-        <text class="info-label">性别</text>
-        <text class="info-value">{{cat.gender === 'male' ? '♂ 弟弟' : cat.gender === 'female' ? '♀ 妹妹' : '未知'}}</text>
+        <view class="info-label"><image class="info-icon" src="/images/icon-info-gender.svg" mode="aspectFit"></image><text>性别</text></view>
+        <text class="info-value">{{cat.gender === 'male' ? '弟弟' : cat.gender === 'female' ? '妹妹' : '未知'}}</text>
       </view>
       <view class="info-row">
-        <text class="info-label">生日</text>
+        <view class="info-label"><image class="info-icon" src="/images/icon-info-birthday.svg" mode="aspectFit"></image><text>生日</text></view>
         <text class="info-value">{{cat.birthday || '未设置'}}</text>
       </view>
       <view class="info-row">
-        <text class="info-label">体重</text>
+        <view class="info-label"><image class="info-icon" src="/images/icon-health-weight.svg" mode="aspectFit"></image><text>体重</text></view>
         <text class="info-value">{{cat.weightKg ? cat.weightKg + ' kg' : '未记录'}}</text>
       </view>
       <view class="info-row">
-        <text class="info-label">是否绝育</text>
-        <text class="info-value">{{cat.isNeutered ? '已绝育' : '未绝育'}}</text>
+        <view class="info-label"><image class="info-icon" src="/images/icon-info-neutered.svg" mode="aspectFit"></image><text>绝育</text></view>
+        <text class="info-value {{cat.isNeutered ? 'value-yes' : 'value-no'}}">{{cat.isNeutered ? '已绝育 ✓' : '未绝育'}}</text>
       </view>
       <view class="info-row" wx:if="{{cat.adoptionDate}}">
-        <text class="info-label">到家日</text>
+        <view class="info-label"><image class="info-icon" src="/images/icon-info-home.svg" mode="aspectFit"></image><text>到家日</text></view>
         <text class="info-value">{{cat.adoptionDate}}</text>
       </view>
     </view>
 
     <!-- 性格标签 -->
     <view class="tags-section" wx:if="{{cat.personalityTags && cat.personalityTags.length > 0}}">
-      <text class="section-title">性格标签</text>
+      <view class="section-title"><image class="info-icon" src="/images/icon-sparkle.svg" mode="aspectFit"></image><text>性格标签</text></view>
       <view class="tags-wrap">
         <text class="tag" wx:for="{{cat.personalityTags}}" wx:key="*this">{{item}}</text>
       </view>
@@ -55,7 +74,10 @@
 
     <!-- 操作按钮 -->
     <view class="action-bar">
-      <button class="btn-primary" bindtap="goEdit">编辑</button>
+      <button class="btn-edit" bindtap="goEdit">
+        <image class="btn-icon" src="/images/icon-edit.svg" mode="aspectFit"></image>
+        编辑资料
+      </button>
       <button class="btn-danger" bindtap="handleDelete">移除</button>
     </view>
   </view>
@@ -65,15 +87,21 @@
     <!-- 快捷添加 -->
     <view class="record-actions">
       <view class="record-action-btn" bindtap="goAddFeeding">
-        <text class="action-icon">🍗</text>
+        <view class="action-icon-wrap feeding">
+          <image class="action-icon-img" src="/images/icon-feeding.svg" mode="aspectFit"></image>
+        </view>
         <text class="action-text">喂食</text>
       </view>
       <view class="record-action-btn" bindtap="goAddCare">
-        <text class="action-icon">✨</text>
+        <view class="action-icon-wrap care">
+          <image class="action-icon-img" src="/images/icon-care.svg" mode="aspectFit"></image>
+        </view>
         <text class="action-text">养护</text>
       </view>
       <view class="record-action-btn" bindtap="goAddHealth">
-        <text class="action-icon">💊</text>
+        <view class="action-icon-wrap health">
+          <image class="action-icon-img" src="/images/icon-health.svg" mode="aspectFit"></image>
+        </view>
         <text class="action-text">健康</text>
       </view>
     </view>
@@ -91,8 +119,9 @@
     </view>
 
     <view class="empty-records" wx:elif="{{!recordLoading}}">
-      <image class="empty-icon" src="/images/icon-care-other.svg" mode="aspectFit"></image>
+      <text class="empty-emoji">📝</text>
       <text class="empty-text">暂无记录，快去添加吧~</text>
+      <text class="empty-hint">点击上方按钮开始记录</text>
     </view>
 
     <view class="loading-records" wx:if="{{recordLoading}}">
