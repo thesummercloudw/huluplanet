@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘健康图标 - 十字盾牌 -->
+  <!-- 盾牌 - 手绘松散轮廓 -->
+  <path d="M24 6 C24 6, 36 10, 38 12 C39 14, 39 26, 35 32 C31 38, 24 42, 24 42 C24 42, 17 38, 13 32 C9 26, 9 14, 10 12 C12 10, 24 6, 24 6Z" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 十字 - 手绘粗线 -->
+  <path d="M24 16 L24 32" fill="none" stroke="#8EBD3C" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M17 24 L31 24" fill="none" stroke="#8EBD3C" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- 顶部闪光装饰 -->
+  <path d="M14 7 L15 5 L16 7 L15 9Z" fill="#38B8E8" stroke="none" opacity="0.6"/>
+  <path d="M34 7 L35 5 L36 7 L35 9Z" fill="#FFB8C6" stroke="none" opacity="0.6"/>
+  <!-- 小圆点 -->
+  <circle cx="38" cy="18" r="1" fill="#38B8E8" opacity="0.5"/>
+  <circle cx="8" cy="20" r="1.2" fill="#8EBD3C" opacity="0.4"/>
+</svg>

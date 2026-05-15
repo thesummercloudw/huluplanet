@@ -1,0 +1,114 @@
+<view class="container form-page">
+  <view class="grain-overlay"></view>
+  <view class="form-title"><image class="form-title-icon" src="/images/icon-health-medicine.svg" mode="aspectFit"></image> 用药记录</view>
+
+  <!-- 选猫 -->
+  <view class="form-section">
+    <view class="form-label">选择猫咪</view>
+    <scroll-view class="cat-picker" scroll-x>
+      <view class="cat-chip {{selectedCatId === item.catId ? 'active' : ''}}"
+            wx:for="{{cats}}" wx:key="catId"
+            bindtap="onCatSelect" data-id="{{item.catId}}">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 药品名称 -->
+  <view class="form-section">
+    <view class="form-label">药品名称</view>
+    <input class="form-input" placeholder="输入药品名称"
+           value="{{medicineName}}" bindinput="onMedicineInput"/>
+  </view>
+
+  <!-- 用药原因 -->
+  <view class="form-section">
+    <view class="form-label">用药原因</view>
+    <view class="chip-grid">
+      <view class="select-chip {{reason === item ? 'active' : ''}}"
+            wx:for="{{reasonPresets}}" wx:key="*this"
+            bindtap="onReasonPreset" data-reason="{{item}}">
+        {{item}}
+      </view>
+    </view>
+    <input class="form-input mt-16" placeholder="或输入其他原因"
+           value="{{reason}}" bindinput="onReasonInput"/>
+  </view>
+
+  <!-- 剂量 -->
+  <view class="form-section">
+    <view class="form-label">剂量</view>
+    <view class="inline-row">
+      <input class="form-input" type="digit" placeholder="数量"
+             value="{{dosage}}" bindinput="onDosageInput"/>
+      <view class="unit-picker">
+        <view class="select-chip small {{dosageUnit === item ? 'active' : ''}}"
+              wx:for="{{dosageUnits}}" wx:key="*this"
+              bindtap="onUnitSelect" data-unit="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 频率 -->
+  <view class="form-section">
+    <view class="form-label">用药频率</view>
+    <view class="chip-grid">
+      <view class="select-chip {{frequency === item.value ? 'active' : ''}}"
+            wx:for="{{frequencyOptions}}" wx:key="value"
+            bindtap="onFrequencySelect" data-freq="{{item.value}}">
+        {{item.label}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 疗程 -->
+  <view class="form-section">
+    <view class="form-label">疗程</view>
+    <view class="inline-row">
+      <input class="form-input" type="number" placeholder="天数"
+             value="{{duration}}" bindinput="onDurationInput"/>
+      <text class="unit-text">天</text>
+    </view>
+  </view>
+
+  <!-- 开始日期 -->
+  <view class="form-section">
+    <view class="form-label">开始日期</view>
+    <picker mode="date" value="{{recordDate}}" bindchange="onDateChange">
+      <view class="form-input picker-value">
+        {{recordDate || '选择日期'}}
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 医院 -->
+  <view class="form-section">
+    <view class="form-label">开药医院 <text class="label-hint">(可选)</text></view>
+    <input class="form-input" placeholder="宠物医院名称"
+           value="{{hospitalName}}" bindinput="onHospitalInput"/>
+  </view>
+
+  <!-- 费用 -->
+  <view class="form-section">
+    <view class="form-label">费用 <text class="label-hint">(可选)</text></view>
+    <input class="form-input" type="digit" placeholder="元"
+           value="{{cost}}" bindinput="onCostInput"/>
+  </view>
+
+  <!-- 备注 -->
+  <view class="form-section">
+    <view class="form-label">备注 <text class="label-hint">(可选)</text></view>
+    <textarea class="form-textarea" placeholder="用药注意事项、副作用观察..."
+              value="{{note}}" bindinput="onNoteInput" maxlength="500"/>
+  </view>
+
+  <!-- 提交 -->
+  <view class="form-submit">
+    <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '记录完成'}}
+    </button>
+  </view>
+</view>

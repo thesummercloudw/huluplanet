@@ -35,7 +35,11 @@ public class AdoptionCat {
     private Map<String, Object> healthStatus;
 
     private String personality;
+    private String province;
     private String city;
+    private String district;
+    private Double lat;
+    private Double lng;
     private String reasonForAdoption;
     private String contactMethod;   // 仅运营内部可见
     private String status;          // available/pending/adopted

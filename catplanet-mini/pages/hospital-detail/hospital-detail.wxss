@@ -1,24 +1,26 @@
-.page { padding: 24rpx; background: transparent; min-height: 100vh; }
-.header { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); border-radius: 16rpx; padding: 24rpx; margin-bottom: 20rpx; border: 1rpx solid rgba(255, 255, 255, 0.5); }
+.page { padding: 24rpx; padding-bottom: 120rpx; background: transparent; min-height: 100vh; }
 .hospital-name { font-size: 34rpx; font-weight: 700; color: #333; }
-.hospital-score { font-size: 26rpx; color: #35C8B4; margin-top: 8rpx; }
-.hospital-address { font-size: 24rpx; color: #666; margin-top: 12rpx; }
+.hospital-score { font-size: 26rpx; color: #38B8E8; margin-top: 8rpx; }
+.hospital-address { font-size: 24rpx; color: #666; margin-top: 12rpx; display: flex; align-items: center; }
 .hospital-hours { font-size: 22rpx; color: #999; margin-top: 8rpx; }
 .hospital-tags { display: flex; gap: 8rpx; margin-top: 12rpx; flex-wrap: wrap; }
-.tag { font-size: 20rpx; padding: 4rpx 12rpx; background: rgba(53, 200, 180, 0.12); color: #35C8B4; border-radius: 8rpx; }
+.tag { font-size: 20rpx; padding: 4rpx 12rpx; background: rgba(56, 184, 232, 0.12); color: #38B8E8; border-radius: 8rpx; }
 
 .actions { display: flex; gap: 16rpx; margin-bottom: 20rpx; }
-.action-btn { flex: 1; background: linear-gradient(135deg, #35C8B4, #A4CF4A); color: #FFF; text-align: center; padding: 20rpx; border-radius: 32rpx; font-size: 26rpx; font-weight: 600; }
-.action-btn.phone { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); color: #35C8B4; border: 2rpx solid #35C8B4; }
+.action-btn { flex: 1; background: #38B8E8; color: #FFF; text-align: center; padding: 20rpx; border-radius: 32rpx; font-size: 26rpx; font-weight: 600; }
 
-.section { background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(20px) saturate(1.2); -webkit-backdrop-filter: blur(20px) saturate(1.2); border-radius: 16rpx; padding: 24rpx; border: 1rpx solid rgba(255, 255, 255, 0.5); }
 .section-title { font-size: 28rpx; font-weight: 600; color: #333; margin-bottom: 20rpx; }
 .review-item { padding: 16rpx 0; border-bottom: 1rpx solid #F5F5F5; }
 .review-item:last-child { border-bottom: none; }
-.review-header { display: flex; justify-content: space-between; align-items: center; }
+.review-user-row { display: flex; align-items: center; margin-bottom: 10rpx; }
+.review-avatar { width: 52rpx; height: 52rpx; border-radius: 50%; flex-shrink: 0; background: #F0F0F0; }
+.review-nickname { font-size: 24rpx; color: #333; font-weight: 500; margin-left: 12rpx; flex: 1; }
+.review-header { display: flex; align-items: center; margin-bottom: 8rpx; }
 .review-score { font-size: 22rpx; }
 .review-time { font-size: 20rpx; color: #999; }
 .review-content { font-size: 26rpx; color: #333; margin-top: 10rpx; line-height: 1.5; }
 .review-tags { display: flex; gap: 8rpx; margin-top: 10rpx; }
 .service-tag { font-size: 20rpx; padding: 4rpx 12rpx; background: #E8F8E8; color: #4CAF50; border-radius: 8rpx; }
 .empty { text-align: center; color: #999; padding: 40rpx 0; font-size: 26rpx; }
+
+.write-btn { position: fixed; bottom: 40rpx; left: 50%; transform: translateX(-50%); background: #38B8E8; color: #FFF; font-size: 28rpx; font-weight: 600; padding: 20rpx 60rpx; border-radius: 40rpx; box-shadow: 0 8rpx 24rpx rgba(56, 184, 232, 0.3); }

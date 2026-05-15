@@ -15,7 +15,7 @@
   <!-- 提醒列表 -->
   <view class="reminder-list" wx:if="{{reminders.length > 0}}">
     <view class="reminder-item" wx:for="{{reminders}}" wx:key="reminderId">
-      <view class="reminder-icon">{{item.icon}}</view>
+      <view class="reminder-icon"><image class="reminder-icon-img" src="{{item.icon}}" mode="aspectFit"></image></view>
       <view class="reminder-body">
         <text class="reminder-title">{{item.title}}</text>
         <text class="reminder-time">{{item.triggerText}}</text>

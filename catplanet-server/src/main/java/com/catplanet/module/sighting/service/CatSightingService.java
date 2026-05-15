@@ -11,5 +11,7 @@ public interface CatSightingService {
 
     List<CatSighting> listRecent(int limit);
 
+    CatSighting getById(Long sightingId);
+
     void delete(Long sightingId, Long userId);
 }

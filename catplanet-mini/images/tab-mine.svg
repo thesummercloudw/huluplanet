@@ -1,11 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81 81" width="81" height="81">
-  <!-- 猫耳朵头像 -->
-  <!-- 左猫耳 -->
-  <path d="M24 32 L28 18 L36 28 Z" fill="#7ABFB0"/>
-  <!-- 右猫耳 -->
-  <path d="M57 32 L53 18 L45 28 Z" fill="#7ABFB0"/>
-  <!-- 头部圆 -->
-  <circle cx="40.5" cy="38" r="15" fill="#7ABFB0"/>
-  <!-- 身体 -->
-  <ellipse cx="40.5" cy="64" rx="18" ry="12" fill="#7ABFB0"/>
+  <!-- 手绘猫耳头像 - 普通态(灰色) -->
+  <!-- 头部 - 不规则手绘圆 -->
+  <path d="M28 42 C26 35, 30 28, 40 27 C50 28, 55 35, 53 42 C51 49, 44 52, 40 52 C36 52, 30 49, 28 42Z" fill="none" stroke="#9A9A9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 左耳 - 手绘三角 -->
+  <path d="M29 30 L26 17 L36 26" fill="none" stroke="#9A9A9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 右耳 - 手绘三角 -->
+  <path d="M52 30 L55 17 L45 26" fill="none" stroke="#9A9A9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 眼睛 - 小弧线(眯眯眼) -->
+  <path d="M34 38 C35 36, 37 36, 38 38" fill="none" stroke="#9A9A9A" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M43 38 C44 36, 46 36, 47 38" fill="none" stroke="#9A9A9A" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- 鼻子 - 小三角 -->
+  <path d="M39 42 L40.5 40 L42 42Z" fill="none" stroke="#9A9A9A" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- 身体提示弧线 -->
+  <path d="M32 54 C36 58, 44 58, 49 54" fill="none" stroke="#9A9A9A" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
 </svg>

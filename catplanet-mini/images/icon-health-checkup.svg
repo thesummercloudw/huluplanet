@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘体检图标 - 听诊器 -->
+  <!-- 听诊器管子 -->
+  <path d="M16 10 C16 6, 20 6, 20 10 L20 20 C20 28, 28 30, 32 28 L32 20 C32 6, 36 6, 36 10" fill="none" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 耳塞 -->
+  <circle cx="16" cy="10" r="2.5" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="1.5"/>
+  <circle cx="36" cy="10" r="2.5" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="1.5"/>
+  <!-- 听诊头 -->
+  <circle cx="26" cy="36" r="6" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round"/>
+  <!-- 听诊头连接 -->
+  <path d="M26 30 L26 28 C26 26, 24 24, 22 22" fill="none" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round"/>
+  <!-- 听诊头内十字 -->
+  <path d="M26 33 L26 39" fill="none" stroke="#8EBD3C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M23 36 L29 36" fill="none" stroke="#8EBD3C" stroke-width="2" stroke-linecap="round"/>
+  <!-- 装饰 -->
+  <path d="M8 20 L9 18 L10 20 L9 22Z" fill="#FFB8C6" stroke="none" opacity="0.6"/>
+  <circle cx="40" cy="36" r="1" fill="#38B8E8" opacity="0.5"/>
+</svg>

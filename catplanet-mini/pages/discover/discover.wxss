@@ -1,95 +1,306 @@
+/* 周边页 - 手绘涂鸦风 */
 .page {
   padding: 0 24rpx 24rpx;
   background: transparent;
   min-height: 100vh;
+  position: relative;
 }
 
-/* Hospital */
+/* ===== 页面装饰 ===== */
+.page-deco-top {
+  position: absolute;
+  top: 12rpx;
+  right: 32rpx;
+  pointer-events: none;
+}
+.deco-star {
+  font-size: 28rpx;
+  color: var(--color-primary);
+  opacity: 0.5;
+}
+.deco-sparkle {
+  font-size: 22rpx;
+  color: var(--color-pink);
+  opacity: 0.6;
+  margin-left: 8rpx;
+}
+
+/* ===== 爱心领养区块 ===== */
+.adoption-section {
+  margin-bottom: 32rpx;
+  padding-top: 16rpx;
+}
+
+.adoption-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.adoption-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+}
+
+.adoption-city-tag {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.adoption-publish-btn {
+  font-size: 24rpx;
+  color: var(--color-primary);
+  background: rgba(56, 184, 232, 0.1);
+  padding: 10rpx 24rpx;
+  border-radius: 32rpx;
+  border: 2rpx solid rgba(56, 184, 232, 0.2);
+  font-weight: 600;
+}
+
+.adoption-scroll {
+  white-space: nowrap;
+  padding-bottom: 12rpx;
+}
+
+.adoption-card {
+  display: inline-block;
+  width: 260rpx;
+  margin-right: 16rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(56, 184, 232, 0.06);
+  border: 2rpx solid rgba(56, 184, 232, 0.12);
+  vertical-align: top;
+  transition: transform 0.3s ease;
+}
+
+.adoption-card:active {
+  transform: scale(0.96);
+}
+
+/* 封面图容器 */
+.adoption-cover-wrap {
+  position: relative;
+  width: 100%;
+  height: 220rpx;
+  overflow: hidden;
+}
+
+.adoption-cover {
+  width: 100%;
+  height: 100%;
+}
+
+/* 性别角标 */
+.adoption-gender-badge {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
+}
+.gender-male {
+  color: #4A9FE8;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+.gender-female {
+  color: #FF6B8A;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.adoption-info {
+  padding: 16rpx;
+  white-space: normal;
+}
+
+.adoption-name {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adoption-meta {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+  margin-top: 6rpx;
+}
+
+.adoption-city {
+  font-size: 20rpx;
+  color: var(--color-placeholder);
+  margin-top: 6rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+/* 领养空状态 */
+.adoption-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48rpx 0;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  border: 2rpx dashed rgba(56, 184, 232, 0.2);
+}
+
+.adoption-empty-text {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 8rpx;
+}
+
+.adoption-empty-sub {
+  font-size: 22rpx;
+  color: var(--color-placeholder);
+}
+
+/* ===== 附近服务区块 ===== */
+.service-section {
+  margin-top: 8rpx;
+}
+
+.service-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 16rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* 筛选栏 */
 .filter-bar {
   display: flex;
-  gap: 12rpx;
+  gap: 14rpx;
   margin-bottom: 20rpx;
 }
 .filter-item {
   padding: 10rpx 24rpx;
   font-size: 24rpx;
-  border-radius: 24rpx;
-  background: rgba(255, 255, 255, 0.4);
-  color: #666;
-  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  border-radius: 32rpx;
+  background: var(--color-card);
+  color: var(--color-text-secondary);
+  border: 1.5rpx solid rgba(56, 184, 232, 0.12);
+  transition: all 0.25s;
 }
 .filter-item.active {
-  background: rgba(53, 200, 180, 0.15);
-  color: #35C8B4;
+  background: rgba(56, 184, 232, 0.1);
+  color: var(--color-primary);
   font-weight: 600;
-  border-color: rgba(53, 200, 180, 0.3);
+  border-color: var(--color-primary);
 }
 
+/* ===== 医院/宠物店卡片 ===== */
 .hospital-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 16rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
   padding: 24rpx;
   margin-bottom: 16rpx;
-  box-shadow: 0 2rpx 8rpx rgba(53, 200, 180, 0.06);
-  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4rpx 16rpx rgba(56, 184, 232, 0.06);
+  border: 2rpx solid rgba(56, 184, 232, 0.12);
 }
 .hospital-info {
   flex: 1;
+  min-width: 0;
 }
 .hospital-name-row {
   display: flex;
   align-items: center;
-  gap: 8rpx;
+  gap: 10rpx;
 }
-.type-badge {
-  display: inline-block;
-  width: 36rpx;
-  height: 36rpx;
-  line-height: 36rpx;
-  text-align: center;
-  font-size: 20rpx;
-  font-weight: 600;
-  border-radius: 8rpx;
-  flex-shrink: 0;
-}
-.badge-hospital {
-  background: rgba(255, 107, 107, 0.15);
-  color: #FF6B6B;
-}
-.badge-store {
-  background: rgba(53, 200, 180, 0.15);
-  color: #35C8B4;
-}
+/* type-badge 已迁移到 .type-badge-icon */
 .hospital-name {
   font-size: 28rpx;
-  font-weight: 600;
-  color: #1A6B5A;
+  font-weight: 700;
+  color: var(--color-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .hospital-address {
   font-size: 22rpx;
-  color: #999;
-  margin-top: 6rpx;
+  color: var(--color-placeholder);
+  margin-top: 8rpx;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .hospital-meta {
   display: flex;
   align-items: center;
-  gap: 16rpx;
+  gap: 12rpx;
   margin-top: 10rpx;
   font-size: 22rpx;
-  color: #999;
+  color: var(--color-placeholder);
+  flex-wrap: wrap;
 }
-.hospital-score {
-  color: #35C8B4;
-  font-weight: 600;
+
+/* 评分徽章 - 与猫粮列表统一 */
+.score-badge {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+  background: rgba(255, 184, 198, 0.15);
+  padding: 4rpx 12rpx 4rpx 6rpx;
+  border-radius: 20rpx;
+}
+.score-icon {
+  width: 28rpx;
+  height: 28rpx;
+}
+.score-num {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.hospital-reviews {
+  font-size: 22rpx;
+  color: var(--color-placeholder);
 }
 .hospital-distance {
+  display: flex;
+  align-items: center;
   color: #FF9843;
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 22rpx;
 }
+.hospital-hours {
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+  color: var(--color-text-secondary);
+}
+
+/* 标签 - 药丸形+青柠绿 */
 .hospital-tags {
   display: flex;
   gap: 8rpx;
@@ -98,25 +309,89 @@
 }
 .tag {
   font-size: 20rpx;
-  padding: 4rpx 12rpx;
-  background: rgba(53, 200, 180, 0.1);
-  color: #35C8B4;
-  border-radius: 8rpx;
-}
-.nav-btn {
-  padding: 12rpx 24rpx;
-  background: rgba(53, 200, 180, 0.12);
-  color: #35C8B4;
-  font-size: 24rpx;
-  font-weight: 600;
+  padding: 4rpx 14rpx;
+  background: var(--color-secondary);
+  color: var(--color-accent);
   border-radius: 20rpx;
-  flex-shrink: 0;
+  border: 1rpx solid rgba(142, 189, 60, 0.2);
 }
 
-/* Empty */
+/* 导航按钮 */
+.nav-btn {
+  padding: 14rpx 24rpx;
+  background: rgba(56, 184, 232, 0.1);
+  color: var(--color-primary);
+  font-size: 24rpx;
+  font-weight: 600;
+  border-radius: 24rpx;
+  flex-shrink: 0;
+  border: 1.5rpx solid rgba(56, 184, 232, 0.2);
+  margin-left: 16rpx;
+}
+
+/* ===== 空状态 ===== */
 .empty {
-  text-align: center;
-  color: #999;
-  padding: 80rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 0;
+}
+/* empty-icon 已迁移到 .empty-icon-img */
+.empty-text {
   font-size: 28rpx;
+  color: var(--color-placeholder);
+}
+
+/* Section icon */
+.section-icon {
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}
+
+/* 筛选栏内联图标 */
+.filter-icon {
+  width: 28rpx;
+  height: 28rpx;
+  vertical-align: middle;
+  margin-right: 4rpx;
+}
+
+/* 按钮内联图标（发布、导航） */
+.btn-icon {
+  width: 28rpx;
+  height: 28rpx;
+  vertical-align: middle;
+  margin-right: 4rpx;
+}
+
+/* 卡片内小图标（距离、营业时间） */
+.meta-icon {
+  width: 24rpx;
+  height: 24rpx;
+  vertical-align: middle;
+  margin-right: 4rpx;
+}
+
+/* 类型角标图标（宠物医院/宠物店） */
+.type-badge-icon {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 10rpx;
+  flex-shrink: 0;
+  padding: 2rpx;
+}
+.type-badge-icon.badge-hospital {
+  background: rgba(255, 107, 107, 0.12);
+}
+.type-badge-icon.badge-store {
+  background: rgba(56, 184, 232, 0.1);
+}
+
+/* 空状态SVG图标 */
+.empty-icon-img {
+  width: 96rpx;
+  height: 96rpx;
+  margin-bottom: 16rpx;
 }

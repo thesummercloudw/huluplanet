@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘洗澡图标 - 浴缸 + 泡泡 -->
+  <!-- 浴缸主体 -->
+  <path d="M8 24 L8 34 C8 38, 12 40, 24 40 C36 40, 40 38, 40 34 L40 24Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 浴缸口沿 -->
+  <path d="M6 24 L42 24" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 水花纹 -->
+  <path d="M14 30 C16 28, 20 28, 22 30 C24 32, 28 32, 30 30 C32 28, 36 28, 38 30" fill="none" stroke="#38B8E8" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <!-- 泡泡 -->
+  <circle cx="14" cy="18" r="3" fill="none" stroke="#2A2A2A" stroke-width="1.2" opacity="0.6"/>
+  <circle cx="20" cy="14" r="2.5" fill="none" stroke="#2A2A2A" stroke-width="1" opacity="0.5"/>
+  <circle cx="26" cy="17" r="2" fill="none" stroke="#2A2A2A" stroke-width="1" opacity="0.4"/>
+  <!-- 小星星 -->
+  <path d="M34 10 L35 8 L36 10 L35 12Z" fill="#8EBD3C" stroke="none" opacity="0.7"/>
+  <circle cx="8" cy="14" r="1" fill="#FFB8C6" opacity="0.5"/>
+</svg>

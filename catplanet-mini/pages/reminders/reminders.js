@@ -40,10 +40,10 @@ Page({
 
   getTypeIcon(type) {
     const icons = {
-      vaccine: '💉', deworm: '💊', checkup: '🏥',
-      feeding: '🍗', care: '✨', custom: '🔔'
+      vaccine: '/images/icon-health-vaccine.svg', deworm: '/images/icon-health-deworm.svg', checkup: '/images/icon-health-checkup.svg',
+      feeding: '/images/icon-feeding.svg', care: '/images/icon-care.svg', custom: '/images/icon-reminder.svg'
     };
-    return icons[type] || '🔔';
+    return icons[type] || '/images/icon-reminder.svg';
   },
 
   getStatusText(status) {

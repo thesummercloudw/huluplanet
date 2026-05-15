@@ -19,4 +19,5 @@
 
 .health-bar {
   background: linear-gradient(90deg, #FFB8C6, #FF8FA3);
+  opacity: 0.8;
 }

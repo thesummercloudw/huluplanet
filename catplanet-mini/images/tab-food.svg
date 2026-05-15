@@ -1,13 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81 81" width="81" height="81">
-  <!-- 猫粮碗 -->
-  <ellipse cx="40.5" cy="52" rx="22" ry="8" fill="#7ABFB0"/>
-  <path d="M18.5 52 Q18.5 38, 40.5 38 Q62.5 38, 62.5 52" fill="#7ABFB0"/>
-  <!-- 碗里的猫粮颗粒 -->
-  <circle cx="33" cy="36" r="3.5" fill="#7ABFB0" opacity="0.7"/>
-  <circle cx="42" cy="33" r="3.5" fill="#7ABFB0" opacity="0.7"/>
-  <circle cx="50" cy="36" r="3.5" fill="#7ABFB0" opacity="0.7"/>
-  <circle cx="37" cy="30" r="3" fill="#7ABFB0" opacity="0.6"/>
-  <circle cx="46" cy="30" r="3" fill="#7ABFB0" opacity="0.6"/>
-  <!-- 小爱心 -->
-  <path d="M38 18 C38 15, 42 15, 42 18 C42 15, 46 15, 46 18 C46 22, 42 25, 42 25 C42 25, 38 22, 38 18Z" fill="#7ABFB0" opacity="0.5"/>
+  <!-- 手绘猫粮碗 - 普通态(灰色) -->
+  <!-- 碗身 - 松散弧线 -->
+  <path d="M20 46 C18 40, 22 34, 40 33 C58 34, 63 40, 61 46 L59 54 C57 58, 49 60, 40 60 C31 60, 23 58, 22 54Z" fill="none" stroke="#9A9A9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 碗口弧线 -->
+  <path d="M22 38 C28 35, 52 35, 59 38" fill="none" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <!-- 猫粮颗粒 - 手绘小圆圈 -->
+  <path d="M32 32 C33 30, 36 30, 36 32 C36 34, 33 34, 32 32Z" fill="none" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M38 29 C39 27, 42 27, 42 29 C42 31, 39 31, 38 29Z" fill="none" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M44 31 C45 29, 48 29, 48 31 C48 33, 45 33, 44 31Z" fill="none" stroke="#9A9A9A" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 香气曲线 -->
+  <path d="M34 24 C34 22, 36 21, 36 23" fill="none" stroke="#9A9A9A" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M40 22 C40 20, 42 19, 42 21" fill="none" stroke="#9A9A9A" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M46 24 C46 22, 48 21, 48 23" fill="none" stroke="#9A9A9A" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
 </svg>

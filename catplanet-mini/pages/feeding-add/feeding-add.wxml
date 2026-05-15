@@ -1,5 +1,5 @@
 <view class="container form-page">
-  <view class="form-title">记录喂食 🍗</view>
+  <view class="form-title"><image class="form-title-icon" src="/images/icon-feeding.svg" mode="aspectFit"></image> 记录喂食</view>
 
   <!-- 选猫 -->
   <view class="form-section">
@@ -18,6 +18,16 @@
     <view class="form-label">食物名称</view>
     <input class="form-input" placeholder="例如：渴望六种鱼"
            value="{{foodName}}" bindinput="onFoodInput"/>
+    <view class="food-history" wx:if="{{foodHistory.length > 0}}">
+      <view class="food-history-label">最近使用</view>
+      <view class="food-history-tags">
+        <view class="food-history-tag {{foodName === item ? 'active' : ''}}"
+              wx:for="{{foodHistory}}" wx:key="*this"
+              bindtap="onFoodHistoryTap" data-name="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
   </view>
 
   <!-- 克数 -->

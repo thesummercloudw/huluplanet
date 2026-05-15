@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘宠物医院图标 - 十字+爱心 -->
+  <!-- 圆形背景 -->
+  <circle cx="24" cy="24" r="16" fill="#FFB8C6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  <!-- 十字标志 - 手绘松散线条 -->
+  <path d="M24 15 L24 33" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M15 24 L33 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  <!-- 装饰小星星 -->
+  <path d="M40 10 L41 8 L42 10 L41 12Z" fill="#38B8E8" stroke="none" opacity="0.7"/>
+  <path d="M8 12 L9 10 L10 12 L9 14Z" fill="#8EBD3C" stroke="none" opacity="0.6"/>
+  <!-- 小圆点 -->
+  <circle cx="40" cy="36" r="1.2" fill="#8EBD3C" opacity="0.5"/>
+</svg>

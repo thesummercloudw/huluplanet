@@ -17,11 +17,11 @@ Page({
       weight: '称重'
     },
     healthTypeIcons: {
-      vaccine: '💉',
-      deworm: '💊',
-      checkup: '🏥',
-      medicine: '🩺',
-      weight: '⚖️'
+      vaccine: '/images/icon-health-vaccine.svg',
+      deworm: '/images/icon-health-deworm.svg',
+      checkup: '/images/icon-health-checkup.svg',
+      medicine: '/images/icon-health-medicine.svg',
+      weight: '/images/icon-health-weight.svg'
     }
   },
 
@@ -71,7 +71,7 @@ Page({
         records: (records || []).map(r => ({
           ...r,
           typeLabel: this.data.healthTypeNames[r.healthType] || r.healthType,
-          typeIcon: this.data.healthTypeIcons[r.healthType] || '📋',
+          typeIcon: this.data.healthTypeIcons[r.healthType] || '/images/icon-health.svg',
           costStr: r.cost ? `¥${r.cost}` : '',
           dateStr: r.recordDate || ''
         }))

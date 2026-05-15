@@ -57,7 +57,7 @@ Page({
 
     try {
       await http.post('/api/catfood/ugc', { foodId, score, content, catId });
-      wx.showToast({ title: '提交成功，审核中', icon: 'success' });
+      wx.showToast({ title: '发表成功', icon: 'success' });
       setTimeout(() => wx.navigateBack(), 1500);
     } catch (e) {
       wx.showToast({ title: '提交失败', icon: 'none' });

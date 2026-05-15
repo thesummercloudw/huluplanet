@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘时钟图标 - 营业时间 -->
+  <!-- 表盘 -->
+  <circle cx="24" cy="24" r="16" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+  <!-- 时针 - 手绘松散线 -->
+  <path d="M24 24 L24 15" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 分针 -->
+  <path d="M24 24 L32 20" fill="none" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round"/>
+  <!-- 中心圆点 -->
+  <circle cx="24" cy="24" r="2" fill="#38B8E8" stroke="#2A2A2A" stroke-width="1.2"/>
+  <!-- 刻度点 -->
+  <circle cx="24" cy="10" r="1.5" fill="#8EBD3C" opacity="0.8"/>
+  <circle cx="38" cy="24" r="1.5" fill="#8EBD3C" opacity="0.6"/>
+  <circle cx="24" cy="38" r="1.5" fill="#8EBD3C" opacity="0.6"/>
+  <circle cx="10" cy="24" r="1.5" fill="#8EBD3C" opacity="0.6"/>
+  <!-- 装饰小星星 -->
+  <path d="M40 8 L41 6 L42 8 L41 10Z" fill="#38B8E8" stroke="none" opacity="0.6"/>
+  <path d="M6 12 L7 10 L8 12 L7 14Z" fill="#FFB8C6" stroke="none" opacity="0.5"/>
+</svg>

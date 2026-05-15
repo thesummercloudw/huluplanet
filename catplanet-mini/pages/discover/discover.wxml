@@ -1,33 +1,91 @@
 <view class="page">
-  <!-- 磨砂噪点纹理层 -->
+  <!-- 噪点纹理层 -->
   <view class="grain-overlay"></view>
 
-  <!-- 类型筛选栅 -->
-  <view class="filter-bar">
-    <view class="filter-item {{placeType===''?'active':''}}" bindtap="switchPlaceType" data-type="">全部</view>
-    <view class="filter-item {{placeType==='hospital'?'active':''}}" bindtap="switchPlaceType" data-type="hospital">🏥 宠物医院</view>
-    <view class="filter-item {{placeType==='petstore'?'active':''}}" bindtap="switchPlaceType" data-type="petstore">🛍️ 宠物店</view>
+  <!-- 页面顶部装饰 -->
+  <view class="page-deco-top">
+    <text class="deco-star">✦</text>
+    <text class="deco-sparkle">✧</text>
   </view>
 
-  <!-- 列表 -->
-  <view class="hospital-card" wx:for="{{hospitals}}" wx:key="hospitalId" bindtap="goHospitalDetail" data-id="{{item.hospitalId}}">
-    <view class="hospital-info">
-      <view class="hospital-name-row">
-        <text class="type-badge {{item.type === 'petstore' ? 'badge-store' : 'badge-hospital'}}">{{item.type === 'petstore' ? '店' : '医'}}</text>
-        <text class="hospital-name">{{item.name}}</text>
+  <!-- 爱心领养 -->
+  <view class="adoption-section">
+    <view class="adoption-header">
+      <view class="adoption-title">
+        <image class="section-icon" src="/images/icon-adoption.svg" mode="aspectFit"></image>
+        爱心领养
+        <text class="adoption-city-tag" wx:if="{{locationCity}}"> · {{locationCity}}</text>
       </view>
-      <view class="hospital-address">{{item.address}}</view>
-      <view class="hospital-meta">
-        <text class="hospital-score" wx:if="{{item.avgScore > 0}}">⭐ {{item.avgScore}}</text>
-        <text class="hospital-reviews">{{item.reviewCount}}条评价</text>
-        <text class="hospital-distance" wx:if="{{item.distanceText}}">{{item.distanceText}}</text>
-        <text class="hospital-hours" wx:if="{{item.businessHours}}">{{item.businessHours}}</text>
-      </view>
-      <view class="hospital-tags" wx:if="{{item.tags && item.tags.length > 0}}">
-        <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
-      </view>
+      <view class="adoption-publish-btn" bindtap="goAdoptionAdd"><image class="btn-icon" src="/images/icon-edit.svg" mode="aspectFit"></image>发布</view>
     </view>
-    <view class="nav-btn" catchtap="openNavigation" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-name="{{item.name}}" data-address="{{item.address}}">导航</view>
+    <scroll-view class="adoption-scroll" scroll-x wx:if="{{adoptionCats.length > 0}}">
+      <view class="adoption-card" wx:for="{{adoptionCats}}" wx:key="adoptId" bindtap="goAdoptionDetail" data-id="{{item.adoptId}}">
+        <view class="adoption-cover-wrap">
+          <image class="adoption-cover" src="{{item.cover || '/images/cat-icon.svg'}}" mode="aspectFill" lazy-load></image>
+          <view class="adoption-gender-badge" wx:if="{{item.gender === 'male' || item.gender === 'female'}}">
+            <text wx:if="{{item.gender === 'male'}}" class="gender-male">♂</text>
+            <text wx:if="{{item.gender === 'female'}}" class="gender-female">♀</text>
+          </view>
+        </view>
+        <view class="adoption-info">
+          <view class="adoption-name">{{item.name}}</view>
+          <view class="adoption-meta">
+            <text wx:if="{{item.ageEstimate}}">{{item.ageEstimate}}</text>
+            <text wx:if="{{item.breedEstimate}}"> · {{item.breedEstimate}}</text>
+          </view>
+          <view class="adoption-city" wx:if="{{item.city}}"><image class="inline-loc-icon" src="/images/icon-location.svg" mode="aspectFit"></image>{{item.city}}</view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="adoption-empty" wx:if="{{adoptionCats.length === 0}}">
+      <image class="empty-icon-img" src="/images/icon-paw.svg" mode="aspectFit"></image>
+      <text class="adoption-empty-text">暂无领养信息</text>
+      <text class="adoption-empty-sub">发布领养，帮助流浪猫找家~</text>
+    </view>
   </view>
-  <view class="empty" wx:if="{{hospitals.length === 0 && !loading}}">附近暂无宠物店/医院数据</view>
+
+  <!-- 附近服务 -->
+  <view class="service-section">
+    <view class="service-title">
+      <image class="section-icon" src="/images/icon-service.svg" mode="aspectFit"></image>
+      附近服务
+    </view>
+    <!-- 类型筛选 -->
+    <view class="filter-bar">
+      <view class="filter-item {{placeType===''?'active':''}}" bindtap="switchPlaceType" data-type=""><image class="filter-icon" src="/images/icon-sparkle.svg" mode="aspectFit"></image>全部</view>
+      <view class="filter-item {{placeType==='hospital'?'active':''}}" bindtap="switchPlaceType" data-type="hospital"><image class="filter-icon" src="/images/icon-hospital.svg" mode="aspectFit"></image>宠物医院</view>
+      <view class="filter-item {{placeType==='petstore'?'active':''}}" bindtap="switchPlaceType" data-type="petstore"><image class="filter-icon" src="/images/icon-petstore.svg" mode="aspectFit"></image>宠物店</view>
+    </view>
+
+    <!-- 列表 -->
+    <view class="hospital-card" wx:for="{{hospitals}}" wx:key="hospitalId" bindtap="goHospitalDetail" data-id="{{item.hospitalId}}">
+      <view class="hospital-info">
+        <view class="hospital-name-row">
+          <image class="type-badge-icon {{item.type === 'petstore' ? 'badge-store' : 'badge-hospital'}}" src="{{item.type === 'petstore' ? '/images/icon-petstore.svg' : '/images/icon-hospital.svg'}}" mode="aspectFit"></image>
+          <text class="hospital-name">{{item.name}}</text>
+        </view>
+        <view class="hospital-address">
+          <image class="inline-loc-icon" src="/images/icon-location.svg" mode="aspectFit"></image>
+          {{item.address}}
+        </view>
+        <view class="hospital-meta">
+          <view class="score-badge" wx:if="{{item.avgScore > 0}}">
+            <image class="score-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+            <text class="score-num">{{item.avgScore}}</text>
+          </view>
+          <text class="hospital-reviews">{{item.reviewCount}}条评价</text>
+          <view class="hospital-distance" wx:if="{{item.distanceText}}"><image class="meta-icon" src="/images/icon-location.svg" mode="aspectFit"></image>{{item.distanceText}}</view>
+          <view class="hospital-hours" wx:if="{{item.businessHours}}"><image class="meta-icon" src="/images/icon-clock.svg" mode="aspectFit"></image>{{item.businessHours}}</view>
+        </view>
+        <view class="hospital-tags" wx:if="{{item.tags && item.tags.length > 0}}">
+          <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+        </view>
+      </view>
+      <view class="nav-btn" catchtap="openNavigation" data-lat="{{item.lat}}" data-lng="{{item.lng}}" data-name="{{item.name}}" data-address="{{item.address}}"><image class="btn-icon" src="/images/icon-nav.svg" mode="aspectFit"></image>导航</view>
+    </view>
+    <view class="empty" wx:if="{{hospitals.length === 0 && !loading}}">
+      <image class="empty-icon-img" src="/images/icon-service.svg" mode="aspectFit"></image>
+      <text class="empty-text">附近暂无宠物店/医院数据</text>
+    </view>
+  </view>
 </view>

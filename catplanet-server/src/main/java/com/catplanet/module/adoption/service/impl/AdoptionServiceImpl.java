@@ -56,6 +56,10 @@ public class AdoptionServiceImpl implements AdoptionService {
         cat.setAgeEstimate(request.getAgeEstimate());
         cat.setBreedEstimate(request.getBreedEstimate());
         cat.setCity(request.getCity());
+        cat.setProvince(request.getProvince());
+        cat.setDistrict(request.getDistrict());
+        cat.setLat(request.getLat());
+        cat.setLng(request.getLng());
         cat.setPersonality(request.getPersonality());
         cat.setReasonForAdoption(request.getReasonForAdoption());
         cat.setContactMethod(request.getContactMethod());

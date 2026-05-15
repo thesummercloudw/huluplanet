@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘导航图标 - 指南针 -->
+  <!-- 外圆 - 手绘松散线条 -->
+  <circle cx="24" cy="24" r="16" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+  <!-- 指南针指针 - 北（红/粉色） -->
+  <path d="M24 10 L28 24 L24 22 L20 24Z" fill="#FFB8C6" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 指南针指针 - 南（天蓝） -->
+  <path d="M24 38 L20 24 L24 26 L28 24Z" fill="#38B8E8" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 中心圆 -->
+  <circle cx="24" cy="24" r="2.5" fill="#fff" stroke="#2A2A2A" stroke-width="1.5"/>
+  <!-- N 标记 -->
+  <text x="24" y="9" text-anchor="middle" font-size="6" fill="#2A2A2A" font-weight="bold" opacity="0.6">N</text>
+  <!-- 装饰小星星 -->
+  <path d="M42 10 L43 8 L44 10 L43 12Z" fill="#8EBD3C" stroke="none" opacity="0.7"/>
+  <circle cx="6" cy="14" r="1.2" fill="#FFB8C6" opacity="0.5"/>
+</svg>

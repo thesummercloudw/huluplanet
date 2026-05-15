@@ -1,0 +1,5 @@
+@import '../health-vaccine/health-vaccine.wxss';
+
+.weight-input-area { display: flex; align-items: center; gap: 16rpx; }
+.weight-big-input { flex: 1; font-size: 48rpx !important; font-weight: 600; text-align: center; padding: 32rpx !important; }
+.weight-unit { font-size: 32rpx; color: var(--color-text-secondary); font-weight: 500; }

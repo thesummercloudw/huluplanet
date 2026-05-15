@@ -1,5 +1,5 @@
 const http = require('../../utils/request');
-const { resolveImage } = require('../../utils/request');
+const { resolveImage, resolveThumb } = require('../../utils/request');
 
 Page({
   data: {
@@ -8,6 +8,7 @@ Page({
     pgcList: [],
     loading: false,
     page: 1,
+    keyword: '',
     filters: {
       foodType: '',
       ageStage: ''
@@ -37,11 +38,13 @@ Page({
     this.setData({ loading: true });
     try {
       const { foodType, ageStage } = this.data.filters;
+      const { keyword } = this.data;
       let url = `/api/catfood?page=${this.data.page}&size=20`;
       if (foodType) url += `&foodType=${foodType}`;
       if (ageStage) url += `&ageStage=${ageStage}`;
+      if (keyword) url += `&keyword=${encodeURIComponent(keyword)}`;
       const foods = await http.get(url);
-      this.setData({ foods: (foods || []).map(f => ({ ...f, image: resolveImage(f.image) })) });
+      this.setData({ foods: (foods || []).map(f => ({ ...f, image: resolveThumb(f.image, 200) })) });
     } catch (e) {
       console.error(e);
     } finally {
@@ -52,7 +55,15 @@ Page({
   async loadPgc() {
     try {
       const pgcList = await http.get('/api/catfood/pgc?limit=10');
-      this.setData({ pgcList: (pgcList || []).map(p => ({ ...p, cover: resolveImage(p.cover) })) });
+      this.setData({
+        pgcList: (pgcList || []).map(p => ({
+          ...p,
+          cover: resolveThumb(p.cover, 300),
+          avgPgcScore: (p.scoreIngredient + p.scoreNutrition + p.scoreValue) > 0
+            ? ((p.scoreIngredient + p.scoreNutrition + p.scoreValue) / 3).toFixed(1)
+            : '-'
+        }))
+      });
     } catch (e) {
       console.error(e);
     }
@@ -91,5 +102,19 @@ Page({
   onPullDownRefresh() {
     this.setData({ page: 1 });
     this.loadData().then(() => wx.stopPullDownRefresh());
+  },
+
+  onKeywordInput(e) {
+    this.setData({ keyword: e.detail.value });
+  },
+
+  onSearch() {
+    this.setData({ page: 1 });
+    this.loadFoods();
+  },
+
+  clearKeyword() {
+    this.setData({ keyword: '', page: 1 });
+    this.loadFoods();
   }
 });

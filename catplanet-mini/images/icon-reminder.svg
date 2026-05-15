@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘提醒铃铛图标 -->
+  <!-- 铃铛主体 - 松散手绘线条 -->
+  <path d="M18 20 C18 14, 21 10, 24 10 C27 10, 30 14, 30 20 L32 30 C32 32, 30 33, 28 33 L20 33 C18 33, 16 32, 16 30Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  <!-- 铃铛底部弧线 -->
+  <path d="M14 33 L34 33" fill="none" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round"/>
+  <!-- 铃铛顶部小圆 -->
+  <circle cx="24" cy="9" r="2" fill="#38B8E8" stroke="#2A2A2A" stroke-width="1.5"/>
+  <!-- 铃铛下方摆锤 -->
+  <path d="M22 33 C22 36, 23 37, 24 37 C25 37, 26 36, 26 33" fill="none" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 声波线条 -->
+  <path d="M34 16 C36 18, 36 22, 35 24" fill="none" stroke="#38B8E8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M13 24 C12 22, 12 18, 14 16" fill="none" stroke="#38B8E8" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <!-- 小星星装饰 -->
+  <path d="M37 8 L38 6 L39 8 L38 10Z" fill="#8EBD3C" stroke="none" opacity="0.6"/>
+  <circle cx="10" cy="12" r="1" fill="#FFB8C6" opacity="0.5"/>
+  <!-- 小音符装饰 -->
+  <path d="M38 28 L39 26" fill="none" stroke="#8EBD3C" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+</svg>

@@ -1,0 +1,84 @@
+.page {
+  padding: 24rpx;
+  background: transparent;
+  min-height: 100vh;
+}
+.shop-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 32rpx;
+}
+.section {
+  background: rgba(255, 255, 255, 0.72);
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  border: 1.5rpx solid rgba(0, 0, 0, 0.06);
+}
+.label {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+.char-count {
+  font-weight: 400;
+  color: #999;
+  font-size: 22rpx;
+}
+
+/* Stars */
+.stars {
+  display: flex;
+  gap: 16rpx;
+}
+.star {
+  font-size: 40rpx;
+  opacity: 0.3;
+}
+.star.active {
+  opacity: 1;
+}
+
+/* Tags */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+.tag-chip {
+  padding: 10rpx 24rpx;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: #666;
+  background: #F5F5F5;
+  border: 1rpx solid #EEE;
+}
+.tag-chip.active {
+  background: rgba(56, 184, 232, 0.12);
+  color: #38B8E8;
+  border-color: #38B8E8;
+}
+
+/* Textarea */
+.input-area {
+  width: 100%;
+  height: 240rpx;
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Submit */
+.submit-btn {
+  background: #38B8E8;
+  color: #FFF;
+  text-align: center;
+  padding: 24rpx;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 40rpx;
+  box-shadow: 0 4rpx 16rpx rgba(56, 184, 232, 0.25);
+}

@@ -4,6 +4,10 @@
 spring:
   profiles:
     active: dev
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 30MB
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: Asia/Shanghai
@@ -34,3 +38,7 @@ catplanet:
   qwen-vl:
     api-key: ${DASHSCOPE_API_KEY:sk-074d1cebf6f9481ea6f47fabb37a78af}
     model: ${QWEN_VL_MODEL:qwen-vl-plus}
+  tencent-lbs:
+    key: ${TENCENT_LBS_KEY:BFZBZ-XXXXXX-XXXXX-XXXXX-XXXXX-XXXX}
+  pgc-review:
+    daily-count: ${PGC_DAILY_COUNT:2}

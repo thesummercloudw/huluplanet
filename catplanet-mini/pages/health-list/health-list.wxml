@@ -20,7 +20,7 @@
   <!-- 记录列表 -->
   <view class="list-section" wx:if="{{activeTab === 'list'}}">
     <view class="record-item" wx:for="{{records}}" wx:key="recordId">
-      <view class="record-icon">{{item.typeIcon}}</view>
+      <view class="record-icon"><image class="record-icon-img" src="{{item.typeIcon}}" mode="aspectFit"></image></view>
       <view class="record-info">
         <view class="record-main">
           <text class="record-food">{{item.typeLabel}}</text>
@@ -53,10 +53,17 @@
     <!-- 汇总卡片 -->
     <view class="summary-card" wx:if="{{stats}}">
       <view class="summary-item">
+        <view class="summary-icon-wrap pink">
+          <image class="summary-icon" src="/images/icon-health.svg" mode="aspectFit"></image>
+        </view>
         <text class="summary-value">{{stats.totalCount}}</text>
         <text class="summary-label">就医次数</text>
       </view>
+      <view class="summary-divider"></view>
       <view class="summary-item">
+        <view class="summary-icon-wrap pink">
+          <image class="summary-icon" src="/images/icon-price.svg" mode="aspectFit"></image>
+        </view>
         <text class="summary-value">¥{{stats.totalValue}}</text>
         <text class="summary-label">总花费</text>
       </view>
@@ -64,10 +71,13 @@
 
     <!-- 每日健康记录柱状图 -->
     <view class="chart-card" wx:if="{{stats && stats.dailyStats.length > 0 && days <= 14}}">
-      <view class="chart-title">每日记录数</view>
+      <view class="chart-header">
+        <image class="chart-title-icon" src="/images/icon-chart.svg" mode="aspectFit"></image>
+        <view class="chart-title">每日记录数</view>
+      </view>
       <view class="bar-chart">
         <view class="bar-item" wx:for="{{stats.dailyStats}}" wx:key="date">
-          <view class="bar-fill" style="height: {{item.count / maxBarValue * 100}}%"></view>
+          <view class="bar-fill health-bar" style="height: {{item.count / maxBarValue * 100}}%"></view>
           <text class="bar-value">{{item.count > 0 ? item.count : ''}}</text>
           <text class="bar-label">{{item.date.slice(5)}}</text>
         </view>
@@ -76,9 +86,13 @@
 
     <!-- 类型分布 -->
     <view class="chart-card" wx:if="{{stats && stats.typeDistribution}}">
-      <view class="chart-title">健康类型分布</view>
+      <view class="chart-header">
+        <image class="chart-title-icon" src="/images/icon-distribution.svg" mode="aspectFit"></image>
+        <view class="chart-title">健康类型分布</view>
+      </view>
       <view class="type-list">
         <view class="type-row" wx:for="{{stats.typeDistribution}}" wx:for-index="type" wx:for-item="count" wx:key="type">
+          <view class="type-dot pink"></view>
           <text class="type-name">{{healthTypeNames[type] || type}}</text>
           <view class="type-bar-wrap">
             <view class="type-bar health-bar" style="width: {{count / stats.totalCount * 100}}%"></view>

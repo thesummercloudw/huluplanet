@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘相机图标 - 用于添加/更换头像 -->
+  <!-- 相机机身 -->
+  <path d="M8 18 L8 36 C8 38, 10 40, 12 40 L36 40 C38 40, 40 38, 40 36 L40 18 C40 16, 38 14, 36 14 L32 14 L30 10 C29 8, 19 8, 18 10 L16 14 L12 14 C10 14, 8 16, 8 18Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 镜头 -->
+  <circle cx="24" cy="27" r="8" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2"/>
+  <circle cx="24" cy="27" r="5" fill="rgba(255,255,255,0.6)" stroke="#2A2A2A" stroke-width="1.5"/>
+  <!-- 镜头反光 -->
+  <path d="M21 24 C22 22, 24 23, 23 25" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <!-- 闪光灯 -->
+  <circle cx="34" cy="18" r="2" fill="#FFB8C6" stroke="#2A2A2A" stroke-width="1" opacity="0.8"/>
+  <!-- 快门按钮 -->
+  <circle cx="24" cy="11" r="1.5" fill="#2A2A2A" opacity="0.5"/>
+  <!-- 装饰 -->
+  <path d="M6 10 L7 8 L8 10 L7 12Z" fill="#8EBD3C" stroke="none" opacity="0.6"/>
+  <path d="M42 10 L43 8 L44 10 L43 12Z" fill="#38B8E8" stroke="none" opacity="0.5"/>
+  <circle cx="42" cy="38" r="1" fill="#FFB8C6" opacity="0.4"/>
+</svg>

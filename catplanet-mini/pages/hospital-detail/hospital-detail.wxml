@@ -3,7 +3,7 @@
   <view class="header">
     <view class="hospital-name">{{hospital.name}}</view>
     <view class="hospital-score" wx:if="{{hospital.avgScore > 0}}">⭐ {{hospital.avgScore}} ({{hospital.reviewCount}}条评价)</view>
-    <view class="hospital-address">📍 {{hospital.address}}</view>
+    <view class="hospital-address"><image class="inline-loc-icon" src="/images/icon-location.svg" mode="aspectFit"></image> {{hospital.address}}</view>
     <view class="hospital-hours" wx:if="{{hospital.businessHours}}">🕐 {{hospital.businessHours}}</view>
     <view class="hospital-tags" wx:if="{{hospital.tags && hospital.tags.length > 0}}">
       <text class="tag" wx:for="{{hospital.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
@@ -20,9 +20,13 @@
   <view class="section">
     <view class="section-title">用户评价</view>
     <view class="review-item" wx:for="{{reviews}}" wx:key="reviewId">
+      <view class="review-user-row">
+        <image class="review-avatar" src="{{item.avatar || '/images/cat-icon.svg'}}" mode="aspectFill"></image>
+        <text class="review-nickname">{{item.nickname || '匿名用户'}}</text>
+        <text class="review-time">{{item.createdAt}}</text>
+      </view>
       <view class="review-header">
         <text class="review-score">{{item.score >= 1 ? '⭐' : ''}}{{item.score >= 2 ? '⭐' : ''}}{{item.score >= 3 ? '⭐' : ''}}{{item.score >= 4 ? '⭐' : ''}}{{item.score >= 5 ? '⭐' : ''}}</text>
-        <text class="review-time">{{item.createdAt}}</text>
       </view>
       <view class="review-content" wx:if="{{item.content}}">{{item.content}}</view>
       <view class="review-tags" wx:if="{{item.serviceTags && item.serviceTags.length > 0}}">
@@ -31,4 +35,7 @@
     </view>
     <view class="empty" wx:if="{{reviews.length === 0}}">暂无评价</view>
   </view>
+
+  <!-- 写评价按钮 -->
+  <view class="write-btn" bindtap="goWriteReview">✍️ 写评价</view>
 </view>

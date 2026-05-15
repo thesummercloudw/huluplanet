@@ -1,0 +1,4 @@
+@import '../health-vaccine/health-vaccine.wxss';
+
+.chip-icon { margin-right: 8rpx; }
+.chip-icon-img { width: 28rpx; height: 28rpx; margin-right: 8rpx; }

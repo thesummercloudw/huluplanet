@@ -1,0 +1,92 @@
+<view class="container form-page">
+  <view class="grain-overlay"></view>
+  <view class="form-title"><image class="form-title-icon" src="/images/icon-health-vaccine.svg" mode="aspectFit"></image> 疫苗接种</view>
+
+  <!-- 选猫 -->
+  <view class="form-section">
+    <view class="form-label">选择猫咪</view>
+    <scroll-view class="cat-picker" scroll-x>
+      <view class="cat-chip {{selectedCatId === item.catId ? 'active' : ''}}"
+            wx:for="{{cats}}" wx:key="catId"
+            bindtap="onCatSelect" data-id="{{item.catId}}">
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 疫苗类型快选 -->
+  <view class="form-section">
+    <view class="form-label">疫苗类型</view>
+    <view class="chip-grid">
+      <view class="select-chip {{vaccineName === item ? 'active' : ''}}"
+            wx:for="{{vaccinePresets}}" wx:key="*this"
+            bindtap="onVaccinePreset" data-name="{{item}}">
+        {{item}}
+      </view>
+    </view>
+    <input class="form-input mt-16" placeholder="或输入其他疫苗名称"
+           value="{{vaccineName}}" bindinput="onVaccineInput"/>
+  </view>
+
+  <!-- 第几针 -->
+  <view class="form-section">
+    <view class="form-label">针次</view>
+    <view class="chip-grid">
+      <view class="select-chip {{doseNumber === item.value ? 'active' : ''}}"
+            wx:for="{{doseOptions}}" wx:key="value"
+            bindtap="onDoseSelect" data-dose="{{item.value}}">
+        {{item.label}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 接种日期 -->
+  <view class="form-section">
+    <view class="form-label">接种日期</view>
+    <picker mode="date" value="{{recordDate}}" bindchange="onDateChange">
+      <view class="form-input picker-value">
+        {{recordDate || '选择日期'}}
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 下次接种提醒 -->
+  <view class="form-section">
+    <view class="form-label">下次接种日期 <text class="label-hint">(可选)</text></view>
+    <picker mode="date" value="{{nextDate}}" start="{{recordDate}}" bindchange="onNextDateChange">
+      <view class="form-input picker-value">
+        {{nextDate || '设置提醒日期'}}
+        <text class="picker-arrow">▼</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 医院 -->
+  <view class="form-section">
+    <view class="form-label">接种医院 <text class="label-hint">(可选)</text></view>
+    <input class="form-input" placeholder="宠物医院名称"
+           value="{{hospitalName}}" bindinput="onHospitalInput"/>
+  </view>
+
+  <!-- 费用 -->
+  <view class="form-section">
+    <view class="form-label">费用 <text class="label-hint">(可选)</text></view>
+    <input class="form-input" type="digit" placeholder="元"
+           value="{{cost}}" bindinput="onCostInput"/>
+  </view>
+
+  <!-- 备注 -->
+  <view class="form-section">
+    <view class="form-label">备注 <text class="label-hint">(可选)</text></view>
+    <textarea class="form-textarea" placeholder="接种反应、注意事项等..."
+              value="{{note}}" bindinput="onNoteInput" maxlength="500"/>
+  </view>
+
+  <!-- 提交 -->
+  <view class="form-submit">
+    <button class="submit-btn" bindtap="onSubmit" disabled="{{submitting}}">
+      {{submitting ? '提交中...' : '记录完成'}}
+    </button>
+  </view>
+</view>

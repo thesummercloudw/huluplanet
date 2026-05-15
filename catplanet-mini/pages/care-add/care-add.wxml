@@ -1,5 +1,5 @@
 <view class="container form-page">
-  <view class="form-title">养护记录 🧹</view>
+  <view class="form-title"><image class="form-title-icon" src="/images/icon-care.svg" mode="aspectFit"></image> 养护记录</view>
 
   <!-- 选猫 -->
   <view class="form-section">
@@ -20,7 +20,7 @@
       <view class="type-chip {{careType === item.value ? 'active' : ''}}"
             wx:for="{{careTypes}}" wx:key="value"
             bindtap="onTypeSelect" data-type="{{item.value}}">
-        <text class="type-icon">{{item.icon}}</text>
+        <image class="type-icon-img" src="{{item.icon}}" mode="aspectFit"></image>
         <text class="type-label">{{item.label}}</text>
       </view>
     </view>

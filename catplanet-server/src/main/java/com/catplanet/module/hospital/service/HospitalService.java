@@ -3,6 +3,7 @@ package com.catplanet.module.hospital.service;
 import com.catplanet.module.hospital.entity.Hospital;
 import com.catplanet.module.hospital.entity.HospitalReview;
 import com.catplanet.module.hospital.dto.HospitalReviewRequest;
+import com.catplanet.module.hospital.vo.HospitalReviewVO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,7 +14,7 @@ public interface HospitalService {
 
     Hospital getById(Long hospitalId);
 
-    List<HospitalReview> listReviews(Long hospitalId, int page, int size);
+    List<HospitalReviewVO> listReviews(Long hospitalId, int page, int size);
 
     HospitalReview createReview(HospitalReviewRequest request, Long userId);
 }

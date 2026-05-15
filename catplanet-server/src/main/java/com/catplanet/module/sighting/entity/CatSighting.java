@@ -24,6 +24,7 @@ public class CatSighting {
     private BigDecimal lng;
     private String address;
     private Integer likeCount;
+    private Integer commentCount;
 
     @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;

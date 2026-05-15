@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘评分图标 - 五角星 + 小装饰 -->
+  <!-- 主星星 - 松散手绘线条 -->
+  <path d="M24 8 L28 18 L39 19 L31 27 L33 38 L24 33 L15 38 L17 27 L9 19 L20 18Z" fill="#FFB8C6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 高光弧线 -->
+  <path d="M20 20 C21 18, 23 17, 24 18" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <!-- 小装饰星 -->
+  <path d="M40 10 L41 8 L42 10 L41 12Z" fill="#38B8E8" stroke="none" opacity="0.8"/>
+  <path d="M7 13 L8 11 L9 13 L8 15Z" fill="#8EBD3C" stroke="none" opacity="0.7"/>
+  <!-- 小圆点 -->
+  <circle cx="42" cy="30" r="1.5" fill="#38B8E8" opacity="0.5"/>
+  <circle cx="6" cy="28" r="1.2" fill="#8EBD3C" opacity="0.5"/>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘梳毛图标 - 梳子 + 毛发 -->
+  <!-- 梳子主体 -->
+  <path d="M14 10 L34 10 C36 10, 38 12, 38 14 L38 18 C38 20, 36 22, 34 22 L14 22 C12 22, 10 20, 10 18 L10 14 C10 12, 12 10, 14 10Z" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 梳齿 -->
+  <path d="M14 22 L14 36" fill="none" stroke="#2A2A2A" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M19 22 L19 38" fill="none" stroke="#2A2A2A" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M24 22 L24 40" fill="none" stroke="#2A2A2A" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M29 22 L29 38" fill="none" stroke="#2A2A2A" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M34 22 L34 36" fill="none" stroke="#2A2A2A" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- 毛发飘散 -->
+  <path d="M38 28 C40 26, 42 28, 42 30" fill="none" stroke="#38B8E8" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M40 32 C42 30, 44 32, 43 34" fill="none" stroke="#8EBD3C" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+  <!-- 装饰 -->
+  <path d="M6 14 L7 12 L8 14 L7 16Z" fill="#FFB8C6" stroke="none" opacity="0.6"/>
+  <circle cx="42" cy="14" r="1" fill="#38B8E8" opacity="0.5"/>
+</svg>

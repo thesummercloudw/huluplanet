@@ -11,6 +11,11 @@
     "pages/feeding-add/feeding-add",
     "pages/care-add/care-add",
     "pages/health-add/health-add",
+    "pages/health-vaccine/health-vaccine",
+    "pages/health-deworm/health-deworm",
+    "pages/health-checkup/health-checkup",
+    "pages/health-medicine/health-medicine",
+    "pages/health-weight/health-weight",
     "pages/feeding-list/feeding-list",
     "pages/care-list/care-list",
     "pages/health-list/health-list",
@@ -18,21 +23,23 @@
     "pages/food-detail/food-detail",
     "pages/review-write/review-write",
     "pages/hospital-detail/hospital-detail",
+    "pages/hospital-review-write/hospital-review-write",
     "pages/adoption-detail/adoption-detail",
     "pages/sighting-add/sighting-add",
+    "pages/sighting-detail/sighting-detail",
     "pages/adoption-add/adoption-add"
   ],
   "window": {
-    "navigationBarBackgroundColor": "#C2F2E4",
+    "navigationBarBackgroundColor": "#F7F5ED",
     "navigationBarTitleText": "呼噜星球",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#C2F2E4",
+    "backgroundColor": "#FDFCF8",
     "backgroundTextStyle": "light"
   },
   "tabBar": {
-    "color": "#7ABFB0",
-    "selectedColor": "#35C8B4",
-    "backgroundColor": "#FFFFFF",
+    "color": "#9A9A9A",
+    "selectedColor": "#38B8E8",
+    "backgroundColor": "#FDFCF8",
     "borderStyle": "white",
     "list": [
       {

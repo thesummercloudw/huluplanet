@@ -1,9 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81 81" width="81" height="81">
-  <!-- 猫爪印 - 主肉垫 -->
-  <ellipse cx="40.5" cy="48" rx="12" ry="10" fill="#35C8B4"/>
-  <!-- 四个小肉垫 -->
-  <ellipse cx="28" cy="35" rx="5.5" ry="6.5" fill="#35C8B4"/>
-  <ellipse cx="37" cy="28" rx="5.5" ry="6.5" fill="#35C8B4"/>
-  <ellipse cx="47" cy="28" rx="5.5" ry="6.5" fill="#35C8B4"/>
-  <ellipse cx="55" cy="35" rx="5.5" ry="6.5" fill="#35C8B4"/>
+  <!-- 手绘猫爪印 - 选中态(天蓝) -->
+  <!-- 大肉垫 - 不规则手绘，天蓝填充 -->
+  <path d="M33 48 C30 44, 32 38, 40 37 C48 38, 51 44, 48 48 C46 52, 35 52, 33 48Z" fill="#B8E8F8" stroke="#38B8E8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 四个小肉垫 - 松散圆圈，天蓝填充 -->
+  <path d="M26 37 C25 34, 27 31, 30 32 C33 33, 33 36, 31 38 C29 39, 27 39, 26 37Z" fill="#B8E8F8" stroke="#38B8E8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M34 30 C33 27, 35 24, 38 25 C41 26, 41 29, 39 31 C37 32, 35 32, 34 30Z" fill="#B8E8F8" stroke="#38B8E8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M43 30 C42 27, 44 24, 47 25 C50 26, 50 29, 48 31 C46 32, 44 32, 43 30Z" fill="#B8E8F8" stroke="#38B8E8" stroke-width="2" stroke-linecap="round"/>
+  <path d="M51 37 C50 34, 52 31, 55 32 C58 33, 58 36, 56 38 C54 39, 52 39, 51 37Z" fill="#B8E8F8" stroke="#38B8E8" stroke-width="2" stroke-linecap="round"/>
+  <!-- 小装饰 - 青柠星星 -->
+  <path d="M40 57 L41 55 L42 57 L41 59Z" fill="#8EBD3C" stroke="none"/>
+  <circle cx="20" cy="26" r="1.2" fill="#8EBD3C" opacity="0.6"/>
 </svg>

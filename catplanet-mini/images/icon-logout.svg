@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘退出登录图标 - 门+箭头 -->
+  <!-- 门框主体 -->
+  <path d="M14 10 L14 38 L30 38 L30 10Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <!-- 门的轮廓 - 手绘松散感 -->
+  <path d="M14 10 L30 10 L30 38 L14 38Z" fill="none" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 门把手 -->
+  <circle cx="27" cy="24" r="2" fill="#38B8E8" stroke="#2A2A2A" stroke-width="1.5"/>
+  <!-- 向右箭头 - 表示退出 -->
+  <path d="M32 24 L42 24" fill="none" stroke="#2A2A2A" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M38 20 L42 24 L38 28" fill="none" stroke="#2A2A2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 小星星装饰 -->
+  <path d="M8 14 L9 12 L10 14 L9 16Z" fill="#8EBD3C" stroke="none" opacity="0.6"/>
+  <circle cx="8" cy="34" r="1" fill="#FFB8C6" opacity="0.5"/>
+  <!-- 小线条装饰 -->
+  <path d="M36 34 L38 32" fill="none" stroke="#38B8E8" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+</svg>

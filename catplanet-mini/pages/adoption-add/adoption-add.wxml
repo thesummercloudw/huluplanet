@@ -37,15 +37,35 @@
     </view>
     <view class="form-item">
       <text class="form-label">年龄估计</text>
-      <input class="form-input" placeholder="如：约6月龄、约2岁" bindinput="onInput" data-field="ageEstimate" value="{{form.ageEstimate}}"/>
+      <picker range="{{ageOptions}}" value="{{ageIndex}}" bindchange="onAgePick">
+        <view class="picker-value {{ageIndex >= 0 ? '' : 'placeholder'}}">
+          {{ageIndex >= 0 ? ageOptions[ageIndex] : '请选择年龄'}}
+          <text class="picker-arrow">▸</text>
+        </view>
+      </picker>
     </view>
     <view class="form-item">
       <text class="form-label">品种估计</text>
-      <input class="form-input" placeholder="如：橘猫、英短蓝猫" bindinput="onInput" data-field="breedEstimate" value="{{form.breedEstimate}}"/>
+      <picker range="{{breedOptions}}" value="{{breedIndex}}" bindchange="onBreedPick">
+        <view class="picker-value {{breedIndex >= 0 ? '' : 'placeholder'}}">
+          {{breedIndex >= 0 ? breedOptions[breedIndex] : '请选择品种'}}
+          <text class="picker-arrow">▸</text>
+        </view>
+      </picker>
     </view>
     <view class="form-item">
-      <text class="form-label">所在城市 *</text>
-      <input class="form-input" placeholder="如：南京" bindinput="onInput" data-field="city" value="{{form.city}}"/>
+      <text class="form-label">所在地区 *</text>
+      <picker mode="region" value="{{regionValue}}" bindchange="onRegionChange">
+        <view class="region-picker-value {{regionText ? '' : 'placeholder'}}">
+          {{regionText || '请选择省份/城市/区县'}}
+          <text class="picker-arrow">▸</text>
+        </view>
+      </picker>
+      <view class="location-btn" bindtap="getLocation">
+        <image class="loc-icon" src="/images/icon-location.svg" mode="aspectFit"></image>
+        <text>使用当前定位</text>
+      </view>
+      <text class="memory-hint" wx:if="{{hasMemory && regionText}}">已自动填入上次信息</text>
     </view>
   </view>
 
@@ -67,15 +87,30 @@
     <view class="section-title">健康状况</view>
     <view class="form-item">
       <text class="form-label">疫苗</text>
-      <input class="form-input" placeholder="如：已打3针、未打" bindinput="onHealthInput" data-field="vaccine" value="{{form.healthStatus.vaccine}}"/>
+      <picker range="{{vaccineOptions}}" value="{{vaccineIndex}}" bindchange="onVaccinePick">
+        <view class="picker-value {{vaccineIndex >= 0 ? '' : 'placeholder'}}">
+          {{vaccineIndex >= 0 ? vaccineOptions[vaccineIndex] : '请选择疫苗情况'}}
+          <text class="picker-arrow">▸</text>
+        </view>
+      </picker>
     </view>
     <view class="form-item">
       <text class="form-label">驱虫</text>
-      <input class="form-input" placeholder="如：已做、未做" bindinput="onHealthInput" data-field="deworm" value="{{form.healthStatus.deworm}}"/>
+      <picker range="{{dewormOptions}}" value="{{dewormIndex}}" bindchange="onDewormPick">
+        <view class="picker-value {{dewormIndex >= 0 ? '' : 'placeholder'}}">
+          {{dewormIndex >= 0 ? dewormOptions[dewormIndex] : '请选择驱虫情况'}}
+          <text class="picker-arrow">▸</text>
+        </view>
+      </picker>
     </view>
     <view class="form-item">
       <text class="form-label">绝育</text>
-      <input class="form-input" placeholder="如：已绝育、未绝育" bindinput="onHealthInput" data-field="neutered" value="{{form.healthStatus.neutered}}"/>
+      <picker range="{{neuteredOptions}}" value="{{neuteredIndex}}" bindchange="onNeuteredPick">
+        <view class="picker-value {{neuteredIndex >= 0 ? '' : 'placeholder'}}">
+          {{neuteredIndex >= 0 ? neuteredOptions[neuteredIndex] : '请选择绝育情况'}}
+          <text class="picker-arrow">▸</text>
+        </view>
+      </picker>
     </view>
   </view>
 
@@ -86,6 +121,7 @@
       <text class="form-label">联系方式 *</text>
       <input class="form-input" placeholder="微信号/手机号" bindinput="onInput" data-field="contactMethod" value="{{form.contactMethod}}"/>
     </view>
+    <text class="memory-hint" wx:if="{{hasMemory && form.contactMethod}}">已自动填入上次信息</text>
     <text class="contact-tip">联系方式仅管理员可见，不会公开展示</text>
   </view>
 

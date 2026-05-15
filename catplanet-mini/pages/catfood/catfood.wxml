@@ -1,61 +1,105 @@
 <view class="page">
-  <!-- 磨砂噪点纹理层 -->
+  <!-- 噪点纹理层 -->
   <view class="grain-overlay"></view>
+
+  <!-- 页面顶部装饰 -->
+  <view class="page-deco-top">
+    <text class="deco-star">✦</text>
+    <text class="deco-sparkle">✧</text>
+  </view>
 
   <!-- Tabs -->
   <view class="tabs">
-    <view class="tab {{activeTab==='all'?'active':''}}" bindtap="switchTab" data-tab="all">全部猫粮</view>
-    <view class="tab {{activeTab==='pgc'?'active':''}}" bindtap="switchTab" data-tab="pgc">精选测评</view>
+    <view class="tab {{activeTab==='all'?'active':''}}" bindtap="switchTab" data-tab="all">🍱 全部猫粮</view>
+    <view class="tab {{activeTab==='pgc'?'active':''}}" bindtap="switchTab" data-tab="pgc">📝 精选测评</view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view class="search-bar" wx:if="{{activeTab==='all'}}">
+    <text class="search-icon">🔍</text>
+    <input class="search-input" placeholder="搜索猫粮名称或品牌..." value="{{keyword}}" bindinput="onKeywordInput" bindconfirm="onSearch" confirm-type="search" />
+    <view class="search-clear" wx:if="{{keyword}}" bindtap="clearKeyword">✕</view>
   </view>
 
   <!-- 筛选栏 -->
   <view class="filters" wx:if="{{activeTab==='all'}}">
     <view class="filter-row">
-      <view class="chip {{filters.foodType==='main'?'active':''}}" bindtap="onFilterType" data-type="main">主粮</view>
-      <view class="chip {{filters.foodType==='wet'?'active':''}}" bindtap="onFilterType" data-type="wet">湿粮</view>
-      <view class="chip {{filters.foodType==='snack'?'active':''}}" bindtap="onFilterType" data-type="snack">零食</view>
-      <view class="chip {{filters.foodType==='freeze_dried'?'active':''}}" bindtap="onFilterType" data-type="freeze_dried">冻干</view>
+      <view class="chip {{filters.foodType==='main'?'active':''}}" bindtap="onFilterType" data-type="main">🥣 主粮</view>
+      <view class="chip {{filters.foodType==='wet'?'active':''}}" bindtap="onFilterType" data-type="wet">🥫 湿粮</view>
+      <view class="chip {{filters.foodType==='snack'?'active':''}}" bindtap="onFilterType" data-type="snack">🐟 零食</view>
+      <view class="chip {{filters.foodType==='freeze_dried'?'active':''}}" bindtap="onFilterType" data-type="freeze_dried">❄️ 冻干</view>
     </view>
     <view class="filter-row">
-      <view class="chip {{filters.ageStage==='kitten'?'active':''}}" bindtap="onFilterAge" data-age="kitten">幼猫</view>
-      <view class="chip {{filters.ageStage==='adult'?'active':''}}" bindtap="onFilterAge" data-age="adult">成猫</view>
-      <view class="chip {{filters.ageStage==='all'?'active':''}}" bindtap="onFilterAge" data-age="all">全阶段</view>
+      <view class="chip {{filters.ageStage==='kitten'?'active':''}}" bindtap="onFilterAge" data-age="kitten">🐱 幼猫</view>
+      <view class="chip {{filters.ageStage==='adult'?'active':''}}" bindtap="onFilterAge" data-age="adult">🐈 成猫</view>
+      <view class="chip {{filters.ageStage==='all'?'active':''}}" bindtap="onFilterAge" data-age="all">✨ 全阶段</view>
     </view>
   </view>
 
   <!-- 全部猫粮列表 -->
   <view class="food-list" wx:if="{{activeTab==='all'}}">
     <view class="food-card" wx:for="{{foods}}" wx:key="foodId" bindtap="goDetail" data-id="{{item.foodId}}">
-      <image class="food-img" src="{{item.image || '/images/food-placeholder.png'}}" mode="aspectFill"></image>
+      <view class="food-img-wrap">
+        <image class="food-img" src="{{item.image || '/images/food-placeholder.png'}}" mode="aspectFill" lazy-load></image>
+      </view>
       <view class="food-info">
-        <view class="food-brand">{{item.brand}}</view>
+        <text class="food-brand">{{item.brand}}</text>
         <view class="food-name">{{item.name}}</view>
         <view class="food-meta">
-          <text class="food-score" wx:if="{{item.avgScore > 0}}">⭐ {{item.avgScore}}</text>
+          <view class="score-badge" wx:if="{{item.avgScore > 0}}">
+            <image class="score-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+            <text class="score-num">{{item.avgScore}}</text>
+          </view>
           <text class="food-reviews">{{item.reviewCount}}条评价</text>
-          <text class="food-price" wx:if="{{item.priceRange}}">{{item.priceRange}}</text>
+        </view>
+        <view class="food-stats" wx:if="{{item.proteinPct}}">
+          <text class="stat-item">蛋白 {{item.proteinPct}}%</text>
+          <text class="stat-item" wx:if="{{item.fatPct}}">脂肪 {{item.fatPct}}%</text>
+          <text class="stat-price" wx:if="{{item.priceRange}}">{{item.priceRange}}</text>
         </view>
         <view class="food-tags" wx:if="{{item.tags && item.tags.length > 0}}">
           <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
         </view>
       </view>
     </view>
-    <view class="empty" wx:if="{{foods.length === 0 && !loading}}">暂无猫粮数据</view>
+    <view class="empty" wx:if="{{foods.length === 0 && !loading}}">
+      <text class="empty-icon">🐾</text>
+      <text class="empty-text">暂无猫粮数据</text>
+    </view>
   </view>
 
   <!-- 精选测评列表 -->
   <view class="pgc-list" wx:if="{{activeTab==='pgc'}}">
     <view class="pgc-card" wx:for="{{pgcList}}" wx:key="reviewId" bindtap="goPgcDetail" data-foodid="{{item.foodId}}">
-      <image class="pgc-cover" src="{{item.cover || '/images/review-placeholder.png'}}" mode="aspectFill"></image>
+      <image class="pgc-cover" src="{{item.cover || '/images/review-placeholder.png'}}" mode="aspectFill" lazy-load></image>
       <view class="pgc-content">
         <view class="pgc-title">{{item.title}}</view>
         <view class="pgc-scores">
-          <text>原料 {{item.scoreIngredient}}</text>
-          <text>营养 {{item.scoreNutrition}}</text>
-          <text>性价比 {{item.scoreValue}}</text>
+          <view class="pgc-score-item">
+            <text class="pgc-score-label">原料</text>
+            <view class="pgc-score-bar-track"><view class="pgc-score-bar" style="width: {{item.scoreIngredient * 10}}%"></view></view>
+            <text class="pgc-score-val">{{item.scoreIngredient}}</text>
+          </view>
+          <view class="pgc-score-item">
+            <text class="pgc-score-label">营养</text>
+            <view class="pgc-score-bar-track"><view class="pgc-score-bar" style="width: {{item.scoreNutrition * 10}}%"></view></view>
+            <text class="pgc-score-val">{{item.scoreNutrition}}</text>
+          </view>
+          <view class="pgc-score-item">
+            <text class="pgc-score-label">性价比</text>
+            <view class="pgc-score-bar-track"><view class="pgc-score-bar" style="width: {{item.scoreValue * 10}}%"></view></view>
+            <text class="pgc-score-val">{{item.scoreValue}}</text>
+          </view>
+        </view>
+        <view class="pgc-footer">
+          <text class="pgc-avg">综合 {{item.avgPgcScore || '-'}}</text>
+          <text class="pgc-action">查看详情 →</text>
         </view>
       </view>
     </view>
-    <view class="empty" wx:if="{{pgcList.length === 0}}">暂无精选测评</view>
+    <view class="empty" wx:if="{{pgcList.length === 0}}">
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无精选测评</text>
+    </view>
   </view>
 </view>

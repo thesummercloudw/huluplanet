@@ -1,6 +1,9 @@
 const http = require('../../utils/request');
 const app = getApp();
 
+const FOOD_HISTORY_KEY = 'feeding_food_name_history';
+const MAX_HISTORY = 10;
+
 Page({
   data: {
     cats: [],
@@ -15,11 +18,37 @@ Page({
       { value: 'dry', label: '干粮' }
     ],
     quickAmounts: [30, 50, 80],
-    submitting: false
+    submitting: false,
+    foodHistory: []
   },
 
   onLoad() {
     this.loadCats();
+    this.loadFoodHistory();
+  },
+
+  loadFoodHistory() {
+    const history = wx.getStorageSync(FOOD_HISTORY_KEY) || [];
+    this.setData({ foodHistory: history });
+  },
+
+  saveFoodHistory(name) {
+    if (!name) return;
+    let history = wx.getStorageSync(FOOD_HISTORY_KEY) || [];
+    // 去重：如果已存在则移到最前
+    history = history.filter(item => item !== name);
+    history.unshift(name);
+    // 限制数量
+    if (history.length > MAX_HISTORY) {
+      history = history.slice(0, MAX_HISTORY);
+    }
+    wx.setStorageSync(FOOD_HISTORY_KEY, history);
+    this.setData({ foodHistory: history });
+  },
+
+  onFoodHistoryTap(e) {
+    const name = e.currentTarget.dataset.name;
+    this.setData({ foodName: name });
   },
 
   async loadCats() {
@@ -65,12 +94,14 @@ Page({
 
     this.setData({ submitting: true });
     try {
+      const trimmedName = foodName.trim();
       await http.post('/api/records/feeding', {
         catId: selectedCatId,
-        foodName: foodName.trim(),
+        foodName: trimmedName,
         amountG: amountG ? Number(amountG) : null,
         mealType
       });
+      this.saveFoodHistory(trimmedName);
       wx.showToast({ title: '记录成功 🎉', icon: 'none' });
       setTimeout(() => wx.navigateBack(), 800);
     } catch (e) {

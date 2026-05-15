@@ -1,4 +1,5 @@
 const http = require('../../utils/request');
+const { resolveImage } = require('../../utils/request');
 
 Page({
   data: {
@@ -14,18 +15,34 @@ Page({
     }
   },
 
+  onShow() {
+    if (this.data.hospitalId) {
+      this.loadDetail(this.data.hospitalId);
+    }
+  },
+
   async loadDetail(hospitalId) {
     try {
       const res = await http.get(`/api/hospitals/${hospitalId}`);
       if (res) {
         this.setData({
           hospital: res.hospital,
-          reviews: res.reviews || []
+          reviews: (res.reviews || []).map(r => ({
+            ...r,
+            avatar: r.avatar ? resolveImage(r.avatar) : ''
+          }))
         });
       }
     } catch (e) {
       console.error(e);
     }
+  },
+
+  goWriteReview() {
+    const name = encodeURIComponent(this.data.hospital.name || '');
+    wx.navigateTo({
+      url: `/pages/hospital-review-write/hospital-review-write?hospitalId=${this.data.hospitalId}&name=${name}`
+    });
   },
 
   openNavigation() {

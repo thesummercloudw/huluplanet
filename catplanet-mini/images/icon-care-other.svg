@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘其他记录图标 - 便签纸 + 铅笔 -->
+  <!-- 便签纸 -->
+  <path d="M12 8 L36 8 L36 40 L12 40Z" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  <!-- 便签纸折角 -->
+  <path d="M28 8 L36 8 L36 16Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <!-- 横线 -->
+  <path d="M16 18 L32 18.3" fill="none" stroke="#2A2A2A" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+  <path d="M16 24 L30 24.2" fill="none" stroke="#2A2A2A" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+  <path d="M16 30 L28 29.8" fill="none" stroke="#2A2A2A" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+  <!-- 铅笔小装饰 -->
+  <path d="M34 32 L40 26" fill="none" stroke="#38B8E8" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M40 26 L41 25" fill="none" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 装饰 -->
+  <path d="M8 14 L9 12 L10 14 L9 16Z" fill="#FFB8C6" stroke="none" opacity="0.6"/>
+  <circle cx="40" cy="40" r="1" fill="#8EBD3C" opacity="0.5"/>
+</svg>

@@ -2,35 +2,45 @@
   <!-- 磨砂噪点纹理层 -->
   <view class="grain-overlay"></view>
 
-  <!-- 顶部星球头 -->
-  <view class="planet-header">
-    <image class="planet-logo" src="/images/logo.svg" mode="aspectFit"></image>
-    <text class="planet-name">{{familyName || '我的星球'}}</text>
-  </view>
-
-  <!-- 猫咪卡片轮播 -->
-  <scroll-view class="cat-scroll" scroll-x wx:if="{{cats.length > 0}}">
-    <view class="cat-card" wx:for="{{cats}}" wx:key="catId" bindtap="goCatDetail" data-id="{{item.catId}}">
-      <image class="cat-avatar" src="{{item.avatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSI2NCIgeT0iNzYiIGZvbnQtc2l6ZT0iNTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkLA8L3RleHQ+PC9zdmc+'}}" mode="aspectFill"/>
-      <text class="cat-name">{{item.name}}</text>
+  <!-- 家庭成员区 - 卡片式布局 -->
+  <view class="family-members-card">
+    <view class="family-members-header">
+      <image class="family-logo" src="/images/logo.svg" mode="aspectFit"></image>
+      <text class="family-members-text">家庭成员</text>
+      <view class="family-members-header-line"></view>
     </view>
-
-  </scroll-view>
+    <scroll-view class="family-members-scroll" scroll-x enhanced show-scrollbar="{{false}}">
+      <view class="family-members-list">
+        <view class="member-cat" wx:for="{{cats}}" wx:key="catId" bindtap="goCatDetail" data-id="{{item.catId}}">
+          <view class="member-cat-avatar-wrap">
+            <image class="member-cat-avatar" src="{{item.avatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMTI4IDEyOCI+PGNpcmNsZSBjeD0iNjQiIGN5PSI2NCIgcj0iNjQiIGZpbGw9IiNmNWY1ZjUiLz48dGV4dCB4PSI2NCIgeT0iNzYiIGZvbnQtc2l6ZT0iNTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPvCfkLA8L3RleHQ+PC9zdmc+'}}" mode="aspectFill" lazy-load/>
+          </view>
+          <text class="member-cat-name">{{item.name}}</text>
+        </view>
+        <view class="member-cat member-cat-add" bindtap="goAddCat">
+          <view class="member-cat-avatar-wrap member-cat-add-wrap">
+            <text class="member-cat-add-icon">+</text>
+          </view>
+          <text class="member-cat-name">添加</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
 
   <!-- 快捷记录区 -->
   <view class="quick-actions">
     <view class="quick-title">快捷记录</view>
     <view class="quick-grid">
       <view class="quick-item" bindtap="goFeeding">
-        <text class="quick-icon">🍗</text>
+        <image class="quick-img-icon" src="/images/icon-feeding.svg" mode="aspectFit"></image>
         <text class="quick-label">喂食</text>
       </view>
       <view class="quick-item" bindtap="goCare">
-        <text class="quick-icon">🧹</text>
+        <image class="quick-img-icon" src="/images/icon-care.svg" mode="aspectFit"></image>
         <text class="quick-label">养护</text>
       </view>
       <view class="quick-item" bindtap="goHealth">
-        <text class="quick-icon">💉</text>
+        <image class="quick-img-icon" src="/images/icon-health.svg" mode="aspectFit"></image>
         <text class="quick-label">健康</text>
       </view>
       <view class="quick-item" bindtap="goAddCat">
@@ -45,18 +55,49 @@
     </view>
   </view>
 
-  <!-- 家庭动态 Timeline -->
-  <view class="timeline-section" wx:if="{{timeline.length > 0}}">
-    <view class="section-title">家庭动态</view>
-    <view class="timeline-list">
-      <view class="timeline-item" wx:for="{{timeline}}" wx:key="recordId">
-        <view class="timeline-dot {{item.type}}"></view>
-        <view class="timeline-content">
-          <text class="timeline-cat">{{item.catName}}</text>
-          <text class="timeline-summary">{{item.summary}}</text>
-          <text class="timeline-time">{{item.timeStr}}</text>
+  <!-- 家庭动态 • 手账风 -->
+  <view class="journal-section" wx:if="{{timeline.length > 0}}">
+    <view class="journal-header">
+      <image class="journal-header-icon" src="/images/icon-journal.svg" mode="aspectFit"></image>
+      <text class="journal-title">家庭手账</text>
+      <view class="journal-header-line"></view>
+      <view class="journal-header-deco2">☆</view>
+    </view>
+
+    <view class="journal-body">
+      <block wx:for="{{timeline}}" wx:key="label" wx:for-item="group" wx:for-index="gIdx">
+        <view wx:if="{{timelineExpanded || group.items[0].gi < 3}}">
+          <!-- 日期分组头（手账日期贴纸） -->
+          <view class="journal-date-tag">
+            <view class="journal-date-tape"></view>
+            <text class="journal-date-text">{{group.label}}</text>
+          </view>
+
+          <!-- 记录卡片列表 -->
+          <view class="journal-cards">
+            <view class="journal-card journal-card-{{item.typeColor}}" wx:for="{{group.items}}" wx:key="recordId" wx:if="{{timelineExpanded || item.gi < 3}}">
+              <view class="journal-card-pin"></view>
+              <view class="journal-card-top">
+                <image class="journal-emoji-img" src="{{item.emoji}}" mode="aspectFit"></image>
+                <view class="journal-badge journal-badge-{{item.typeColor}}">{{item.typeLabel}}</view>
+                <text class="journal-hour">{{item.hourMin}}</text>
+              </view>
+              <view class="journal-card-body">
+                <text class="journal-cat-name">{{item.catName}}</text>
+                <text class="journal-summary">{{item.summary}}</text>
+              </view>
+              <view class="journal-card-footer">
+                <text class="journal-time-ago">{{item.timeStr}}</text>
+                <view class="journal-card-doodle">~ ~</view>
+              </view>
+            </view>
+          </view>
         </view>
-      </view>
+      </block>
+    </view>
+
+    <view class="journal-toggle" wx:if="{{timelineCount > 3}}" bindtap="toggleTimeline">
+      <text class="journal-toggle-text">{{timelineExpanded ? '↑ 收起手账' : '↓ 翻看更多（共' + timelineCount + '条）'}}</text>
     </view>
   </view>
 
@@ -67,12 +108,21 @@
       <view class="sighting-add-btn" bindtap="goSightingAdd">+ 发现</view>
     </view>
     <view class="sighting-list" wx:if="{{sightings.length > 0}}">
-      <view class="sighting-item" wx:for="{{sightings}}" wx:key="sightingId">
-        <image class="sighting-img" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="sighting-item" wx:for="{{sightings}}" wx:key="sightingId" bindtap="goSightingDetail" data-id="{{item.sightingId}}">
+        <image class="sighting-img" src="{{item.image}}" mode="aspectFill" lazy-load></image>
         <view class="sighting-info">
-          <text class="sighting-address">📍 {{item.address || '未知地点'}}</text>
+          <view class="sighting-publisher" wx:if="{{item.nickname}}">
+            <text class="sighting-publisher-name">{{item.nickname}}</text>
+          </view>
+          <view class="sighting-address"><image class="inline-loc-icon" src="/images/icon-location.svg" mode="aspectFit"></image> {{item.address || '未知地点'}}</view>
           <text class="sighting-content" wx:if="{{item.content}}">{{item.content}}</text>
-          <text class="sighting-time">{{item.timeStr}}</text>
+          <view class="sighting-meta">
+            <text class="sighting-time">{{item.timeStr}}</text>
+            <view class="sighting-comment-wrap">
+              <image class="sighting-comment-icon" src="/images/icon-comment.svg" mode="aspectFit"></image>
+              <text class="sighting-comment-count" wx:if="{{item.commentCount}}">{{item.commentCount}}</text>
+            </view>
+          </view>
         </view>
       </view>
     </view>
@@ -82,31 +132,6 @@
     </view>
   </view>
 
-  <!-- 等家的猫咪 -->
-  <view class="adoption-section">
-    <view class="adoption-header">
-      <view class="section-title">❤️ 等家的猫咪</view>
-      <view class="adoption-add-btn" bindtap="goAdoptionAdd">+ 发布领养</view>
-    </view>
-    <view class="adoption-grid" wx:if="{{adoptionCats.length > 0}}">
-      <view class="adoption-card" wx:for="{{adoptionCats}}" wx:key="adoptId" bindtap="goAdoptionDetail" data-id="{{item.adoptId}}">
-        <image class="adoption-cover" src="{{item.cover || '/images/cat-icon.svg'}}" mode="aspectFill"></image>
-        <view class="adoption-info">
-          <view class="adoption-name">{{item.name}}</view>
-          <view class="adoption-meta">
-            <text wx:if="{{item.gender === 'male'}}">♂</text>
-            <text wx:if="{{item.gender === 'female'}}">♀</text>
-            <text wx:if="{{item.ageEstimate}}">{{item.ageEstimate}}</text>
-          </view>
-          <view class="adoption-city" wx:if="{{item.city}}">📍 {{item.city}}</view>
-        </view>
-      </view>
-    </view>
-    <view class="adoption-empty" wx:if="{{adoptionCats.length === 0}}">
-      <text class="adoption-empty-text">暂无等家的猫咪</text>
-      <text class="adoption-empty-sub">发布领养信息，帮助流浪猫找家~</text>
-    </view>
-  </view>
 
   <!-- 空状态 -->
   <view class="empty-state" wx:if="{{cats.length === 0 && !loading}}">

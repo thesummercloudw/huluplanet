@@ -6,6 +6,7 @@ import com.catplanet.module.hospital.dto.HospitalReviewRequest;
 import com.catplanet.module.hospital.entity.Hospital;
 import com.catplanet.module.hospital.entity.HospitalReview;
 import com.catplanet.module.hospital.service.HospitalService;
+import com.catplanet.module.hospital.vo.HospitalReviewVO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class HospitalController {
     @GetMapping("/{hospitalId}")
     public Result<Map<String, Object>> detail(@PathVariable Long hospitalId) {
         Hospital hospital = hospitalService.getById(hospitalId);
-        List<HospitalReview> reviews = hospitalService.listReviews(hospitalId, 1, 10);
+        List<HospitalReviewVO> reviews = hospitalService.listReviews(hospitalId, 1, 10);
 
         Map<String, Object> result = new HashMap<>();
         result.put("hospital", hospital);
@@ -45,7 +46,7 @@ public class HospitalController {
     }
 
     @GetMapping("/{hospitalId}/reviews")
-    public Result<List<HospitalReview>> reviews(
+    public Result<List<HospitalReviewVO>> reviews(
             @PathVariable Long hospitalId,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int size) {

@@ -18,12 +18,12 @@ Page({
       other: '其他'
     },
     careTypeIcons: {
-      litter: '🧹',
-      bath: '🛁',
-      grooming: '✨',
-      nail: '✂️',
-      play: '🎾',
-      other: '📝'
+      litter: '/images/icon-care-litter.svg',
+      bath: '/images/icon-care-bath.svg',
+      grooming: '/images/icon-care-grooming.svg',
+      nail: '/images/icon-care-nail.svg',
+      play: '/images/icon-care-play.svg',
+      other: '/images/icon-care-other.svg'
     }
   },
 
@@ -74,7 +74,7 @@ Page({
           ...r,
           timeStr: this.formatTime(r.doneAt),
           typeLabel: this.data.careTypeNames[r.careType] || r.careType,
-          typeIcon: this.data.careTypeIcons[r.careType] || '📝'
+          typeIcon: this.data.careTypeIcons[r.careType] || '/images/icon-care-other.svg'
         }))
       });
     } catch (e) {

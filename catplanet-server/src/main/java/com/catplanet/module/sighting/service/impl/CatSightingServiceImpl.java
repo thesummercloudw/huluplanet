@@ -2,6 +2,7 @@ package com.catplanet.module.sighting.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.catplanet.common.exception.BizException;
+import com.catplanet.common.result.ResultCode;
 import com.catplanet.module.sighting.dto.SightingRequest;
 import com.catplanet.module.sighting.entity.CatSighting;
 import com.catplanet.module.sighting.mapper.CatSightingMapper;
@@ -38,6 +39,15 @@ public class CatSightingServiceImpl implements CatSightingService {
                         .orderByDesc(CatSighting::getCreatedAt)
                         .last("LIMIT " + limit)
         );
+    }
+
+    @Override
+    public CatSighting getById(Long sightingId) {
+        CatSighting sighting = sightingMapper.selectById(sightingId);
+        if (sighting == null) {
+            throw new BizException(ResultCode.NOT_FOUND);
+        }
+        return sighting;
     }
 
     @Override

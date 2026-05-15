@@ -6,12 +6,12 @@ Page({
     selectedCatId: null,
     careType: '',
     careTypes: [
-      { value: 'litter', label: '清理猫砂', icon: '🧹' },
-      { value: 'bath', label: '洗澡', icon: '🛁' },
-      { value: 'grooming', label: '梳毛', icon: '✨' },
-      { value: 'nail', label: '剪指甲', icon: '✂️' },
-      { value: 'play', label: '陪玩', icon: '🎾' },
-      { value: 'other', label: '其他', icon: '📝' }
+      { value: 'litter', label: '清理猫砂', icon: '/images/icon-care-litter.svg' },
+      { value: 'bath', label: '洗澡', icon: '/images/icon-care-bath.svg' },
+      { value: 'grooming', label: '梳毛', icon: '/images/icon-care-grooming.svg' },
+      { value: 'nail', label: '剪指甲', icon: '/images/icon-care-nail.svg' },
+      { value: 'play', label: '陪玩', icon: '/images/icon-care-play.svg' },
+      { value: 'other', label: '其他', icon: '/images/icon-care-other.svg' }
     ],
     note: '',
     submitting: false
@@ -34,7 +34,7 @@ Page({
   },
 
   onCatSelect(e) {
-    this.setData({ selectedCatId: Number(e.currentTarget.dataset.id) });
+    this.setData({ selectedCatId: e.currentTarget.dataset.id });
   },
 
   onTypeSelect(e) {

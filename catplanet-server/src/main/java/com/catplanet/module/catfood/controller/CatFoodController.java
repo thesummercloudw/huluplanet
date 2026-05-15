@@ -3,9 +3,9 @@ package com.catplanet.module.catfood.controller;
 import com.catplanet.common.result.Result;
 import com.catplanet.module.catfood.entity.CatFood;
 import com.catplanet.module.catfood.entity.PgcReview;
-import com.catplanet.module.catfood.entity.UgcShortReview;
 import com.catplanet.module.catfood.service.CatFoodService;
 import com.catplanet.module.catfood.service.UgcReviewService;
+import com.catplanet.module.catfood.vo.UgcReviewVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +26,10 @@ public class CatFoodController {
             @RequestParam(required = false) String foodType,
             @RequestParam(required = false) String ageStage,
             @RequestParam(required = false) String brand,
+            @RequestParam(required = false) String keyword,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int size) {
-        return Result.ok(catFoodService.list(foodType, ageStage, brand, page, size));
+        return Result.ok(catFoodService.list(foodType, ageStage, brand, keyword, page, size));
     }
 
     @GetMapping("/{foodId}")
@@ -38,7 +39,7 @@ public class CatFoodController {
             return Result.ok(null);
         }
         PgcReview pgc = catFoodService.getPgcReview(foodId);
-        List<UgcShortReview> ugcList = ugcReviewService.listByFood(foodId, 1, 10);
+        List<UgcReviewVO> ugcList = ugcReviewService.listByFood(foodId, 1, 10);
 
         Map<String, Object> result = new HashMap<>();
         result.put("food", food);
@@ -48,7 +49,7 @@ public class CatFoodController {
     }
 
     @GetMapping("/{foodId}/reviews")
-    public Result<List<UgcShortReview>> listReviews(
+    public Result<List<UgcReviewVO>> listReviews(
             @PathVariable Long foodId,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "20") int size) {

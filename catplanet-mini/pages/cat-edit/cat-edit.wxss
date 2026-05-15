@@ -1,12 +1,50 @@
-.edit-page {
-  padding-bottom: 60rpx;
+/* ======== 猫咪编辑表单 - 手绘涂鸦风 ======== */
+.form-page { padding-bottom: 60rpx; }
+
+.form-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-bottom: 40rpx;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+}
+.form-title-icon { width: 40rpx; height: 40rpx; margin-right: 8rpx; }
+
+.form-section { margin-bottom: 36rpx; }
+
+.form-label {
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  margin-bottom: 16rpx;
+}
+.required-star { color: #FF6B6B; font-weight: 700; }
+
+.form-input {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 24rpx 28rpx;
+  font-size: 28rpx;
+  color: var(--color-text);
+  box-shadow: var(--shadow-card);
+  box-sizing: border-box;
+  width: 100%;
+  height: 88rpx;
+  line-height: 40rpx;
 }
 
-/* 头像选择 */
+.picker-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.picker-arrow { font-size: 20rpx; color: var(--color-text-secondary); }
+.placeholder-text { color: var(--color-placeholder); }
+
+/* 头像区域 */
 .avatar-section {
   display: flex;
   justify-content: center;
-  margin-bottom: 40rpx;
 }
 
 .avatar-wrapper {
@@ -15,14 +53,11 @@
   border-radius: 50%;
   overflow: hidden;
   position: relative;
-  background: var(--color-card);
-  border: 4rpx dashed #ccc;
+  background: rgba(56, 184, 232, 0.05);
+  border: 3rpx dashed rgba(56, 184, 232, 0.4);
 }
 
-.avatar-img {
-  width: 100%;
-  height: 100%;
-}
+.avatar-img { width: 100%; height: 100%; }
 
 .avatar-placeholder {
   width: 100%;
@@ -33,8 +68,9 @@
   justify-content: center;
 }
 
-.avatar-icon {
-  font-size: 48rpx;
+.avatar-icon-svg {
+  width: 48rpx;
+  height: 48rpx;
   margin-bottom: 8rpx;
 }
 
@@ -45,10 +81,8 @@
 
 .avatar-loading {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
@@ -57,63 +91,36 @@
   font-size: 22rpx;
 }
 
-.form-group {
-  margin-bottom: 32rpx;
-}
-
-.form-label {
-  display: block;
-  font-size: 26rpx;
-  color: var(--color-text-secondary);
-  margin-bottom: 12rpx;
-}
-
-.form-input {
-  width: 100%;
-  height: 88rpx;
-  background: var(--color-card);
-  border-radius: var(--radius-md);
-  padding: 0 28rpx;
-  font-size: 30rpx;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-}
-
-.picker-value {
-  line-height: 88rpx;
-  color: var(--color-text);
-}
-
+/* 开关行 */
 .row-group {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--color-card);
   border-radius: var(--radius-md);
-  padding: 20rpx 28rpx;
+  padding: 24rpx 28rpx;
+  box-shadow: var(--shadow-card);
 }
-
-.row-group .form-label {
-  margin-bottom: 0;
+.row-label {
   font-size: 30rpx;
   color: var(--color-text);
 }
 
+/* 提交按钮 */
+.form-submit { margin-top: 60rpx; }
 .submit-btn {
-  margin-top: 48rpx;
-  width: 100%;
-  height: 96rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
+  background: var(--color-accent) !important;
+  color: #fff !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 30rpx;
+  padding: 24rpx 0;
+  border: none;
 }
+.submit-btn[disabled] { opacity: 0.6; }
+.submit-btn::after { border: none; }
 
 /* 品种识别 */
-.breed-picker-wrapper {
-  position: relative;
-}
+.breed-picker-wrapper { position: relative; }
 
 .breed-recognizing {
   position: absolute;
@@ -124,7 +131,7 @@
 
 .recognizing-text {
   font-size: 24rpx;
-  color: #FF8C69;
+  color: var(--color-accent);
   animation: blink 1.2s infinite;
 }
 

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘用药图标 - 药瓶 -->
+  <!-- 瓶身 -->
+  <path d="M16 16 L16 38 C16 40, 18 42, 24 42 C30 42, 32 40, 32 38 L32 16Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 瓶盖 -->
+  <path d="M18 16 L18 12 C18 10, 20 8, 24 8 C28 8, 30 10, 30 12 L30 16Z" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 瓶身标签 -->
+  <path d="M18 24 L30 24 L30 32 L18 32Z" fill="rgba(255,255,255,0.6)" stroke="#2A2A2A" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+  <!-- 十字标记 -->
+  <path d="M24 26 L24 30" fill="none" stroke="#8EBD3C" stroke-width="2" stroke-linecap="round"/>
+  <path d="M22 28 L26 28" fill="none" stroke="#8EBD3C" stroke-width="2" stroke-linecap="round"/>
+  <!-- 装饰 -->
+  <path d="M10 10 L11 8 L12 10 L11 12Z" fill="#38B8E8" stroke="none" opacity="0.6"/>
+  <path d="M36 14 L37 12 L38 14 L37 16Z" fill="#FFB8C6" stroke="none" opacity="0.6"/>
+  <circle cx="38" cy="38" r="1" fill="#8EBD3C" opacity="0.4"/>
+</svg>

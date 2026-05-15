@@ -20,7 +20,7 @@ public class CatFoodServiceImpl implements CatFoodService {
     private final PgcReviewMapper pgcReviewMapper;
 
     @Override
-    public List<CatFood> list(String foodType, String ageStage, String brand, int page, int size) {
+    public List<CatFood> list(String foodType, String ageStage, String brand, String keyword, int page, int size) {
         LambdaQueryWrapper<CatFood> wrapper = new LambdaQueryWrapper<>();
         if (StringUtils.hasText(foodType)) {
             wrapper.eq(CatFood::getFoodType, foodType);
@@ -30,6 +30,10 @@ public class CatFoodServiceImpl implements CatFoodService {
         }
         if (StringUtils.hasText(brand)) {
             wrapper.like(CatFood::getBrand, brand);
+        }
+        if (StringUtils.hasText(keyword)) {
+            wrapper.and(w -> w.like(CatFood::getName, keyword)
+                    .or().like(CatFood::getBrand, keyword));
         }
         wrapper.orderByDesc(CatFood::getAvgScore);
         int offset = (page - 1) * size;

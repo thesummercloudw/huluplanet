@@ -1,69 +1,101 @@
-<view class="container edit-page">
+<view class="container form-page">
+  <!-- 页面标题 -->
+  <view class="form-title">
+    <image class="form-title-icon" src="/images/icon-camera.svg" mode="aspectFit"></image>
+    {{isEdit ? '编辑猫咪' : '添加猫咪'}}
+  </view>
+
   <!-- 头像选择 -->
-  <view class="avatar-section" bindtap="chooseAvatar">
-    <view class="avatar-wrapper">
-      <image wx:if="{{avatarTemp}}" class="avatar-img" src="{{avatarTemp}}" mode="aspectFill"/>
-      <view wx:else class="avatar-placeholder">
-        <text class="avatar-icon">📷</text>
-        <text class="avatar-hint">添加头像</text>
-      </view>
-      <view wx:if="{{uploading}}" class="avatar-loading">
-        <text>上传中...</text>
+  <view class="form-section">
+    <view class="avatar-section" bindtap="chooseAvatar">
+      <view class="avatar-wrapper">
+        <image wx:if="{{avatarTemp}}" class="avatar-img" src="{{avatarTemp}}" mode="aspectFill"/>
+        <view wx:else class="avatar-placeholder">
+          <image class="avatar-icon-svg" src="/images/icon-camera.svg" mode="aspectFit"></image>
+          <text class="avatar-hint">添加头像</text>
+        </view>
+        <view wx:if="{{uploading}}" class="avatar-loading">
+          <text>上传中...</text>
+        </view>
       </view>
     </view>
   </view>
 
-  <view class="form-group">
-    <text class="form-label">名字 *</text>
+  <!-- 名字 -->
+  <view class="form-section">
+    <view class="form-label">名字 <text class="required-star">*</text></view>
     <input class="form-input" placeholder="猫咪的名字" value="{{form.name}}" data-field="name" bindinput="onInput"/>
   </view>
 
-  <view class="form-group">
-    <text class="form-label">品种</text>
+  <!-- 品种 -->
+  <view class="form-section">
+    <view class="form-label">品种</view>
     <view class="breed-picker-wrapper">
       <picker mode="selector" range="{{breedOptions}}" value="{{breedIndex}}" bindchange="onBreedChange">
-        <view class="form-input picker-value">{{breedOptions[breedIndex]}}</view>
+        <view class="form-input picker-value">
+          <text>{{breedOptions[breedIndex]}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
       </picker>
       <view wx:if="{{recognizing}}" class="breed-recognizing">
-        <text class="recognizing-text">🔍 识别中...</text>
+        <text class="recognizing-text">识别中...</text>
       </view>
     </view>
   </view>
 
-  <view class="form-group">
-    <text class="form-label">性别</text>
+  <!-- 性别 -->
+  <view class="form-section">
+    <view class="form-label">性别</view>
     <picker mode="selector" range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
-      <view class="form-input picker-value">{{genderOptions[genderIndex]}}</view>
+      <view class="form-input picker-value">
+        <text>{{genderOptions[genderIndex]}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
     </picker>
   </view>
 
-  <view class="form-group">
-    <text class="form-label">生日</text>
+  <!-- 生日 -->
+  <view class="form-section">
+    <view class="form-label">生日</view>
     <picker mode="date" value="{{form.birthday}}" bindchange="onBirthdayChange">
-      <view class="form-input picker-value">{{form.birthday || '点击选择'}}</view>
+      <view class="form-input picker-value">
+        <text class="{{form.birthday ? '' : 'placeholder-text'}}">{{form.birthday || '点击选择'}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
     </picker>
   </view>
 
-  <view class="form-group">
-    <text class="form-label">体重(kg)</text>
+  <!-- 体重 -->
+  <view class="form-section">
+    <view class="form-label">体重(kg)</view>
     <input class="form-input" type="digit" placeholder="如：4.5" value="{{form.weightKg}}" data-field="weightKg" bindinput="onInput"/>
   </view>
 
-  <view class="form-group row-group" bindtap="toggleNeutered">
-    <text class="form-label">已绝育</text>
-    <switch checked="{{form.isNeutered}}" color="#FF8C69"/>
+  <!-- 绝育 -->
+  <view class="form-section">
+    <view class="row-group" bindtap="toggleNeutered">
+      <text class="row-label">已绝育</text>
+      <switch checked="{{form.isNeutered}}" color="#8EBD3C"/>
+    </view>
   </view>
 
-  <view class="form-group">
-    <text class="form-label">到家日</text>
+  <!-- 到家日 -->
+  <view class="form-section">
+    <view class="form-label">到家日</view>
     <picker mode="date" value="{{form.adoptionDate}}" bindchange="onAdoptionDateChange">
-      <view class="form-input picker-value">{{form.adoptionDate || '点击选择'}}</view>
+      <view class="form-input picker-value">
+        <text class="{{form.adoptionDate ? '' : 'placeholder-text'}}">{{form.adoptionDate || '点击选择'}}</text>
+        <text class="picker-arrow">▼</text>
+      </view>
     </picker>
   </view>
 
-  <button class="btn-primary submit-btn" bindtap="handleSubmit" loading="{{loading}}">
-    {{isEdit ? '保存修改' : '添加猫咪'}}
-  </button>
+  <!-- 提交 -->
+  <view class="form-submit">
+    <button class="submit-btn" bindtap="handleSubmit" loading="{{loading}}">
+      {{isEdit ? '保存修改' : '添加猫咪'}}
+    </button>
+  </view>
 
   <!-- 🎆 烟火彩蛋 -->
   <view class="fireworks-overlay" wx:if="{{showFireworks}}">

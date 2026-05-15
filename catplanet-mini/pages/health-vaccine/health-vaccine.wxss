@@ -1,0 +1,45 @@
+@import '../feeding-add/feeding-add.wxss';
+@import '../care-add/care-add.wxss';
+
+/* 通用健康子页面样式 */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 16rpx; }
+.select-chip {
+  padding: 16rpx 28rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  border: 2rpx solid transparent;
+  box-shadow: var(--shadow-card);
+}
+.select-chip.active {
+  background: var(--color-primary-light);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.mt-16 { margin-top: 16rpx; }
+
+.label-hint { font-size: 22rpx; color: var(--color-placeholder); font-weight: 400; }
+
+/* 多选 chip */
+.multi-chip {
+  padding: 14rpx 24rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  font-size: 24rpx;
+  color: var(--color-text-secondary);
+  border: 2rpx solid transparent;
+  box-shadow: var(--shadow-card);
+}
+.multi-chip.active {
+  background: var(--color-primary-light);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+/* 频率/剂量行 */
+.inline-row { display: flex; align-items: center; gap: 16rpx; }
+.inline-row .form-input { flex: 1; }
+.inline-row .unit-text { font-size: 26rpx; color: var(--color-text-secondary); white-space: nowrap; }

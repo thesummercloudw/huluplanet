@@ -1,6 +1,7 @@
 /* 通用表单样式 */
 .form-page { padding-bottom: 60rpx; }
-.form-title { font-size: 36rpx; font-weight: 700; margin-bottom: 40rpx; color: var(--color-text); }
+.form-title { font-size: 36rpx; font-weight: 700; margin-bottom: 40rpx; color: var(--color-text); display: flex; align-items: center; }
+.form-title-icon { width: 40rpx; height: 40rpx; margin-right: 8rpx; }
 .form-section { margin-bottom: 36rpx; }
 .form-label { font-size: 26rpx; color: var(--color-text-secondary); margin-bottom: 16rpx; }
 .form-input { background: var(--color-card); border-radius: var(--radius-md); padding: 24rpx 28rpx; font-size: 28rpx; color: var(--color-text); box-shadow: var(--shadow-card); }
@@ -17,6 +18,12 @@
 
 .picker-value { display: flex; justify-content: space-between; align-items: center; }
 .picker-arrow { font-size: 20rpx; color: var(--color-text-secondary); }
+
+.food-history { margin-top: 16rpx; }
+.food-history-label { font-size: 22rpx; color: var(--color-text-secondary); margin-bottom: 12rpx; }
+.food-history-tags { display: flex; flex-wrap: wrap; gap: 12rpx; }
+.food-history-tag { padding: 10rpx 22rpx; background: var(--color-card); border-radius: var(--radius-sm); font-size: 24rpx; color: var(--color-text-secondary); border: 2rpx solid transparent; box-shadow: var(--shadow-card); }
+.food-history-tag.active { background: var(--color-primary-light); border-color: var(--color-accent); color: var(--color-accent); }
 
 .form-submit { margin-top: 60rpx; }
 .submit-btn { background: var(--color-accent) !important; color: #fff !important; border-radius: var(--radius-md) !important; font-size: 30rpx; padding: 24rpx 0; border: none; }

@@ -27,6 +27,23 @@ const resolveImage = (url) => {
   return url;
 };
 
+/**
+ * 解析缩略图URL：在列表/头像等场景下使用较小尺寸的图，加快加载
+ * @param {string} url - 图片路径
+ * @param {number} width - 缩略图宽度（默认 200）
+ * @returns {string} 带缩略图参数的图片 URL
+ */
+const resolveThumb = (url, width = 200) => {
+  const fullUrl = resolveImage(url);
+  if (!fullUrl) return '';
+  // 仅对服务端图片追加缩略图参数
+  if (fullUrl.includes('/api/public/image/')) {
+    const separator = fullUrl.includes('?') ? '&' : '?';
+    return fullUrl + separator + 'w=' + width;
+  }
+  return fullUrl;
+};
+
 const request = (options) => {
   return new Promise((resolve, reject) => {
     const { url, method = 'GET', data, header = {} } = options;
@@ -77,29 +94,48 @@ module.exports = {
   put: (url, data) => request({ url, method: 'PUT', data }),
   del: (url, data) => request({ url, method: 'DELETE', data }),
   resolveImage,
+  resolveThumb,
   upload: (filePath) => {
-    return new Promise((resolve, reject) => {
-      const header = {};
-      if (app.globalData.token) {
-        header['Authorization'] = `Bearer ${app.globalData.token}`;
-      }
-      wx.uploadFile({
-        url: `${app.globalData.baseUrl}/api/upload`,
-        filePath: filePath,
-        name: 'file',
-        header,
-        success(res) {
-          const result = JSON.parse(res.data);
-          if (result.code === 0) {
-            resolve(result.data);
-          } else {
-            wx.showToast({ title: result.message || '上传失败', icon: 'none' });
-            reject(result);
+    // 先压缩图片再上传，显著减少传输体积
+    const doUpload = (path) => {
+      return new Promise((resolve, reject) => {
+        const header = {};
+        if (app.globalData.token) {
+          header['Authorization'] = `Bearer ${app.globalData.token}`;
+        }
+        wx.uploadFile({
+          url: `${app.globalData.baseUrl}/api/upload`,
+          filePath: path,
+          name: 'file',
+          header,
+          success(res) {
+            const result = JSON.parse(res.data);
+            if (result.code === 0) {
+              resolve(result.data);
+            } else {
+              wx.showToast({ title: result.message || '上传失败', icon: 'none' });
+              reject(result);
+            }
+          },
+          fail(err) {
+            wx.showToast({ title: '上传失败', icon: 'none' });
+            reject(err);
           }
+        });
+      });
+    };
+
+    return new Promise((resolve, reject) => {
+      // 压缩图片：quality 80 在视觉无损的前提下通常可减小 50-70% 体积
+      wx.compressImage({
+        src: filePath,
+        quality: 80,
+        success(res) {
+          doUpload(res.tempFilePath).then(resolve).catch(reject);
         },
-        fail(err) {
-          wx.showToast({ title: '上传失败', icon: 'none' });
-          reject(err);
+        fail() {
+          // 压缩失败时使用原图上传
+          doUpload(filePath).then(resolve).catch(reject);
         }
       });
     });

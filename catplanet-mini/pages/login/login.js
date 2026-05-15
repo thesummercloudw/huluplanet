@@ -23,7 +23,9 @@ Page({
           http.post('/api/auth/wx-login', { code: res.code })
             .then((data) => {
               app.globalData.token = data.token;
+              app.globalData.userId = data.userId;
               wx.setStorageSync('token', data.token);
+              wx.setStorageSync('userId', String(data.userId));
 
               if (data.isNewUser) {
                 // 新用户去引导页

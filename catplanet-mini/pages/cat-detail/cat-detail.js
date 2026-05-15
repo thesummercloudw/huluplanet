@@ -55,8 +55,8 @@ Page({
   },
 
   getTypeIcon(type) {
-    const icons = { feeding: '🍗', care: '✨', health: '💊' };
-    return icons[type] || '📋';
+    const icons = { feeding: '/images/icon-feeding.svg', care: '/images/icon-care.svg', health: '/images/icon-health.svg' };
+    return icons[type] || '/images/icon-care-other.svg';
   },
 
   formatTime(dateStr) {

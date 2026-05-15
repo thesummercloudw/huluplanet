@@ -2,6 +2,69 @@
   padding-top: 60rpx;
 }
 
+/* 用户信息卡片 */
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.user-avatar-wrap {
+  position: relative;
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 28rpx;
+  flex-shrink: 0;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(56, 184, 232, 0.3);
+}
+
+.user-avatar-edit-icon {
+  position: absolute;
+  bottom: -4rpx;
+  right: -4rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-nickname-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.user-nickname {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.user-nickname-edit-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 12rpx;
+}
+
+.user-family-tag {
+  font-size: 24rpx;
+  color: var(--color-primary);
+  background: rgba(56, 184, 232, 0.1);
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  align-self: flex-start;
+}
 .family-card {
   display: flex;
   flex-direction: column;
@@ -24,10 +87,10 @@
   margin-bottom: 20rpx;
 }
 
-.family-edit-icon {
-  font-size: 28rpx;
+.family-edit-icon-img {
+  width: 32rpx;
+  height: 32rpx;
   margin-left: 12rpx;
-  color: var(--color-text-secondary);
 }
 
 .invite-row {
@@ -92,8 +155,9 @@
   border-bottom: none;
 }
 
-.action-icon {
-  font-size: 36rpx;
+.action-icon-img {
+  width: 48rpx;
+  height: 48rpx;
   margin-right: 16rpx;
 }
 

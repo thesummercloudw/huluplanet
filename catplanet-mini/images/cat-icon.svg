@@ -1,44 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80">
-  <defs>
-    <radialGradient id="catBodyGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFF8F0"/>
-      <stop offset="100%" stop-color="#F5EBE0"/>
-    </radialGradient>
-  </defs>
-
-  <!-- 猫剪影 - 居中显示 -->
-  <g transform="translate(42, 42) scale(1.5)">
-    <!-- 身体主体 -->
-    <ellipse cx="0" cy="0" rx="22" ry="16" fill="url(#catBodyGrad)"/>
-    <ellipse cx="0" cy="0" rx="22" ry="16" fill="none" stroke="#EDE5DA" stroke-width="0.8"/>
-
-    <!-- 头部 -->
-    <circle cx="-14" cy="-10" r="12" fill="#FFF8F0"/>
-    <circle cx="-14" cy="-10" r="12" fill="none" stroke="#EDE5DA" stroke-width="0.6"/>
-
-    <!-- 尖耳朵 - 左 -->
-    <path d="M-22,-19 L-19,-28 L-14,-20" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.6"/>
-    <path d="M-20,-20 L-18.5,-26 L-15.5,-20.5" fill="#FFDDD2" opacity="0.5"/>
-
-    <!-- 尖耳朵 - 右 -->
-    <path d="M-8,-19 L-5,-27 L-2,-18" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.6"/>
-    <path d="M-7,-19.5 L-5.5,-25 L-3,-18.5" fill="#FFDDD2" opacity="0.5"/>
-
-    <!-- 闭眼 -->
-    <path d="M-18,-9 Q-16,-7 -14,-9" fill="none" stroke="#C4A98E" stroke-width="1" stroke-linecap="round"/>
-    <path d="M-12,-9 Q-10,-7 -8,-9" fill="none" stroke="#C4A98E" stroke-width="1" stroke-linecap="round"/>
-
-    <!-- 小鼻子 -->
-    <ellipse cx="-13" cy="-6" rx="1.2" ry="1" fill="#E8B4A8"/>
-
-    <!-- 蓬松尾巴 -->
-    <path d="M18,-2 Q28,-8 30,2 Q32,12 24,16 Q18,19 14,14" 
-          fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.8"/>
-    <path d="M20,-4 Q26,-6 28,0 Q30,8 24,12 Q20,15 16,12" 
-          fill="none" stroke="#F5EBE0" stroke-width="1.5" opacity="0.5"/>
-
-    <!-- 前爪 -->
-    <ellipse cx="-8" cy="10" rx="5" ry="3.5" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.5"/>
-    <circle cx="-6" cy="10.5" r="1" fill="#FFDDD2" opacity="0.6"/>
-  </g>
+  <!-- 手绘添加猫咪图标 - 简笔猫剪影 + 加号 -->
+  <!-- 猫身体 - 蜷缩状手绘 -->
+  <path d="M30 52 C22 50, 18 44, 20 38 C22 32, 30 28, 40 28 C50 28, 58 32, 60 38 C62 44, 58 50, 50 52 C44 54, 36 54, 30 52Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 猫头 - 偏左上 -->
+  <path d="M22 36 C18 34, 16 28, 18 24 C20 20, 26 18, 30 20 C34 22, 35 28, 33 32 C31 36, 26 38, 22 36Z" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 左耳 -->
+  <path d="M19 23 L16 14 L24 20" fill="none" stroke="#2A2A2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 右耳 -->
+  <path d="M28 20 L30 12 L34 20" fill="none" stroke="#2A2A2A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 眼睛 - 眯眯眼 -->
+  <path d="M21 28 C22 26, 24 26, 25 28" fill="none" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M27 27 C28 25, 30 25, 31 27" fill="none" stroke="#2A2A2A" stroke-width="1.5" stroke-linecap="round"/>
+  <!-- 小鼻子 -->
+  <path d="M25 30 L26 29 L27 30" fill="none" stroke="#2A2A2A" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- 尾巴 - 翘起的弯曲线 -->
+  <path d="M56 40 C62 36, 66 30, 64 26 C62 22, 58 24, 60 28" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- 加号 - 手绘 -->
+  <path d="M58 52 L58 64" fill="none" stroke="#8EBD3C" stroke-width="3" stroke-linecap="round"/>
+  <path d="M52 58 L64 58" fill="none" stroke="#8EBD3C" stroke-width="3" stroke-linecap="round"/>
+  <!-- 小装饰 -->
+  <path d="M46 16 L47 14 L48 16 L47 18Z" fill="#FFB8C6" stroke="none" opacity="0.7"/>
+  <circle cx="66" cy="44" r="1.2" fill="#38B8E8" opacity="0.5"/>
 </svg>

@@ -81,7 +81,7 @@
     <!-- 记录列表 -->
     <view class="record-list" wx:if="{{records.length > 0}}">
       <view class="record-item" wx:for="{{records}}" wx:key="id">
-        <view class="record-icon">{{item.icon}}</view>
+        <view class="record-icon"><image class="record-icon-img" src="{{item.icon}}" mode="aspectFit"></image></view>
         <view class="record-body">
           <text class="record-title">{{item.title}}</text>
           <text class="record-desc" wx:if="{{item.description}}">{{item.description}}</text>
@@ -91,7 +91,7 @@
     </view>
 
     <view class="empty-records" wx:elif="{{!recordLoading}}">
-      <text class="empty-icon">📋</text>
+      <image class="empty-icon" src="/images/icon-care-other.svg" mode="aspectFit"></image>
       <text class="empty-text">暂无记录，快去添加吧~</text>
     </view>
 

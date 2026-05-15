@@ -2,12 +2,27 @@
   <!-- 磨砂噪点纹理层 -->
   <view class="grain-overlay"></view>
 
+  <!-- 用户信息卡片 -->
+  <view class="card user-card">
+    <view class="user-avatar-wrap" bindtap="changeAvatar">
+      <image class="user-avatar" src="{{avatar || '/images/cat-icon.svg'}}" mode="aspectFill"></image>
+      <image class="user-avatar-edit-icon" src="/images/icon-camera.svg"></image>
+    </view>
+    <view class="user-info">
+      <view class="user-nickname-row" bindtap="editNickname">
+        <text class="user-nickname">{{nickname || '未设置昵称'}}</text>
+        <image class="user-nickname-edit-icon" src="/images/icon-edit.svg"></image>
+      </view>
+      <text class="user-family-tag" wx:if="{{familyName}}">{{familyName}}</text>
+    </view>
+  </view>
+
   <!-- 家庭信息卡片 -->
   <view class="card family-card" wx:if="{{familyName}}">
     <text class="family-label">当前家庭</text>
     <view class="family-name-row" bindtap="editFamilyName">
       <text class="family-name">{{familyName}}</text>
-      <text class="family-edit-icon">✏️</text>
+      <image class="family-edit-icon-img" src="/images/icon-edit.svg"></image>
     </view>
     <view class="invite-row" bindtap="copyInviteCode">
       <text class="invite-label">邀请码：{{inviteCode}}</text>
@@ -30,13 +45,13 @@
   <!-- 功能列表 -->
   <view class="card action-card">
     <view class="action-item" bindtap="goReminders">
-      <text class="action-icon">🔔</text>
+      <image class="action-icon-img" src="/images/icon-reminder.svg"></image>
       <text class="action-text">提醒管理</text>
       <text class="action-badge" wx:if="{{pendingReminders > 0}}">{{pendingReminders}}</text>
       <text class="action-arrow">›</text>
     </view>
     <view class="action-item" bindtap="handleLogout">
-      <text class="action-icon">🚨</text>
+      <image class="action-icon-img" src="/images/icon-logout.svg"></image>
       <text class="action-text">退出登录</text>
       <text class="action-arrow">›</text>
     </view>

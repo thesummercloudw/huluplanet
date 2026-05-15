@@ -18,8 +18,15 @@ public class AdoptionPublishRequest {
     private String ageEstimate;
     private String breedEstimate;
 
-    @NotBlank(message = "请填写所在城市")
+    private String province;
+
+    @NotBlank(message = "请选择所在地区")
     private String city;
+
+    private String district;
+
+    private Double lat;
+    private Double lng;
 
     private String personality;
     private String reasonForAdoption;

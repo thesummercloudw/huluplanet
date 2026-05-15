@@ -1,6 +1,8 @@
 package com.catplanet.module.user.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
+import com.catplanet.common.serializer.ImageUrlSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -15,6 +17,8 @@ public class User {
     private String openid;
     private String unionid;
     private String nickname;
+
+    @JsonSerialize(using = ImageUrlSerializer.class)
     private String avatar;
     private String phone;
 

@@ -16,7 +16,7 @@
   <!-- 位置信息 -->
   <view class="location-section">
     <view class="location-row" bindtap="chooseLocation">
-      <text class="location-icon">📍</text>
+      <image class="location-icon" src="/images/icon-location.svg" mode="aspectFit"></image>
       <text class="location-text">{{address || '点击获取当前位置'}}</text>
       <text class="location-arrow">›</text>
     </view>

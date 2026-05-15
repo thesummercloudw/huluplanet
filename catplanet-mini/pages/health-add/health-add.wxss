@@ -1,1 +1,56 @@
-@import '../care-add/care-add.wxss';
+@import '../feeding-add/feeding-add.wxss';
+
+/* Health Hub 样式 */
+.health-hub { padding-bottom: 60rpx; }
+
+.hub-header { margin-bottom: 40rpx; }
+.hub-title { font-size: 40rpx; font-weight: 700; display: block; color: var(--color-text); }
+.hub-subtitle { font-size: 26rpx; color: var(--color-text-secondary); margin-top: 8rpx; display: block; }
+
+.hub-cat-section { margin-bottom: 32rpx; }
+
+.hub-cards { display: flex; flex-direction: column; gap: 20rpx; }
+
+.hub-card {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 28rpx;
+  background: var(--color-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1.5rpx solid rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
+}
+
+.hub-card:active { transform: scale(0.97); }
+
+.hub-card-icon {
+  font-size: 48rpx;
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.hub-card-icon-img {
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.hub-card.vaccine .hub-card-icon { background: rgba(129, 199, 245, 0.2); }
+.hub-card.deworm .hub-card-icon { background: rgba(164, 207, 74, 0.2); }
+.hub-card.checkup .hub-card-icon { background: rgba(255, 184, 198, 0.2); }
+.hub-card.medicine .hub-card-icon { background: rgba(237, 247, 190, 0.3); }
+.hub-card.weight .hub-card-icon { background: rgba(56, 184, 232, 0.15); }
+
+.hub-card-body { flex: 1; }
+.hub-card-title { font-size: 30rpx; font-weight: 600; color: var(--color-text); display: block; }
+.hub-card-desc { font-size: 24rpx; color: var(--color-text-secondary); margin-top: 6rpx; display: block; }
+
+.hub-card-arrow { font-size: 36rpx; color: var(--color-text-secondary); font-weight: 300; }

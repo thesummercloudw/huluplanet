@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CatFoodService {
 
-    List<CatFood> list(String foodType, String ageStage, String brand, int page, int size);
+    List<CatFood> list(String foodType, String ageStage, String brand, String keyword, int page, int size);
 
     CatFood getById(Long foodId);
 

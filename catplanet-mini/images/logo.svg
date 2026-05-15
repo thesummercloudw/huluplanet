@@ -1,108 +1,79 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <defs>
-    <!-- 星球渐变 - 淡樱粉 -->
-    <radialGradient id="planetGrad" cx="45%" cy="40%" r="55%">
-      <stop offset="0%" stop-color="#FFF0F3"/>
-      <stop offset="70%" stop-color="#FFB3C6"/>
-      <stop offset="100%" stop-color="#FF9DB5"/>
-    </radialGradient>
-    <!-- 猫身体渐变 -->
-    <radialGradient id="catGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#FFF8F0"/>
-      <stop offset="100%" stop-color="#F5EBE0"/>
-    </radialGradient>
-    <!-- 星球光晕 -->
-    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
-      <stop offset="60%" stop-color="#FFB3C6" stop-opacity="0.25"/>
-      <stop offset="100%" stop-color="#FFB3C6" stop-opacity="0"/>
-    </radialGradient>
-  </defs>
-
-  <!-- 外层光晕 -->
-  <circle cx="100" cy="118" r="72" fill="url(#glowGrad)"/>
-
-  <!-- 星球环 - 后半部分（星球后面）- 45度倾斜 -->
-  <ellipse cx="100" cy="118" rx="72" ry="16" fill="none" stroke="#A4CF4A" stroke-width="3" opacity="0.4"
-           stroke-dasharray="0 113 113 0" transform="rotate(-15, 100, 118)"/>
-
-  <!-- 呼噜星球 - 圆形 -->
-  <circle cx="100" cy="118" r="50" fill="url(#planetGrad)"/>
-  <!-- 星球表面陨石坑 -->
-  <circle cx="85" cy="110" r="8" fill="none" stroke="#E8899E" stroke-width="1.2" opacity="0.35"/>
-  <circle cx="85" cy="110" r="6" fill="#FFA8BD" opacity="0.12"/>
-  <circle cx="110" cy="130" r="6" fill="none" stroke="#E8899E" stroke-width="1" opacity="0.3"/>
-  <circle cx="110" cy="130" r="4.5" fill="#FFA8BD" opacity="0.1"/>
-  <circle cx="105" cy="105" r="4" fill="none" stroke="#E8899E" stroke-width="0.8" opacity="0.25"/>
-  <circle cx="105" cy="105" r="3" fill="#FFA8BD" opacity="0.08"/>
-  <circle cx="92" cy="135" r="3.5" fill="none" stroke="#E8899E" stroke-width="0.8" opacity="0.22"/>
-  <circle cx="92" cy="135" r="2.5" fill="#FFA8BD" opacity="0.08"/>
-
-  <!-- 星球环 - 前半部分（星球前面）- 45度倾斜 -->
-  <ellipse cx="100" cy="118" rx="72" ry="16" fill="none" stroke="#A4CF4A" stroke-width="3.5" opacity="0.6"
-           stroke-dasharray="113 113" transform="rotate(-15, 100, 118)"/>
-
-  <!-- 蜷曲的猫剪影 - 基于图片中奶油色蓬松小猫 -->
-  <!-- 猫身体 (蜷曲在星球上方) - 放大2倍 -->
-  <g transform="translate(100, 55) scale(2)">
-    <!-- 身体主体 - 蜷曲的椭圆形 -->
-    <ellipse cx="0" cy="0" rx="22" ry="16" fill="url(#catGrad)"/>
-    <!-- 蓬松毛发边缘 -->
-    <ellipse cx="0" cy="0" rx="22" ry="16" fill="none" stroke="#EDE5DA" stroke-width="0.6"/>
-
-    <!-- 头部 -->
-    <circle cx="-14" cy="-10" r="12" fill="#FFF8F0"/>
-    <circle cx="-14" cy="-10" r="12" fill="none" stroke="#EDE5DA" stroke-width="0.5"/>
-
-    <!-- 尖耳朵 - 左 -->
-    <path d="M-22,-19 L-19,-28 L-14,-20" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.5"/>
-    <!-- 耳朵内部 - 左 -->
-    <path d="M-20,-20 L-18.5,-26 L-15.5,-20.5" fill="#FFDDD2" opacity="0.5"/>
-
-    <!-- 尖耳朵 - 右 -->
-    <path d="M-8,-19 L-5,-27 L-2,-18" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.5"/>
-    <!-- 耳朵内部 - 右 -->
-    <path d="M-7,-19.5 L-5.5,-25 L-3,-18.5" fill="#FFDDD2" opacity="0.5"/>
-
-    <!-- 闭眼 - 睡觉中的弧线 -->
-    <path d="M-18,-9 Q-16,-7 -14,-9" fill="none" stroke="#C4A98E" stroke-width="0.8" stroke-linecap="round"/>
-    <path d="M-12,-9 Q-10,-7 -8,-9" fill="none" stroke="#C4A98E" stroke-width="0.8" stroke-linecap="round"/>
-
-    <!-- 小鼻子 -->
-    <ellipse cx="-13" cy="-6" rx="1.2" ry="1" fill="#E8B4A8"/>
-
-    <!-- 蓬松的尾巴 - 卷曲环绕 -->
-    <path d="M18,-2 Q28,-8 30,2 Q32,12 24,16 Q18,19 14,14" 
-          fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.6"/>
-    <!-- 尾巴蓬松效果 -->
-    <path d="M20,-4 Q26,-6 28,0 Q30,8 24,12 Q20,15 16,12" 
-          fill="none" stroke="#F5EBE0" stroke-width="1.5" opacity="0.5"/>
-
-    <!-- 前爪 - 蜷缩 -->
-    <ellipse cx="-8" cy="10" rx="5" ry="3.5" fill="#FFF8F0" stroke="#EDE5DA" stroke-width="0.4"/>
-    <!-- 爪子肉垫 -->
-    <circle cx="-6" cy="10.5" r="1" fill="#FFDDD2" opacity="0.6"/>
+  <!-- 手绘涂鸦风猫咪logo - 猫咪坐在星球顶部，身体不被蓝色覆盖 -->
+  
+  <!-- 星球环 - 后半部分（星球背后） -->
+  <ellipse cx="100" cy="155" rx="56" ry="12" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="118 118" stroke-dashoffset="118" transform="rotate(-15, 100, 155)" opacity="0.35"/>
+  
+  <!-- 星球 - 天蓝填充 -->
+  <circle cx="100" cy="155" r="42" fill="#38B8E8" opacity="0.82"/>
+  
+  <!-- 星球上的手绘装饰线条 -->
+  <path d="M66 150 Q82 144 100 147 Q118 150 134 145" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+  <path d="M72 164 Q90 159 108 162 Q126 165 138 160" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+  <path d="M80 177 Q95 174 110 176 Q125 178 132 175" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+  
+  <!-- 猫咪整体 - 缩小至85% 以(100,113)为锚点 -->
+  <g transform="translate(15, 16.95) scale(0.85)">
+    <!-- 猫咪身体填充 - 奶油白底色让猫身与星球分离 -->
+    <path d="M72 90 Q66 72 74 58 Q80 50 86 55 L83 44 Q85 36 91 40 L93 34 Q97 30 101 36 L103 42 Q109 38 111 46 L107 55 Q113 50 119 58 Q128 72 122 90 Q118 102 116 108 Q110 118 100 115 Q90 118 84 108 Q80 102 72 90" fill="#FFFDF8" stroke="none"/>
+    
+    <!-- 猫咪身体 - 手绘线条风格 -->
+    <g fill="none" stroke="#2A2A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <!-- 头部+耳朵轮廓 -->
+      <path d="M72 90 Q66 72 74 58 Q80 50 86 55 L83 44 Q85 36 91 40 L93 34 Q97 30 101 36 L103 42 Q109 38 111 46 L107 55 Q113 50 119 58 Q128 72 122 90"/>
+      
+      <!-- 耳朵内部线条 -->
+      <path d="M85 43 Q88 38 91 42" stroke-width="2"/>
+      <path d="M103 43 Q106 39 109 44" stroke-width="2"/>
+      
+      <!-- 闭眼 - 两条弧线 (睡觉) -->
+      <path d="M82 66 Q87 63 92 66" stroke-width="2.5"/>
+      <path d="M102 66 Q107 63 112 66" stroke-width="2.5"/>
+      
+      <!-- 鼻子小三角 -->
+      <path d="M96 72 L98 74 L94 74 Z" fill="#2A2A2A" stroke="none"/>
+      
+      <!-- 嘴巴 -->
+      <path d="M96 74 Q93 77 90 75" stroke-width="1.8"/>
+      <path d="M98 74 Q101 77 104 75" stroke-width="1.8"/>
+      
+      <!-- 胡须 -->
+      <path d="M82 72 L71 70" stroke-width="1.5"/>
+      <path d="M82 75 L72 77" stroke-width="1.5"/>
+      <path d="M110 72 L121 70" stroke-width="1.5"/>
+      <path d="M110 75 L120 77" stroke-width="1.5"/>
+      
+      <!-- 蜷缩的身体弧线 - 坐在星球顶部 -->
+      <path d="M72 90 Q68 100 74 108 Q84 118 97 114 Q110 118 120 108 Q126 100 122 90"/>
+      
+      <!-- 前爪搭在星球上 -->
+      <path d="M82 108 Q79 113 83 115" stroke-width="2.5"/>
+      <path d="M112 108 Q115 113 111 115" stroke-width="2.5"/>
+      
+      <!-- 尾巴 - 从右侧翘起卷曲 -->
+      <path d="M120 100 Q132 94 136 102 Q138 110 132 112 Q126 114 124 108" stroke-width="2.8"/>
+    </g>
   </g>
-
-  <!-- 漂浮的柠檬绿光点 -->
-  <circle cx="45" cy="55" r="3" fill="#A4CF4A" opacity="0.8">
-    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="3s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="155" cy="70" r="2.5" fill="#EDF7BE" opacity="0.7">
-    <animate attributeName="opacity" values="0.7;0.25;0.7" dur="2.5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="160" cy="130" r="2" fill="#FFB8C6" opacity="0.6">
-    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="4s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="38" cy="140" r="1.8" fill="#A4CF4A" opacity="0.65">
-    <animate attributeName="opacity" values="0.65;0.2;0.65" dur="3.5s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="130" cy="48" r="1.5" fill="#EDF7BE" opacity="0.5">
-    <animate attributeName="opacity" values="0.5;0.15;0.5" dur="2.8s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="60" cy="165" r="2.2" fill="#FFB8C6" opacity="0.55">
-    <animate attributeName="opacity" values="0.55;0.2;0.55" dur="3.2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="148" cy="160" r="1.8" fill="#A4CF4A" opacity="0.5">
-    <animate attributeName="opacity" values="0.5;0.15;0.5" dur="2.6s" repeatCount="indefinite"/>
-  </circle>
+  
+  <!-- 星球环 - 前半部分（星球前方） -->
+  <ellipse cx="100" cy="155" rx="56" ry="12" fill="none" stroke="#2A2A2A" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="118 118" stroke-dashoffset="0" transform="rotate(-15, 100, 155)" opacity="0.7"/>
+  
+  <!-- 呼噜符号 (Zzz) - 青柠绿 -->
+  <g fill="none" stroke="#8EBD3C" stroke-width="2.5" stroke-linecap="round">
+    <text x="128" y="50" font-size="16" font-family="sans-serif" fill="#8EBD3C" stroke="none" font-weight="bold">Z</text>
+    <text x="138" y="40" font-size="12" font-family="sans-serif" fill="#8EBD3C" stroke="none" font-weight="bold">z</text>
+    <text x="146" y="32" font-size="9" font-family="sans-serif" fill="#8EBD3C" stroke="none" font-weight="bold">z</text>
+  </g>
+  
+  <!-- 装饰小星星/光点 - 手绘风 -->
+  <g fill="none" stroke="#38B8E8" stroke-width="2" stroke-linecap="round">
+    <path d="M40 52 L42 48 L44 52 L40 50 L44 50" stroke-width="1.5"/>
+    <path d="M155 75 L157 71 L159 75 L155 73 L159 73" stroke-width="1.5"/>
+  </g>
+  
+  <!-- 小爱心装饰 -->
+  <path d="M48 80 Q48 76 52 76 Q56 76 56 80 Q56 84 52 87 Q48 84 48 80" fill="#FFB8C6" stroke="none" opacity="0.7"/>
+  
+  <!-- 小叶子装饰 -->
+  <path d="M150 98 Q154 93 158 98 Q154 101 150 98" fill="#8EBD3C" stroke="none" opacity="0.6"/>
 </svg>

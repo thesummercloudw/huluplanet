@@ -1,23 +1,33 @@
 <view class="page" wx:if="{{food}}">
-  <!-- 头部信息 -->
-  <view class="header">
+  <!-- 噪点纹理层 -->
+  <view class="grain-overlay"></view>
+
+  <!-- 头部卡片 -->
+  <view class="header-card">
+    <view class="header-deco">🐾</view>
     <image class="food-cover" src="{{food.image || '/images/food-placeholder.png'}}" mode="aspectFill"></image>
     <view class="header-info">
-      <view class="food-brand">{{food.brand}}</view>
+      <text class="food-brand">{{food.brand}}</text>
       <view class="food-name">{{food.name}}</view>
       <view class="food-score-row">
-        <text class="score-star" wx:if="{{food.avgScore > 0}}">⭐ {{food.avgScore}}</text>
+        <view class="score-badge" wx:if="{{food.avgScore > 0}}">
+          <image class="score-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+          <text class="score-num">{{food.avgScore}}</text>
+        </view>
         <text class="review-count">{{food.reviewCount}}条评价</text>
       </view>
-      <view class="food-price" wx:if="{{food.priceRange}}">💰 {{food.priceRange}}</view>
+      <view class="food-price" wx:if="{{food.priceRange}}">
+        <image class="price-icon" src="/images/icon-price.svg" mode="aspectFit"></image>
+        <text class="price-text">{{food.priceRange}}</text>
+      </view>
     </view>
   </view>
 
   <!-- Section Tabs -->
   <view class="section-tabs">
-    <view class="sec-tab {{activeSection==='info'?'active':''}}" bindtap="switchSection" data-section="info">基本信息</view>
-    <view class="sec-tab {{activeSection==='pgc'?'active':''}}" bindtap="switchSection" data-section="pgc">官方测评</view>
-    <view class="sec-tab {{activeSection==='ugc'?'active':''}}" bindtap="switchSection" data-section="ugc">用户短评</view>
+    <view class="sec-tab {{activeSection==='info'?'active':''}}" bindtap="switchSection" data-section="info">📋 基本信息</view>
+    <view class="sec-tab {{activeSection==='pgc'?'active':''}}" bindtap="switchSection" data-section="pgc">📝 官方测评</view>
+    <view class="sec-tab {{activeSection==='ugc'?'active':''}}" bindtap="switchSection" data-section="ugc">💬 用户短评</view>
   </view>
 
   <!-- 基本信息 -->
@@ -33,15 +43,15 @@
       </view>
       <view class="info-item" wx:if="{{food.proteinPct}}">
         <text class="info-label">粗蛋白</text>
-        <text class="info-value">{{food.proteinPct}}%</text>
+        <text class="info-value highlight">{{food.proteinPct}}%</text>
       </view>
       <view class="info-item" wx:if="{{food.fatPct}}">
         <text class="info-label">粗脂肪</text>
-        <text class="info-value">{{food.fatPct}}%</text>
+        <text class="info-value highlight">{{food.fatPct}}%</text>
       </view>
     </view>
-    <view class="ingredients" wx:if="{{food.ingredientsSummary}}">
-      <view class="sub-title">配料表摘要</view>
+    <view class="ingredients-card" wx:if="{{food.ingredientsSummary}}">
+      <view class="sub-title">🧾 配料表摘要</view>
       <text class="ingredients-text">{{food.ingredientsSummary}}</text>
     </view>
     <view class="food-tags" wx:if="{{food.tags && food.tags.length > 0}}">
@@ -57,45 +67,79 @@
       </view>
       <view class="radar-scores">
         <view class="radar-item">
-          <view class="radar-bar" style="width: {{pgcReview.scoreIngredient * 10}}%"></view>
-          <text class="radar-label">原料 {{pgcReview.scoreIngredient}}/10</text>
+          <text class="radar-label-left">原料</text>
+          <view class="radar-track">
+            <view class="radar-bar" style="width: {{pgcReview.scoreIngredient * 10}}%"></view>
+          </view>
+          <text class="radar-score">{{pgcReview.scoreIngredient}}</text>
         </view>
         <view class="radar-item">
-          <view class="radar-bar" style="width: {{pgcReview.scoreNutrition * 10}}%"></view>
-          <text class="radar-label">营养 {{pgcReview.scoreNutrition}}/10</text>
+          <text class="radar-label-left">营养</text>
+          <view class="radar-track">
+            <view class="radar-bar" style="width: {{pgcReview.scoreNutrition * 10}}%"></view>
+          </view>
+          <text class="radar-score">{{pgcReview.scoreNutrition}}</text>
         </view>
         <view class="radar-item">
-          <view class="radar-bar" style="width: {{pgcReview.scoreValue * 10}}%"></view>
-          <text class="radar-label">性价比 {{pgcReview.scoreValue}}/10</text>
+          <text class="radar-label-left">性价比</text>
+          <view class="radar-track">
+            <view class="radar-bar" style="width: {{pgcReview.scoreValue * 10}}%"></view>
+          </view>
+          <text class="radar-score">{{pgcReview.scoreValue}}</text>
         </view>
         <view class="radar-item">
-          <view class="radar-bar" style="width: {{pgcReview.scorePalatability * 10}}%"></view>
-          <text class="radar-label">适口性 {{pgcReview.scorePalatability}}/10</text>
+          <text class="radar-label-left">适口性</text>
+          <view class="radar-track">
+            <view class="radar-bar" style="width: {{pgcReview.scorePalatability * 10}}%"></view>
+          </view>
+          <text class="radar-score">{{pgcReview.scorePalatability}}</text>
         </view>
         <view class="radar-item">
-          <view class="radar-bar" style="width: {{pgcReview.scoreSafety * 10}}%"></view>
-          <text class="radar-label">安全性 {{pgcReview.scoreSafety}}/10</text>
+          <text class="radar-label-left">安全性</text>
+          <view class="radar-track">
+            <view class="radar-bar" style="width: {{pgcReview.scoreSafety * 10}}%"></view>
+          </view>
+          <text class="radar-score">{{pgcReview.scoreSafety}}</text>
         </view>
       </view>
     </block>
-    <view class="empty" wx:else>暂无官方测评</view>
+    <view class="empty" wx:else>
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">暂无官方测评</text>
+    </view>
   </view>
 
   <!-- UGC 短评 -->
   <view class="section" wx:if="{{activeSection==='ugc'}}">
     <view class="ugc-item" wx:for="{{ugcReviews}}" wx:key="reviewId">
-      <view class="ugc-header">
-        <text class="ugc-stars">{{item.score >= 1 ? '⭐' : ''}}{{item.score >= 2 ? '⭐' : ''}}{{item.score >= 3 ? '⭐' : ''}}{{item.score >= 4 ? '⭐' : ''}}{{item.score >= 5 ? '⭐' : ''}}</text>
-        <text class="ugc-time">{{item.createdAt}}</text>
+      <view class="ugc-user-row">
+        <image class="ugc-avatar" src="{{item.avatar || '/images/cat-icon.svg'}}" mode="aspectFill"></image>
+        <view class="ugc-user-info">
+          <text class="ugc-nickname">{{item.nickname || '匿名铲屎官'}}</text>
+          <text class="ugc-time">{{item.createdAt}}</text>
+        </view>
+        <view class="ugc-stars">
+          <image wx:if="{{item.score >= 1}}" class="ugc-star-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+          <image wx:if="{{item.score >= 2}}" class="ugc-star-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+          <image wx:if="{{item.score >= 3}}" class="ugc-star-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+          <image wx:if="{{item.score >= 4}}" class="ugc-star-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+          <image wx:if="{{item.score >= 5}}" class="ugc-star-icon" src="/images/icon-score.svg" mode="aspectFit"></image>
+        </view>
       </view>
       <view class="ugc-content">{{item.content}}</view>
       <view class="ugc-images" wx:if="{{item.images && item.images.length > 0}}">
         <image wx:for="{{item.images}}" wx:for-item="img" wx:key="*this" src="{{img}}" mode="aspectFill" class="ugc-img"></image>
       </view>
     </view>
-    <view class="empty" wx:if="{{ugcReviews.length === 0}}">暂无用户短评</view>
+    <view class="empty" wx:if="{{ugcReviews.length === 0}}">
+      <text class="empty-icon">💬</text>
+      <text class="empty-text">暂无用户短评，快来分享吧~</text>
+    </view>
   </view>
 
   <!-- 写短评按钮 -->
-  <view class="write-btn" bindtap="goWriteReview">✍️ 我家猫吃过</view>
+  <view class="write-btn" bindtap="goWriteReview">
+    <text class="write-btn-icon">✍️</text>
+    <text class="write-btn-text">我家猫吃过</text>
+  </view>
 </view>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- 手绘称重图标 - 体重秤 -->
+  <!-- 秤盘底座 -->
+  <path d="M10 36 C10 38, 14 40, 24 40 C34 40, 38 38, 38 36 L38 34 C38 32, 34 30, 24 30 C14 30, 10 32, 10 34Z" fill="#E8F7D6" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- 秤面 -->
+  <ellipse cx="24" cy="30" rx="12" ry="5" fill="#B8E8F8" stroke="#2A2A2A" stroke-width="2" stroke-linecap="round"/>
+  <!-- 显示屏 -->
+  <path d="M19 26 L29 26 L29 30 L19 30Z" fill="rgba(255,255,255,0.7)" stroke="#2A2A2A" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+  <!-- 数字 -->
+  <path d="M22 27 L22 29" fill="none" stroke="#38B8E8" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M24 27 L24 29 M24 27 L26 27 M24 28 L25.5 28 M24 29 L26 29" fill="none" stroke="#38B8E8" stroke-width="1" stroke-linecap="round"/>
+  <!-- 猫爪印装饰（秤面上） -->
+  <circle cx="20" cy="22" r="1.5" fill="none" stroke="#2A2A2A" stroke-width="1" opacity="0.4"/>
+  <circle cx="24" cy="20" r="1.5" fill="none" stroke="#2A2A2A" stroke-width="1" opacity="0.4"/>
+  <circle cx="28" cy="22" r="1.5" fill="none" stroke="#2A2A2A" stroke-width="1" opacity="0.4"/>
+  <path d="M22 25 C22 23, 26 23, 26 25 C26 26, 24 27, 24 27 C24 27, 22 26, 22 25Z" fill="none" stroke="#2A2A2A" stroke-width="1" opacity="0.4"/>
+  <!-- 装饰 -->
+  <path d="M8 18 L9 16 L10 18 L9 20Z" fill="#FFB8C6" stroke="none" opacity="0.6"/>
+  <circle cx="38" cy="16" r="1.2" fill="#8EBD3C" opacity="0.5"/>
+</svg>

@@ -20,7 +20,7 @@
   <!-- 记录列表 -->
   <view class="list-section" wx:if="{{activeTab === 'list'}}">
     <view class="record-item" wx:for="{{records}}" wx:key="recordId">
-      <view class="record-icon">🍗</view>
+      <view class="record-icon"><image class="record-icon-img" src="/images/icon-feeding.svg" mode="aspectFit"></image></view>
       <view class="record-info">
         <view class="record-main">
           <text class="record-food">{{item.foodName}}</text>
@@ -49,10 +49,17 @@
     <!-- 汇总卡片 -->
     <view class="summary-card" wx:if="{{stats}}">
       <view class="summary-item">
+        <view class="summary-icon-wrap blue">
+          <image class="summary-icon" src="/images/icon-feeding.svg" mode="aspectFit"></image>
+        </view>
         <text class="summary-value">{{stats.totalCount}}</text>
         <text class="summary-label">喂食次数</text>
       </view>
+      <view class="summary-divider"></view>
       <view class="summary-item">
+        <view class="summary-icon-wrap green">
+          <image class="summary-icon" src="/images/icon-feeding.svg" mode="aspectFit"></image>
+        </view>
         <text class="summary-value">{{stats.totalValue}}g</text>
         <text class="summary-label">总喂食量</text>
       </view>
@@ -60,7 +67,10 @@
 
     <!-- 每日喂食量柱状图 -->
     <view class="chart-card" wx:if="{{stats && stats.dailyStats.length > 0}}">
-      <view class="chart-title">每日喂食量(g)</view>
+      <view class="chart-header">
+        <image class="chart-title-icon" src="/images/icon-chart.svg" mode="aspectFit"></image>
+        <view class="chart-title">每日喂食量(g)</view>
+      </view>
       <view class="bar-chart">
         <view class="bar-item" wx:for="{{stats.dailyStats}}" wx:key="date">
           <view class="bar-fill" style="height: {{item.value / maxBarValue * 100}}%"></view>
@@ -72,9 +82,13 @@
 
     <!-- 类型分布 -->
     <view class="chart-card" wx:if="{{stats && stats.typeDistribution}}">
-      <view class="chart-title">餐食类型分布</view>
+      <view class="chart-header">
+        <image class="chart-title-icon" src="/images/icon-distribution.svg" mode="aspectFit"></image>
+        <view class="chart-title">餐食类型分布</view>
+      </view>
       <view class="type-list">
         <view class="type-row" wx:for="{{stats.typeDistribution}}" wx:for-index="type" wx:for-item="count" wx:key="type">
+          <view class="type-dot"></view>
           <text class="type-name">{{mealTypeNames[type] || type}}</text>
           <view class="type-bar-wrap">
             <view class="type-bar" style="width: {{count / stats.totalCount * 100}}%"></view>

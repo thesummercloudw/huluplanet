@@ -17,7 +17,7 @@
       <text wx:if="{{cat.ageEstimate}}">{{cat.ageEstimate}}</text>
       <text wx:if="{{cat.breedEstimate}}">{{cat.breedEstimate}}</text>
     </view>
-    <view class="cat-city" wx:if="{{cat.city}}">📍 {{cat.city}}</view>
+    <view class="cat-city" wx:if="{{cat.city}}"><image class="inline-loc-icon" src="/images/icon-location.svg" mode="aspectFit"></image> {{cat.city}}</view>
     <view class="cat-personality" wx:if="{{cat.personality}}">💬 {{cat.personality}}</view>
   </view>
 

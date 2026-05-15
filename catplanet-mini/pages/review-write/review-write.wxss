@@ -10,13 +10,11 @@
   margin-bottom: 32rpx;
 }
 .section {
-  background: rgba(255, 255, 255, 0.45);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  background: rgba(255, 255, 255, 0.72);
   border-radius: 16rpx;
   padding: 24rpx;
   margin-bottom: 20rpx;
-  border: 1rpx solid rgba(255, 255, 255, 0.5);
+  border: 1.5rpx solid rgba(0, 0, 0, 0.06);
 }
 .label {
   font-size: 26rpx;
@@ -58,9 +56,9 @@
   border: 1rpx solid #EEE;
 }
 .cat-chip.active {
-  background: rgba(53, 200, 180, 0.12);
-  color: #35C8B4;
-  border-color: #35C8B4;
+  background: rgba(56, 184, 232, 0.12);
+  color: #38B8E8;
+  border-color: #38B8E8;
 }
 
 /* Textarea */
@@ -74,7 +72,7 @@
 
 /* Submit */
 .submit-btn {
-  background: linear-gradient(135deg, #35C8B4, #A4CF4A);
+  background: #38B8E8;
   color: #FFF;
   text-align: center;
   padding: 24rpx;
@@ -82,5 +80,5 @@
   font-size: 30rpx;
   font-weight: 600;
   margin-top: 40rpx;
-  box-shadow: 0 4rpx 16rpx rgba(53, 200, 180, 0.25);
+  box-shadow: 0 4rpx 16rpx rgba(56, 184, 232, 0.25);
 }

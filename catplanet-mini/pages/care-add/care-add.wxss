@@ -4,6 +4,7 @@
 .type-chip { display: flex; flex-direction: column; align-items: center; padding: 20rpx 24rpx; background: var(--color-card); border-radius: var(--radius-md); border: 2rpx solid transparent; min-width: 140rpx; box-shadow: var(--shadow-card); }
 .type-chip.active { background: var(--color-primary-light); border-color: var(--color-accent); }
 .type-icon { font-size: 36rpx; margin-bottom: 8rpx; }
+.type-icon-img { width: 48rpx; height: 48rpx; margin-bottom: 8rpx; }
 .type-label { font-size: 22rpx; color: var(--color-text-secondary); }
 .type-chip.active .type-label { color: var(--color-accent); }
 

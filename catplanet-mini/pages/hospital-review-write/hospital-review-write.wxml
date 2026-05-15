@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="shop-title">{{hospitalName}}</view>
+
+  <!-- 评分 -->
+  <view class="section">
+    <view class="label">评分</view>
+    <view class="stars">
+      <view wx:for="{{[1,2,3,4,5]}}" wx:key="*this" 
+            class="star {{score >= item ? 'active' : ''}}" 
+            bindtap="setScore" data-score="{{item}}">⭐</view>
+    </view>
+  </view>
+
+  <!-- 服务标签 -->
+  <view class="section">
+    <view class="label">服务标签（可选）</view>
+    <view class="tag-list">
+      <view wx:for="{{tags}}" wx:key="name"
+            class="tag-chip {{item.selected ? 'active' : ''}}"
+            bindtap="toggleTag" data-index="{{index}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 评价内容 -->
+  <view class="section">
+    <view class="label">评价内容 <text class="char-count">{{content.length}}/300</text></view>
+    <textarea class="input-area" placeholder="说说你的体验感受…" 
+              maxlength="300" bindinput="onContentInput" value="{{content}}"></textarea>
+  </view>
+
+  <!-- 提交 -->
+  <view class="submit-btn" bindtap="onSubmit">提交评价</view>
+</view>

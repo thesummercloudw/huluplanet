@@ -17,6 +17,12 @@ Page({
     }
   },
 
+  onShow() {
+    if (this.data.foodId) {
+      this.loadDetail(this.data.foodId);
+    }
+  },
+
   async loadDetail(foodId) {
     try {
       const res = await http.get(`/api/catfood/${foodId}`);
